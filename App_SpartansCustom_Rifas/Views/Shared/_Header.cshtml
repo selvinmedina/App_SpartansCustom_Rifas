@@ -1,0 +1,293 @@
+﻿<header id="topnav">
+    <div class="topbar-main">
+        <div class="container-fluid">
+
+            <!-- Logo container-->
+            <div class="logo">
+
+                <a href="@Url.Action("","Dashboard")" class="logo">
+                    <img src="~/images/logo-sm.png" alt="" class="logo-small">
+                    <img src="~/images/logo.png" alt="" class="logo-large">
+                </a>
+
+            </div>
+            <!-- End Logo container-->
+
+
+            <div class="menu-extras topbar-custom">
+
+                <ul class="float-right list-unstyled mb-0 ">
+
+                    <li class="dropdown notification-list d-none d-sm-block">
+                        <form role="search" class="app-search">
+                            <div class="form-group mb-0">
+                                <input type="text" class="form-control" placeholder="Search..">
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </div>
+                        </form>
+                    </li>
+
+                    <li class="dropdown notification-list">
+                        <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <i class="ti-bell noti-icon"></i>
+                            <span class="badge badge-pill badge-danger noti-icon-badge">3</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg">
+                            <!-- item-->
+                            <h6 class="dropdown-item-text">
+                                Notifications (258)
+                            </h6>
+                            <div class="slimscroll notification-item-list">
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item active">
+                                    <div class="notify-icon bg-success"><i class="mdi mdi-cart-outline"></i></div>
+                                    <p class="notify-details">Your order is placed<span class="text-muted">Dummy text of the printing and typesetting industry.</span></p>
+                                </a>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon bg-warning"><i class="mdi mdi-message"></i></div>
+                                    <p class="notify-details">New Message received<span class="text-muted">You have 87 unread messages</span></p>
+                                </a>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon bg-info"><i class="mdi mdi-martini"></i></div>
+                                    <p class="notify-details">Your item is shipped<span class="text-muted">It is a long established fact that a reader will</span></p>
+                                </a>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon bg-primary"><i class="mdi mdi-cart-outline"></i></div>
+                                    <p class="notify-details">Your order is placed<span class="text-muted">Dummy text of the printing and typesetting industry.</span></p>
+                                </a>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon bg-danger"><i class="mdi mdi-message"></i></div>
+                                    <p class="notify-details">New Message received<span class="text-muted">You have 87 unread messages</span></p>
+                                </a>
+                            </div>
+                            <!-- All-->
+                            <a href="javascript:void(0);" class="dropdown-item text-center text-primary">
+                                View all <i class="fi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="dropdown notification-list">
+                        <div class="dropdown notification-list nav-pro-img">
+                            <a class="dropdown-toggle nav-link arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                <img src="~/images/users/user-4.jpg" alt="user" class="rounded-circle">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                                <!-- item-->
+                                <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle m-r-5"></i> Profile</a>
+                                <a class="dropdown-item" href="#"><i class="mdi mdi-wallet m-r-5"></i> My Wallet</a>
+                                <a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right">11</span><i class="mdi mdi-settings m-r-5"></i> Settings</a>
+                                <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline m-r-5"></i> Lock screen</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-danger" href="#"><i class="mdi mdi-power text-danger"></i> Logout</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="menu-item">
+                        <!-- Mobile menu toggle-->
+                        <a class="navbar-toggle nav-link" id="mobileToggle">
+                            <div class="lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </a>
+                        <!-- End mobile menu toggle-->
+                    </li>
+                </ul>
+            </div>
+            <!-- end menu-extras -->
+
+            <div class="clearfix"></div>
+
+        </div> <!-- end container -->
+    </div>
+    <!-- end topbar-main -->
+
+    <div class="container-fluid">
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+
+                    @Html.Partial("_Breadcrumb")
+
+                    @*<h4 class="page-title">Dashboard</h4>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active">
+                            Welcome to Lexa Dashboard
+                        </li>
+                    </ol>*@
+                    <div class="state-information">
+                        <div class="state-graph">
+                            <div id="header-chart-1"></div>
+                            <div class="info">Balance $ 2,317</div>
+                        </div>
+                        <div class="state-graph">
+                            <div id="header-chart-2"></div>
+                            <div class="info">Item Sold 1230</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MENU Start -->
+    <div class="navbar-custom">
+        <div class="container-fluid">
+            <div id="navigation">
+                <!-- Navigation Menu-->
+                <ul class="navigation-menu">
+
+                    <li class="has-submenu">
+                        <a href="@Url.Action("","Dashboard")">
+                            <i class="ti-dashboard"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="has-submenu">
+                        <a href="#"><i class="ti-email"></i>Email</a>
+                        <ul class="submenu">
+                            <li><a href="@Url.Action("Inbox","Email")">Inbox</a></li>
+                            <li><a href="@Url.Action("Read","Email")">Email Read</a></li>
+                            <li><a href="@Url.Action("Compose","Email")">Email Compose</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="has-submenu">
+                        <a href="#"><i class="ti-support"></i>UI Elements</a>
+                        <ul class="submenu megamenu">
+                            <li>
+                                <ul>
+                                    <li><a href="@Url.Action("alerts","ui")">Alerts</a></li>
+                                    <li><a href="@Url.Action("buttons","ui")">Buttons</a></li>
+                                    <li><a href="@Url.Action("badges","ui")">Badge</a></li>
+                                    <li><a href="@Url.Action("cards","ui")">Cards</a></li>
+                                    <li><a href="@Url.Action("carousels","ui")">Carousel</a></li>
+                                    <li><a href="@Url.Action("dropdowns","ui")">Dropdowns</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul>
+                                    <li><a href="@Url.Action("grid","ui")">Grid</a></li>
+                                    <li><a href="@Url.Action("images","ui")">Images</a></li>
+                                    <li><a href="@Url.Action("lightbox","ui")">Lightbox</a></li>
+                                    <li><a href="@Url.Action("modals","ui")">Modals</a></li>
+                                    <li><a href="@Url.Action("pagination","ui")">Pagination</a></li>
+                                    <li><a href="@Url.Action("popovertooltips","ui")">Popover & Tooltips</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul>
+                                    <li><a href="@Url.Action("progressbars","ui")">Progress Bars</a></li>
+                                    <li><a href="@Url.Action("sweetalerts","ui")">Sweet-Alert</a></li>
+                                    <li><a href="@Url.Action("tabaccordions","ui")">Tabs &amp; Accordions</a></li>
+                                    <li><a href="@Url.Action("typography","ui")">Typography</a></li>
+                                    <li><a href="@Url.Action("video","ui")">Video</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="has-submenu">
+                        <a href="#"><i class="ti-receipt"></i>Forms</a>
+                        <ul class="submenu">
+                            <li><a href="@Url.Action("elements","forms")">Elements</a></li>
+                            <li><a href="@Url.Action("validation","forms")">Validation</a></li>
+                            <li><a href="@Url.Action("advanced","forms")">Advanced</a></li>
+                            <li><a href="@Url.Action("editors","forms")">Editors</a></li>
+                            <li><a href="@Url.Action("uploads","forms")">File Upload</a></li>
+                            <li><a href="@Url.Action("xeditable","forms")">Xeditable</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="has-submenu">
+                        <a href="#"><i class="ti-menu-alt"></i>More</a>
+                        <ul class="submenu">
+                            <li>
+                                @*<a href="calendar.html">Calendar</a>*@
+                                @Html.ActionLink("Calendar", "Calendar", "Dashboard")
+                            </li>
+                            <li class="has-submenu">
+                                <a href="#">Icons</a>
+                                <ul class="submenu">
+                                    <li><a href="@Url.Action("material","icon")">Material Design</a></li>
+                                    <li><a href="@Url.Action("ion","icon")">Ion Icons</a></li>
+                                    <li><a href="@Url.Action("fontawesome","icon")">Font Awesome</a></li>
+                                    <li><a href="@Url.Action("themify","icon")">Themify Icons</a></li>
+                                    <li><a href="@Url.Action("dripicons","icon")">Dripicons</a></li>
+                                    <li><a href="@Url.Action("typicons","icon")">Typicons Icons</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-submenu">
+                                <a href="#">Tables </a>
+                                <ul class="submenu">
+                                    <li><a href="@Url.Action("basic","table")">Basic Tables</a></li>
+                                    <li><a href="@Url.Action("datatable","table")">Data Table</a></li>
+                                    <li><a href="@Url.Action("responsive","table")">Responsive Table</a></li>
+                                    <li><a href="@Url.Action("editable","table")">Editable Table</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-submenu">
+                                <a href="#">Maps</a>
+                                <ul class="submenu">
+                                    <li><a href="@Url.Action("google","maps")"> Google Map</a></li>
+                                    <li><a href="@Url.Action("vector","maps")"> Vector Map</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("rangeslider","dashboard")">Range Slider</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("sessiontimeout","dashboard")">Session Timeout</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="has-submenu">
+                        <a href="#"><i class="ti-pie-chart"></i>Charts</a>
+                        <ul class="submenu">
+                            <li><a href="@Url.Action("morris","chart")">Morris Chart</a></li>
+                            <li><a href="@Url.Action("chartist","chart")">Chartist Chart</a></li>
+                            <li><a href="@Url.Action("chartjs","chart")">Chartjs Chart</a></li>
+                            <li><a href="@Url.Action("flot","chart")">Flot Chart</a></li>
+                            <li><a href="@Url.Action("c3","chart")">C3 Chart</a></li>
+                            <li><a href="@Url.Action("other","chart")">Jquery Knob Chart</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="has-submenu">
+                        <a href="#"><i class="ti-files"></i>Pages</a>
+                        <ul class="submenu megamenu">
+                            <li>
+                                <ul>
+                                    <li><a href="@Url.Action("timeline","pages")">Timeline</a></li>
+                                    <li><a href="@Url.Action("invoice","pages")">Invoice</a></li>
+                                    <li><a href="@Url.Action("directory","pages")">Directory</a></li>
+                                    <li><a href="@Url.Action("login","pages")">Login</a></li>
+                                    <li><a href="@Url.Action("register","pages")">Register</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul>
+                                    <li><a href="@Url.Action("recoverpassword","pages")">Recover Password</a></li>
+                                    <li><a href="@Url.Action("lockscreen","pages")">Lock Screen</a></li>
+                                    <li><a href="@Url.Action("blank","pages")">Blank Page</a></li>
+                                    <li><a href="@Url.Action("badrequest","pages")">Error 404</a></li>
+                                    <li><a href="@Url.Action("internalservererror","pages")">Error 500</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- End navigation menu -->
+            </div> <!-- end navigation -->
+        </div> <!-- end container-fluid -->
+    </div> <!-- end navbar-custom -->
+</header>
+
