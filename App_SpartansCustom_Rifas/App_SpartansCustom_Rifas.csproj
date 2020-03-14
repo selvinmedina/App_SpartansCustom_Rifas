@@ -2603,6 +2603,13 @@
     <Content Include="icons\themify-icons\themify-icons.css" />
     <Content Include="icons\typicons\typicons.min.css" />
     <Content Include="icons\typicons\typicons.svg" />
+    <Content Include="images\App_Icons\ICO_spartan_helmet.ico" />
+    <Content Include="images\App_Icons\PNG_spartan_helmet.png" />
+    <Content Include="images\App_Icons\png_spartan_helmet_icon.ico" />
+    <Content Include="images\App_Icons\png_spartan_helmet_icon2.ico" />
+    <Content Include="images\App_Icons\png_spartan_helmet_icon3.ico" />
+    <Content Include="images\App_Icons\Spartans-CustomName.png" />
+    <Content Include="images\App_Icons\spartan_helmet.svg" />
     <Content Include="images\bg-1.png" />
     <Content Include="images\directory-bg.jpg" />
     <Content Include="images\favicon.ico" />
