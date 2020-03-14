@@ -11,17 +11,34 @@ th {
 
 .table-hover tbody tr:hover,.table-striped tbody tr:nth-of-type(odd),
 .thead-default th{
-  background-color: $gray-100;
+  background-color: lighten($dark, 3%);
+  color: $white;
 }
 
-.table td, .table th{
-  vertical-align: middle;
+.table {
+  color: $gray-300;
+  td, th{
+    vertical-align: middle;
+    border-color: rgba($white, 0.05) !important;
+  }
 }
 
 .table-vertical {
   td {
     vertical-align: middle;
   }
+}
+
+.table-sm {
+  th, td {
+    padding: .3rem !important;
+  }
+}
+
+// datatable
+
+.dataTable{
+  border-color: rgba($white, 0.07);
 }
 
 
@@ -114,7 +131,8 @@ table.focus-on {
     input[type="checkbox"]:checked + label {
       &::after {
         content: "\f00c";
-        font-family: 'FontAwesome';
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
       }
     }
     input[type="checkbox"]:disabled + label {
@@ -133,15 +151,31 @@ table.focus-on {
       }
     }
   }
-  .sticky-table-header.fixed-solution {
-    top: 239px !important;
+  .dropdown-menu{
+    li{
+      &.checkbox-row{
+        color: $gray-400;
+        &:hover{
+          color: $gray-400;
+          background-color: lighten($dark, 4%);
+        }
+      }
+    }
+  }
+  .fixed-solution{
+    .sticky-table-header {
+      top: 239px !important;
+      background-color: $primary;
+    }
   }
 }
 
 @media (max-width: 767px) {
   .table-rep-plugin { 
-    .sticky-table-header.fixed-solution {
-      top: 130px !important;
+    .fixed-solution {
+      .sticky-table-header {
+        top: 130px !important;
+      }
     }
   }
 }
