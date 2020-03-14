@@ -1,25 +1,31 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <title>Lexa - Responsive Bootstrap 4 Admin Dashboard</title>
-    <meta content="Admin Dashboard" name="description" />
-    <meta content="Themesbrand" name="author" />
-    <link rel="shortcut icon" href="~/images/favicon.ico">
-    @RenderSection("styles", required: false)
-    @Styles.Render("~/Content/css")
-</head>
+    <head>
+        <!-- header tags -->
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+        <title>Spartans Custom</title>
+        <meta content="Admin Dashboard" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <link rel="icon" href="~/images/App_Icons/png_spartan_helmet_icon3.ico" type="image/gif" sizes="128x128">
 
-<body>
-    @Html.Partial("_Header")
-    <div class="wrapper">
-        @RenderBody()
-    </div>
-    @Html.Partial("_Footer")
-    @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
-    <script src="~/Scripts/app.js"></script>
-</body>
+        <!-- Styles render -->
+        @RenderSection("styles", required: false)
+        @Styles.Render("~/Content/css")
+    </head>
+    <body>
+        <!-- INSERCIÓN DEL HEADER -->
+        @Html.Partial("_Header")
+        <div class="wrapper">
+            <!-- INSERCIÓN DEL BODY -->
+            @RenderBody()
+        </div>
+        <!-- INSERCIÓN DEL FOOTER -->
+        @Html.Partial("_Footer")
+        <!-- Scripts render -->
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+        @*<script src="~/Scripts/app.js"></script>*@
+    </body>
 </html>
