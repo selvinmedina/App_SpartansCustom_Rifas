@@ -49,6 +49,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -184,8 +186,98 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\App_SpartansCustom.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>App_SpartansCustom.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\App_SpartansCustom.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\App_SpartansCustom.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>App_SpartansCustom.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__EFMigrationsHistory.cs">
+      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbCatalogoProductos.cs">
+      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbCategoriaProductos.cs">
+      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbCiudades.cs">
+      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbClientes.cs">
+      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbDepartamentos.cs">
+      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbDirecciones.cs">
+      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbEmpresa.cs">
+      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbImagenProductos.cs">
+      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbMarcasComerciales.cs">
+      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbPais.cs">
+      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbPantallas.cs">
+      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbPantallasRoles.cs">
+      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbPermisos.cs">
+      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbPersonas.cs">
+      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbProductos.cs">
+      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbRangos.cs">
+      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbRoles.cs">
+      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbRolesPermisos.cs">
+      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbSubCategoriaProductos.cs">
+      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbUsuarios.cs">
+      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbUsuariosRoles.cs">
+      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -2639,6 +2731,16 @@
     <Content Include="images\users\user-7.jpg" />
     <Content Include="images\users\user-8.jpg" />
     <Content Include="images\users\user-9.jpg" />
+    <Content Include="Models\App_SpartansCustom.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>App_SpartansCustom.edmx</DependentUpon>
+      <LastGenOutput>App_SpartansCustom.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\App_SpartansCustom.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>App_SpartansCustom.edmx</DependentUpon>
+      <LastGenOutput>App_SpartansCustom.cs</LastGenOutput>
+    </Content>
     <Content Include="plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css" />
     <Content Include="plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css" />
     <Content Include="plugins\bootstrap-colorpicker\img\bootstrap-colorpicker\alpha-horizontal.png" />
@@ -3408,6 +3510,13 @@
     <Content Include="Content\icons.css.map" />
     <Content Include="Content\style.css.map" />
     <Content Include="Content\typicons.css.map" />
+    <EntityDeploy Include="Models\App_SpartansCustom.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>App_SpartansCustom.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\App_SpartansCustom.edmx.diagram">
+      <DependentUpon>App_SpartansCustom.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -4048,6 +4157,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
