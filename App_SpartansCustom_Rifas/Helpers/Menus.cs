@@ -13,6 +13,7 @@ namespace App_SpartansCustom_Rifas.Helpers
             { "table", "Tables" },
             { "maps", "Maps" },
             { "chart", "Charts" },
+            { "categoriaproductos", "Categorias" },
             { "email", "Email" },
             { "pages", "Pages" },
             { "home", "Principal" }
@@ -21,6 +22,7 @@ namespace App_SpartansCustom_Rifas.Helpers
         public static readonly IDictionary<string, string> actions = new Dictionary<string, string>()
         {
             { "inbox", "Inbox" },
+            { "categoriaproductos", "Index" },
             { "email", "Email Read" },
             { "read", "Email Read" },
             { "compose", "Email Compose" },

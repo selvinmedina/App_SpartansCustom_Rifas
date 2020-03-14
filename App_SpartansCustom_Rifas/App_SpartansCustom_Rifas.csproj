@@ -169,6 +169,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\CategoriaProductosController.cs" />
     <Compile Include="Helpers\Menus.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ChartController.cs" />
@@ -4145,6 +4146,11 @@
     <Content Include="Scripts\plugins\tinymce\skins\lightgray\fonts\tinymce.ttf" />
     <Content Include="Scripts\plugins\tinymce\skins\lightgray\fonts\tinymce.woff" />
     <Content Include="Scripts\plugins\tinymce\themes\inlite\src\test\.eslintrc" />
+    <Content Include="Views\CategoriaProductos\Create.cshtml" />
+    <Content Include="Views\CategoriaProductos\Delete.cshtml" />
+    <Content Include="Views\CategoriaProductos\Details.cshtml" />
+    <Content Include="Views\CategoriaProductos\Edit.cshtml" />
+    <Content Include="Views\CategoriaProductos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
