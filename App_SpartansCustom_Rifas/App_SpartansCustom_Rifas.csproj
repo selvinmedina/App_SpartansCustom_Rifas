@@ -205,11 +205,8 @@
     <Content Include="Content\bootstrap-datepicker\dist\css\bootstrap-datepicker3.min.css" />
     <Content Include="Content\bootstrap-datepicker\dist\css\bootstrap-datepicker3.standalone.css" />
     <Content Include="Content\bootstrap-datepicker\dist\css\bootstrap-datepicker3.standalone.min.css" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap-touchspin\css\jquery.bootstrap-touchspin.css" />
     <Content Include="Content\bootstrap-touchspin\css\jquery.bootstrap-touchspin.min.css" />
-    <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\c3\c3.css" />
     <Content Include="Content\c3\c3.min.css" />
@@ -237,6 +234,7 @@
     <Content Include="Content\fonts\themify.svg" />
     <Content Include="Content\fonts\typicons.svg" />
     <Content Include="Content\fullcalendar\css\fullcalendar.min.css" />
+    <Content Include="Content\icons.css" />
     <Content Include="Content\icons\css\dripicons.css" />
     <Content Include="Content\icons\css\materialdesignicons.css" />
     <Content Include="Content\icons\css\themify-icons.css" />
@@ -1443,6 +1441,8 @@
     <Content Include="Content\pages\xeditable.js" />
     <Content Include="Content\RWD-Table-Patterns\dist\css\rwd-table.css" />
     <Content Include="Content\RWD-Table-Patterns\dist\css\rwd-table.min.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\typicons.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\dripicons-v2.svg" />
     <Content Include="fonts\fa-brands-400.svg" />
@@ -1454,7 +1454,6 @@
     <Content Include="fonts\themify.svg" />
     <Content Include="fonts\typicons.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="icons\css\dripicons.css" />
     <Content Include="icons\css\materialdesignicons.css" />
     <Content Include="icons\css\themify-icons.css" />
@@ -2622,6 +2621,7 @@
     <Content Include="images\small\img-5.jpg" />
     <Content Include="images\small\img-6.jpg" />
     <Content Include="images\small\img-7.jpg" />
+    <Content Include="images\SpartanCustom.png" />
     <Content Include="images\users\user-1.jpg" />
     <Content Include="images\users\user-10.jpg" />
     <Content Include="images\users\user-2.jpg" />
@@ -3398,6 +3398,9 @@
     <Content Include="fonts\typicons.scss" />
     <Content Include="fonts\typicons.ttf" />
     <Content Include="fonts\typicons.woff" />
+    <Content Include="Content\icons.css.map" />
+    <Content Include="Content\style.css.map" />
+    <Content Include="Content\typicons.css.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -4035,10 +4038,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
