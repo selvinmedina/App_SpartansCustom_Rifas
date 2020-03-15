@@ -3272,6 +3272,7 @@
     <Content Include="plugins\x-editable\img\loading.gif" />
     <Content Include="plugins\x-editable\js\bootstrap-editable.js" />
     <Content Include="plugins\x-editable\js\bootstrap-editable.min.js" />
+    <Content Include="Scripts\app\CategoriaProductos.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="icons\css\dripicons.css.map" />

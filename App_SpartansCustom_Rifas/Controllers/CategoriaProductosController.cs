@@ -55,7 +55,7 @@ namespace App_SpartansCustom_Rifas.Controllers
             if (ModelState.IsValid)
             {
                 db.tbCategoriaProductos.Add(tbCategoriaProductos);
-                await db.SaveChangesAsync();
+                
                 return RedirectToAction("Index");
             }
 
