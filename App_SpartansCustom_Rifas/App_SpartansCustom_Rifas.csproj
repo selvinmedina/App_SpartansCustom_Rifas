@@ -4156,13 +4156,10 @@
     <Content Include="Views\CategoriaProductos\Edit.cshtml" />
     <Content Include="Views\CategoriaProductos\Index.cshtml" />
     <Content Include="Views\Renders.cshtml" />
-    <Content Include="Views\PruebasT4\Index.cshtml" />
-    <Content Include="Views\PruebasT4\Index01.cshtml" />
-    <Content Include="Views\PruebasT4\Index02.cshtml" />
-    <Content Include="Views\PruebasT4\Index03.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\PruebasT4\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
