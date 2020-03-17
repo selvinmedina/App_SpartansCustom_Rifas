@@ -1537,7 +1537,6 @@
     <Content Include="Content\style.css" />
     <Content Include="Content\typicons.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\dripicons-v2.svg" />
     <Content Include="fonts\fa-brands-400.svg" />
     <Content Include="fonts\fa-regular-400.svg" />
     <Content Include="fonts\fa-solid-900.svg" />

@@ -73,11 +73,11 @@ namespace App_SpartansCustom_Rifas
             bundles.Add(new ScriptBundle("~/Scripts/app/CategoriaProductos").Include(
                     "~/Scripts/app/CategoriaProductos.js"));
 
-            bundles.Add(new ScriptBundle("~/Scripts/plugins/bootstrap - colorpicker/js").Include(
-                    "~/Scripts /plugins/bootstrap - colorpicker/js/bootstrap - colorpicker.js"
-                    ,"~/Scripts /plugins/bootstrap - colorpicker/js/bootstrap - colorpicker.min.js"));
+            bundles.Add(new ScriptBundle("~/Scripts/plugins/bootstrap-colorpicker/js").Include(
+                    "~/Scripts/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"
+                    ,"~/Scripts/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"));
 
-            bundles.Add(new ScriptBundle("~/Scripts/plugins/bootstrap - datepicker").Include(
+            bundles.Add(new ScriptBundle("~/Scripts/plugins/bootstrap-datepicker").Include(
                 "~/Scripts/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"
                 ,"~/Scripts/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"
                 ,"~/Scripts/plugins/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ar.min.js"
