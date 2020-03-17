@@ -4152,6 +4152,7 @@
     <Content Include="Views\CategoriaProductos\Details.cshtml" />
     <Content Include="Views\CategoriaProductos\Edit.cshtml" />
     <Content Include="Views\CategoriaProductos\Index.cshtml" />
+    <Content Include="Views\Renders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

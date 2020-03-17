@@ -510,8 +510,19 @@
 
 </div> <!-- end container-fluid -->
 
-@section scripts{
-    <script src="~/plugins/morris/morris.min.js"></script>
-    <script src="~/plugins/raphael/raphael-min.js"></script>
-    <script src="~/Scripts/pages/dashboard.js"></script>
-}
+    @*@section scripts{
+        <script src="~/plugins/morris/morris.min.js"></script>
+        <script src="~/plugins/raphael/raphael-min.js"></script>
+        <script src="~/Scripts/pages/dashboard.js"></script>
+    }*@
+
+    @RenderBody()
+
+    @Scripts.Render("~/Scripts/plugins/morris")
+    @Scripts.Render("~/Scripts/plugins/raphael")
+    @Scripts.Render("~/Scripts/pages/dashboard")
+
+    @RenderSection("scripts", required: true)
+
+
+
