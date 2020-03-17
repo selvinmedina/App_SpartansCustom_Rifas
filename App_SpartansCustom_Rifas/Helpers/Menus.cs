@@ -16,6 +16,7 @@ namespace App_SpartansCustom_Rifas.Helpers
             { "categoriaproductos", "Categorias" },
             { "email", "Email" },
             { "pages", "Pages" },
+            { "pruebast4", "T4" },
             { "home", "Principal" }
         };
 
