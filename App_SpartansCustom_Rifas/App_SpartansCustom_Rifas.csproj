@@ -170,6 +170,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\CategoriaProductosController.cs" />
+    <Compile Include="Controllers\PruebasT4Controller.cs" />
     <Compile Include="Helpers\Menus.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ChartController.cs" />
@@ -3518,6 +3519,9 @@
     <Content Include="Models\App_SpartansCustom.edmx.diagram">
       <DependentUpon>App_SpartansCustom.edmx</DependentUpon>
     </Content>
+    <Content Include="CodeTemplates\MVCView\List.cs.t4" />
+    <Content Include="CodeTemplates\MVCView\ModelMetadataFunctions.cs.include.t4" />
+    <Content Include="CodeTemplates\MVCView\Imports.include.t4" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -4155,6 +4159,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\PruebasT4\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
