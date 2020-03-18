@@ -4182,16 +4182,12 @@
     <Content Include="Views\CategoriaProductos\Edit.cshtml" />
     <Content Include="Views\CategoriaProductos\Index.cshtml" />
     <Content Include="Views\Renders.cshtml" />
-    <Content Include="Views\PruebasT4\Index.cshtml" />
-    <Content Include="Views\PruebasT4\Index01.cshtml" />
-    <Content Include="Views\PruebasT4\Create_View.cshtml" />
-    <Content Include="Views\PruebasT4\_Create.cshtml" />
+    <Content Include="Views\PruebasT4\Create.cshtml" />
+    <Content Include="Views\CategoriaProductos\_Create.cshtml" />
+    <Content Include="Views\PruebasT4\Create03.cshtml" />
+    <Content Include="Views\PruebasT4\Create05.cshtml" />
     <Content Include="Views\PruebasT4\Edit.cshtml" />
-    <Content Include="Views\PruebasT4\Details.cshtml" />
-    <Content Include="Views\PruebasT4\Details01.cshtml" />
-    <Content Include="Views\PruebasT4\Details03.cshtml" />
-    <Content Include="Views\PruebasT4\Details05.cshtml" />
-    <Content Include="Views\PruebasT4\Details500.cshtml" />
+    <Content Include="Views\PruebasT4\Edit_Com.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

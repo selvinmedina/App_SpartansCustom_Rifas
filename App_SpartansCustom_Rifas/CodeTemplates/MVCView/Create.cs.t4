@@ -7,7 +7,7 @@
 if(IsPartialView) {
 #>
 <!-- VISTA PARCIAL -->
-@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "frmCrear<#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #>" }))
+@using (Html.BeginForm(null, null, FormMethod.Post, new { htmlAttributes = new { id = "frmCrear<#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #>" } }))
 {
     <div class="modal-body">
         @Html.AntiForgeryToken()
@@ -16,7 +16,7 @@ if(IsPartialView) {
             if (property.IsPrimaryKey)
             {
 #>
-        @Html.HiddenFor(model => model.<#= property.PropertyName #>, new { @value = 1 })
+        @Html.HiddenFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @value = 1 } })
 <#
                 continue;
             }
@@ -32,8 +32,8 @@ if(IsPartialView) {
                 {
 #>
         <div class="form-group" id="FormCrear">
-            @Html.LabelFor(model => model.<#= property.PropertyName #>, "<#= GetAssociationName(property) #>", new { @class = "control-label" })
-            @Html.DropDownList("<#= property.PropertyName #>", null, new { @class = "form-control select2" })
+            @Html.LabelFor(model => model.<#= property.PropertyName #>, "<#= GetAssociationName(property) #>", new { htmlAttributes = new { @class = "control-label" } })
+            @Html.DropDownList("<#= property.PropertyName #>", null, new { htmlAttributes = new { @class = "form-control select2" } })
         </div>
 <#
                 continue;
@@ -43,8 +43,8 @@ if(IsPartialView) {
                 {
 #>
         <div class="form-group">
-            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label" }) <br />
-            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { @type = "checkbox", @id="switch4", @switch="info", @checked = true })
+            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label" } }) <br />
+            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @type = "checkbox", @id="switch4", @switch="info", @checked = true })
             <label for="switch4" data-on-label="Si" data-off-label="No"></label>
         </div>
 <#
@@ -53,9 +53,9 @@ if(IsPartialView) {
                 {
 #>
         <div class="form-group">
-            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label" }) <br />
+            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label" } }) <br />
             <div class="input-group">
-                @Html.EditorFor(model => model.<#= property.PropertyName #>, new { @type = "text", @class = "form-control datepicker-autoclose", @placeholder="mm/dd/yyyy" })
+                @Html.EditorFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @type = "text", @class = "form-control datepicker-autoclose", @placeholder="mm/dd/yyyy" } })
                 <div class="input-group-append">
                     <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
                 </div>
@@ -67,7 +67,7 @@ if(IsPartialView) {
                 {
 #>
         <div class="form-group">
-           @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label" }) <br />
+           @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label" } }) <br />
            <input id="<#= property.PropertyName #>" type="text" value="55" name="<#= property.PropertyName #>" data-bts-min="0" data-bts-max="100" data-bts-init-val="" data-bts-step="1" data-bts-decimal="0" data-bts-step-interval="100" data-bts-force-step-divisibility="round" data-bts-step-interval-delay="500" data-bts-prefix="" data-bts-postfix="" data-bts-prefix-extra-class="" data-bts-postfix-extra-class="" data-bts-booster="true" data-bts-boostat="10" data-bts-max-boosted-step="false" data-bts-mousewheel="true" data-bts-button-down-class="btn btn-default" data-bts-button-up-class="btn btn-default" />
         </div>
 <#
@@ -76,8 +76,8 @@ if(IsPartialView) {
                 {
 #>
         <div class="form-group" id="FormCrear">
-            @Html.LabelFor(model => model.<#= property.PropertyName #>, "<#= GetAssociationName(property) #>", new { @class = "control-label" })
-            @Html.DropDownList("<#= property.PropertyName #>", null, new { @class = "form-control select2" })
+            @Html.LabelFor(model => model.<#= property.PropertyName #>, "<#= GetAssociationName(property) #>", new { htmlAttributes = new { @class = "control-label" } })
+            @Html.DropDownList("<#= property.PropertyName #>", null, new { htmlAttributes = new { @class = "form-control select2" } })
         </div>
 <#
                 }
@@ -85,8 +85,8 @@ if(IsPartialView) {
                 {
 #>
         <div class="form-group">
-            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label" }) <br />
-            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { @class = "form-control", @type = "text" , @required = true })
+            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label" } }) <br />
+            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "form-control", @type = "text" , @required = true })
         </div>
 <#
                 }
@@ -138,16 +138,20 @@ else {
     PushIndent("    ");
 }
 #>
+
+<#
+if(!IsPartialView) {
+#>
 <!-- VISTA NORMAL -->
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
             <div class="card m-b-20">
                 <div class="card-body">
-                    @Html.ActionLink("Regresar", "Index", null, new { @class="btn btn-primary btn-sm waves-effect waves-light pull-right" })
+                    @Html.ActionLink("Regresar", "Index", null, new { htmlAttributes = new { @class="btn btn-primary btn-sm waves-effect waves-light pull-right" } })
                     <h3><#= ViewName#></h3>
                 </div>
-               @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "frmCrear<#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #>" }))
+               @using (Html.BeginForm(null, null, FormMethod.Post, new { htmlAttributes = new { id = "frmCrear<#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #>" } }))
                 {
                     @Html.AntiForgeryToken()
                     <div class="form-horizontal">
@@ -156,7 +160,7 @@ else {
                 if (property.IsPrimaryKey)
                 {
 #>
-                        @Html.HiddenFor(model => model.<#= property.PropertyName #>, new { @value = 1 })
+                        @Html.HiddenFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @value = 1 } })
 <#
                     continue;
                 }
@@ -172,8 +176,8 @@ else {
                     {
 #>
                         <div class="form-group" id="FormCrear">
-                            @Html.LabelFor(model => model.<#= property.PropertyName #>, "<#= GetAssociationName(property) #>", new { @class = "control-label" })
-                            @Html.DropDownList("<#= property.PropertyName #>", null, new { @class = "form-control select2" })
+                            @Html.LabelFor(model => model.<#= property.PropertyName #>, "<#= GetAssociationName(property) #>", new { htmlAttributes = new { @class = "control-label" } })
+                            @Html.DropDownList("<#= property.PropertyName #>", null, new { htmlAttributes = new { @class = "form-control select2" } })
                         </div>
 <#
                         continue;
@@ -182,8 +186,8 @@ else {
                     {
 #>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label" }) <br />
-                            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { @type = "checkbox", @id="switch4", @switch="info", @checked = true })
+                            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label" } }) <br />
+                            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @type = "checkbox", @id="switch4", @switch="info", @checked = true } })
                             <label for="switch4" data-on-label="Si" data-off-label="No"></label>
                         </div>
 <#
@@ -192,9 +196,9 @@ else {
                     {
 #>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label" }) <br />
+                            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label" } }) <br />
                             <div class="input-group">
-                                @Html.EditorFor(model => model.<#= property.PropertyName #>, new { @type = "text", @class = "form-control datepicker-autoclose", @placeholder="mm/dd/yyyy" })
+                                @Html.EditorFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @type = "text", @class = "form-control datepicker-autoclose", @placeholder="mm/dd/yyyy" } })
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
                                 </div>
@@ -206,7 +210,7 @@ else {
                     {
 #>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label" }) <br />
+                            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label" } }) <br />
                             <input id="<#= property.PropertyName #>" type="text" value="55" name="<#= property.PropertyName #>" data-bts-min="0" data-bts-max="100" data-bts-init-val="" data-bts-step="1" data-bts-decimal="0" data-bts-step-interval="100" data-bts-force-step-divisibility="round" data-bts-step-interval-delay="500" data-bts-prefix="" data-bts-postfix="" data-bts-prefix-extra-class="" data-bts-postfix-extra-class="" data-bts-booster="true" data-bts-boostat="10" data-bts-max-boosted-step="false" data-bts-mousewheel="true" data-bts-button-down-class="btn btn-default" data-bts-button-up-class="btn btn-default" />
                         </div>
 <#
@@ -215,8 +219,8 @@ else {
                     {
 #>
                         <div class="form-group" id="FormCrear">
-                            @Html.LabelFor(model => model.<#= property.PropertyName #>, "<#= GetAssociationName(property) #>", new { @class = "control-label" })
-                            @Html.DropDownList("<#= property.PropertyName #>", null, new { @class = "form-control select2" })
+                            @Html.LabelFor(model => model.<#= property.PropertyName #>, "<#= GetAssociationName(property) #>", new { htmlAttributes = new { @class = "control-label" } })
+                            @Html.DropDownList("<#= property.PropertyName #>", null, new { htmlAttributes = new { @class = "form-control select2" } })
                         </div>
 <#
                     }
@@ -224,8 +228,8 @@ else {
                     {
 #>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label" }) <br />
-                            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { @class = "form-control", @type = "text", @required = true })
+                            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label" } }) <br />
+                            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "form-control", @type = "text", @required = true } })
                         </div>
 <#
                     }
@@ -234,8 +238,8 @@ else {
 #>
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                @Html.ActionLink("Guardar", "Create", "<#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #>", new { @class="btn btn-primary waves-effect waves-light"})
-                                @Html.ActionLink("Cancelar", "Index", null, new { @class="btn btn-danger waves-effect waves-light"})
+                                @Html.ActionLink("Guardar", "Create", "<#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #>", new { htmlAttributes = new { @class="btn btn-primary waves-effect waves-light" } })
+                                @Html.ActionLink("Cancelar", "Index", null, new { htmlAttributes = new { @class="btn btn-danger waves-effect waves-light"} })
                             </div>
                         </div>
                   </div>
@@ -246,6 +250,7 @@ else {
 </div>
 
 <#
+}
 // The following code closes the tag used in the case of a view using a layout page and the body and html tags in the case of a regular view page
 #>
 <#

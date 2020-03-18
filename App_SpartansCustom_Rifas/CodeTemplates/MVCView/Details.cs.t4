@@ -7,7 +7,7 @@
 if(IsPartialView) {
 #>
 <!-- VISTA PARCIAL -->
-@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "frmDetalle<#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #>" }))
+@using (Html.BeginForm(null, null, FormMethod.Post, new { htmlAttributes = new { id = "frmDetalle<#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #>" } }))
 {
     <div class="modal-body">
         @Html.AntiForgeryToken()
@@ -17,8 +17,8 @@ if(IsPartialView) {
             {
 #>
         <div class="form-group">
-            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label", @disabled = "disabled" })
-            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { @class = "form-control", @disabled = "disabled" })
+            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label", @disabled = "disabled" } })
+            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
         </div>
 <#
                 continue;
@@ -35,8 +35,8 @@ if(IsPartialView) {
                 {
 #>
         <div class="form-group">
-            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label", @disabled = "disabled" })
-            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { @class = "form-control", @disabled = "disabled" })
+            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label", @disabled = "disabled" } })
+            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
         </div>
 <#
                 continue;
@@ -46,8 +46,8 @@ if(IsPartialView) {
                 {
 #>
         <div class="form-group">
-            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label", @disabled = "disabled" })
-            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { @class = "form-control", @disabled = "disabled" })
+            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label", @disabled = "disabled" } })
+            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
         </div>
 <#
                 }
@@ -55,8 +55,8 @@ if(IsPartialView) {
                 {
 #>
         <div class="form-group">
-            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label", @disabled = "disabled" })
-            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { @class = "form-control", @disabled = "disabled" })
+            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label", @disabled = "disabled" } })
+            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
         </div>
 <#
                 }
@@ -64,8 +64,8 @@ if(IsPartialView) {
                 {
 #>
         <div class="form-group">
-            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label", @disabled = "disabled" })
-            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { @class = "form-control", @disabled = "disabled" })
+            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label", @disabled = "disabled" } })
+            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
         </div>
 <#
                 }
@@ -73,8 +73,8 @@ if(IsPartialView) {
                 {
 #>
         <div class="form-group">
-            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label", @disabled = "disabled" })
-            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { @class = "form-control", @disabled = "disabled" })
+            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label", @disabled = "disabled" } })
+            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
         </div>
 <#
                 }
@@ -82,8 +82,8 @@ if(IsPartialView) {
                 {
 #>
         <div class="form-group">
-            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label", @disabled = "disabled" })
-            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { @class = "form-control", @disabled = "disabled" })
+            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label", @disabled = "disabled" } })
+            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
         </div>
 <#
                 }
@@ -175,10 +175,10 @@ else {
         <div class="col-md-12">
             <div class="card m-b-20">
                 <div class="card-body">
-                    @Html.ActionLink("Regresar", "Index", null, new { @class="btn btn-primary btn-sm waves-effect waves-light pull-right" })
-                    <h3><#= ViewName#></h3>
+                    @Html.ActionLink("Regresar", "Index", null, new { htmlAttributes = new { @class="btn btn-primary btn-sm waves-effect waves-light pull-right" } })
+                    <h3>Detalle <#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #></h3>
                 </div>
-               @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "frmDetalle<#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #>" }))
+               @using (Html.BeginForm(null, null, FormMethod.Post, new { htmlAttributes = new { id = "frmDetalle<#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #>" } }))
                 {
                     @Html.AntiForgeryToken()
                     <div class="form-horizontal">
@@ -188,8 +188,8 @@ else {
                 {
 #>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label", @disabled = "disabled" })
-                            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { @class = "form-control", @disabled = "disabled" })
+                            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label", @disabled = "disabled" } })
+                            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
                         </div>
 <#
                     continue;
@@ -206,8 +206,8 @@ else {
                     {
 #>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label", @disabled = "disabled" })
-                            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { @class = "form-control", @disabled = "disabled" })
+                            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label", @disabled = "disabled" } })
+                            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
                         </div>
 <#
                         continue;
@@ -216,8 +216,8 @@ else {
                     {
 #>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label", @disabled = "disabled" })
-                            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { @class = "form-control", @disabled = "disabled" })
+                            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label", @disabled = "disabled" } })
+                            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
                         </div>
 <#
                     }
@@ -225,8 +225,8 @@ else {
                     {
 #>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label", @disabled = "disabled" })
-                            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { @class = "form-control", @disabled = "disabled" })
+                            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label", @disabled = "disabled" } })
+                            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
                         </div>
 <#
                     }
@@ -234,8 +234,8 @@ else {
                     {
 #>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label", @disabled = "disabled" })
-                            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { @class = "form-control", @disabled = "disabled" })
+                            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label", @disabled = "disabled" } })
+                            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
                         </div>
 <#
                     }
@@ -243,8 +243,8 @@ else {
                     {
 #>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label", @disabled = "disabled" })
-                            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { @class = "form-control", @disabled = "disabled" })
+                            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label", @disabled = "disabled" } })
+                            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
                         </div>
 <#
                     }
@@ -252,8 +252,8 @@ else {
                     {
 #>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label", @disabled = "disabled" })
-                            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { @class = "form-control", @disabled = "disabled" })
+                            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label", @disabled = "disabled" } })
+                            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
                         </div>
 <#
                     }
@@ -298,7 +298,7 @@ else {
                         </div>
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                @Html.ActionLink("Cancelar", "Index", null, new { @class="btn btn-danger waves-effect waves-light"})
+                                @Html.ActionLink("Cancelar", "Index", null, new { htmlAttributes = new { @class="btn btn-danger waves-effect waves-light" } })
                             </div>
                         </div>
                     </div>
