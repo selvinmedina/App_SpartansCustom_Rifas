@@ -99,8 +99,6 @@ if(IsPartialView) {
         <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal">Cerrar</button>
     </div>
 }
-
-
 <#
 }
 else if(IsLayoutPageSelected) {
@@ -138,7 +136,6 @@ else {
     PushIndent("    ");
 }
 #>
-
 <#
 if(!IsPartialView) {
 #>
@@ -149,7 +146,7 @@ if(!IsPartialView) {
             <div class="card m-b-20">
                 <div class="card-body">
                     @Html.ActionLink("Regresar", "Index", null, new { htmlAttributes = new { @class="btn btn-primary btn-sm waves-effect waves-light pull-right" } })
-                    <h3><#= ViewName#></h3>
+                    <h3>Crear <#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #></h3>
                 </div>
                @using (Html.BeginForm(null, null, FormMethod.Post, new { htmlAttributes = new { id = "frmCrear<#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #>" } }))
                 {
@@ -248,7 +245,6 @@ if(!IsPartialView) {
         </div>
     </div>
 </div>
-
 <#
 }
 // The following code closes the tag used in the case of a view using a layout page and the body and html tags in the case of a regular view page

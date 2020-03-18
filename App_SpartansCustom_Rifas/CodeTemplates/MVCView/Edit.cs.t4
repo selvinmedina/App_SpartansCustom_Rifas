@@ -102,8 +102,6 @@ if(IsPartialView) {
         <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal">Cerrar</button>
     </div>
 }
-
-
 <#
 }
 else if(IsLayoutPageSelected) {
@@ -151,7 +149,7 @@ if(!IsPartialView) {
             <div class="card m-b-20">
                 <div class="card-body">
                     @Html.ActionLink("Regresar", "Index", null, new { htmlAttributes = new { @class="btn btn-primary btn-sm waves-effect waves-light pull-right" } })
-                    <h3><#= ViewName#></h3>
+                    <h3>Editar <#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #></h3>
                 </div>
                @using (Html.BeginForm(null, null, FormMethod.Post, new { htmlAttributes = new { id = "frmEditar<#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #>" } }))
                 {
@@ -266,7 +264,6 @@ if(!IsPartialView && !IsLayoutPageSelected) {
 <#
 }
 #>
-
 <#
     bool IsNumericType(PropertyMetadata property)
         {

@@ -169,6 +169,9 @@ else {
     PushIndent("    ");
 }
 #>
+<#
+if(!IsPartialView) {
+#>
 <!-- VISTA NORMAL -->
 <div class="container-fluid">
     <div class="row">
@@ -307,8 +310,8 @@ else {
         </div>
     </div>
 </div>
-
 <#
+}
 // The following code closes the tag used in the case of a view using a layout page and the body and html tags in the case of a regular view page
 #>
 <#
