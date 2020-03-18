@@ -579,7 +579,7 @@ namespace App_SpartansCustom_Rifas
 
 
             bundles.Add(new ScriptBundle("~/Scripts/plugins/tinymce/Js").Include(
-                //"~/Scripts/plugins/tinymce/plugins/advlist/plugin.min.js"
+                "~/Scripts/plugins/tinymce/plugins/advlist/plugin.min.js"
                 //, "~/Scripts/plugins/tinymce/plugins/anchor/plugin.min.js"
                 //, "~/Scripts/plugins/tinymce/plugins/autolink/plugin.min.js"
                 //, "~/Scripts/plugins/tinymce/plugins/autoresize/plugin.min.js"

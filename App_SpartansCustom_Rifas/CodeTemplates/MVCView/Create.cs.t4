@@ -1,0 +1,321 @@
+<#@ template language="C#" HostSpecific="True" #>
+<#@ output extension=".cshtml" #>
+<#@ include file="Imports.include.t4" #>
+@model <#= ViewDataTypeName #>
+<#
+// The following chained if-statement outputs the file header code and markup for a partial view, a view using a layout page, or a regular view.
+if(IsPartialView) {
+#>
+<!-- VISTA PARCIAL -->
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "frmCrear<#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #>" }))
+{
+    <div class="modal-body">
+        @Html.AntiForgeryToken()
+<#
+        foreach (PropertyMetadata property in ModelMetadata.Properties) {
+            if (property.IsPrimaryKey)
+            {
+#>
+        @Html.HiddenFor(model => model.<#= property.PropertyName #>, new { @value = 1 })
+<#
+                continue;
+            }
+            string PropertyThisName = (string)GetValueExpression(property);
+            if (property.Scaffold && !PropertyThisName.Contains("Crea") && !PropertyThisName.Contains("Modifica") && !PropertyThisName.Contains("tb"))
+            {
+                if (property.IsReadOnly)
+                {
+                    continue;
+                }
+
+                if (property.IsForeignKey)
+                {
+#>
+        <div class="form-group" id="FormCrear">
+            @Html.LabelFor(model => model.<#= property.PropertyName #>, "<#= GetAssociationName(property) #>", new { @class = "control-label" })
+            @Html.DropDownList("<#= property.PropertyName #>", null, new { @class = "form-control select2" })
+        </div>
+<#
+                continue;
+                }
+
+                if (IsCheckbox(property))
+                {
+#>
+        <div class="form-group">
+            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label" }) <br />
+            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { @type = "checkbox", @id="switch4", @switch="info", @checked = true })
+            <label for="switch4" data-on-label="Si" data-off-label="No"></label>
+        </div>
+<#
+                }
+                else if (IsDate(property))
+                {
+#>
+        <div class="form-group">
+            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label" }) <br />
+            <div class="input-group">
+                @Html.EditorFor(model => model.<#= property.PropertyName #>, new { @type = "text", @class = "form-control datepicker-autoclose", @placeholder="mm/dd/yyyy" })
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                </div>
+            </div>
+        </div>
+<#
+                }
+                else if (IsNumericType(property))
+                {
+#>
+        <div class="form-group">
+           @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label" }) <br />
+           <input id="<#= property.PropertyName #>" type="text" value="55" name="<#= property.PropertyName #>" data-bts-min="0" data-bts-max="100" data-bts-init-val="" data-bts-step="1" data-bts-decimal="0" data-bts-step-interval="100" data-bts-force-step-divisibility="round" data-bts-step-interval-delay="500" data-bts-prefix="" data-bts-postfix="" data-bts-prefix-extra-class="" data-bts-postfix-extra-class="" data-bts-booster="true" data-bts-boostat="10" data-bts-max-boosted-step="false" data-bts-mousewheel="true" data-bts-button-down-class="btn btn-default" data-bts-button-up-class="btn btn-default" />
+        </div>
+<#
+                }
+                else if (IsSelect(property))
+                {
+#>
+        <div class="form-group" id="FormCrear">
+            @Html.LabelFor(model => model.<#= property.PropertyName #>, "<#= GetAssociationName(property) #>", new { @class = "control-label" })
+            @Html.DropDownList("<#= property.PropertyName #>", null, new { @class = "form-control select2" })
+        </div>
+<#
+                }
+                else
+                {
+#>
+        <div class="form-group">
+            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label" }) <br />
+            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { @class = "form-control", @type = "text" , @required = true })
+        </div>
+<#
+                }
+            }
+        }
+#>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary waves-effect waves-light">Guardar</button>
+        <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal">Cerrar</button>
+    </div>
+}
+
+
+<#
+}
+else if(IsLayoutPageSelected) {
+#>
+
+@{
+    ViewBag.Title = "<#= ViewName#>";
+<#
+    if (!String.IsNullOrEmpty(LayoutPageFile)) {
+#>
+    Layout = "<#= LayoutPageFile#>";
+<#
+}
+#>
+}
+
+<#
+}
+else {
+#>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta name="viewport" content="width=device-width" />
+      <title><#= ViewName #></title>
+  </head>
+  <body>
+
+<#
+    PushIndent("    ");
+}
+#>
+<!-- VISTA NORMAL -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card m-b-20">
+                <div class="card-body">
+                    @Html.ActionLink("Regresar", "Index", null, new { @class="btn btn-primary btn-sm waves-effect waves-light pull-right" })
+                    <h3><#= ViewName#></h3>
+                </div>
+               @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "frmCrear<#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #>" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+<#
+            foreach (PropertyMetadata property in ModelMetadata.Properties) {
+                if (property.IsPrimaryKey)
+                {
+#>
+                        @Html.HiddenFor(model => model.<#= property.PropertyName #>, new { @value = 1 })
+<#
+                    continue;
+                }
+                string PropertyThisName = (string)GetValueExpression(property);
+                if (property.Scaffold && !PropertyThisName.Contains("Crea") && !PropertyThisName.Contains("Modifica") && !PropertyThisName.Contains("tb"))
+                {
+                    if (property.IsReadOnly)
+                    {
+                        continue;
+                    }
+
+                    if (property.IsForeignKey)
+                    {
+#>
+                        <div class="form-group" id="FormCrear">
+                            @Html.LabelFor(model => model.<#= property.PropertyName #>, "<#= GetAssociationName(property) #>", new { @class = "control-label" })
+                            @Html.DropDownList("<#= property.PropertyName #>", null, new { @class = "form-control select2" })
+                        </div>
+<#
+                        continue;
+                    }
+                    if (IsCheckbox(property))
+                    {
+#>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label" }) <br />
+                            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { @type = "checkbox", @id="switch4", @switch="info", @checked = true })
+                            <label for="switch4" data-on-label="Si" data-off-label="No"></label>
+                        </div>
+<#
+                    }
+                    else if (IsDate(property))
+                    {
+#>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label" }) <br />
+                            <div class="input-group">
+                                @Html.EditorFor(model => model.<#= property.PropertyName #>, new { @type = "text", @class = "form-control datepicker-autoclose", @placeholder="mm/dd/yyyy" })
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                                </div>
+                            </div>
+                        </div>
+<#
+                    }
+                    else if (IsNumericType(property))
+                    {
+#>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label" }) <br />
+                            <input id="<#= property.PropertyName #>" type="text" value="55" name="<#= property.PropertyName #>" data-bts-min="0" data-bts-max="100" data-bts-init-val="" data-bts-step="1" data-bts-decimal="0" data-bts-step-interval="100" data-bts-force-step-divisibility="round" data-bts-step-interval-delay="500" data-bts-prefix="" data-bts-postfix="" data-bts-prefix-extra-class="" data-bts-postfix-extra-class="" data-bts-booster="true" data-bts-boostat="10" data-bts-max-boosted-step="false" data-bts-mousewheel="true" data-bts-button-down-class="btn btn-default" data-bts-button-up-class="btn btn-default" />
+                        </div>
+<#
+                    }
+                    else if (IsSelect(property))
+                    {
+#>
+                        <div class="form-group" id="FormCrear">
+                            @Html.LabelFor(model => model.<#= property.PropertyName #>, "<#= GetAssociationName(property) #>", new { @class = "control-label" })
+                            @Html.DropDownList("<#= property.PropertyName #>", null, new { @class = "form-control select2" })
+                        </div>
+<#
+                    }
+                    else
+                    {
+#>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "control-label" }) <br />
+                            @Html.EditorFor(model => model.<#= property.PropertyName #>, new { @class = "form-control", @type = "text", @required = true })
+                        </div>
+<#
+                    }
+                }
+            }
+#>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                @Html.ActionLink("Guardar", "Create", "<#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #>", new { @class="btn btn-primary waves-effect waves-light"})
+                                @Html.ActionLink("Cancelar", "Index", null, new { @class="btn btn-danger waves-effect waves-light"})
+                            </div>
+                        </div>
+                  </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<#
+// The following code closes the tag used in the case of a view using a layout page and the body and html tags in the case of a regular view page
+#>
+<#
+if(!IsPartialView && !IsLayoutPageSelected) {
+    ClearIndent();
+#>
+  </body>
+</html>
+<#
+}
+#>
+
+<#
+    bool IsNumericType(PropertyMetadata property)
+        {
+            var types = new [] {
+                "System.Byte",
+                "System.SByte",
+                "System.UInt16",
+                "System.UInt32",
+                "System.UInt64",
+                "System.Int16",
+                "System.Int32",
+                "System.Int64",
+                "System.Decimal",
+                "System.Double",
+                "System.Single"
+            };
+
+            return types.Any(property.TypeName.Contains);
+        }
+
+    bool IsCheckbox(PropertyMetadata p) => p.TypeName.Contains("System.Boolean");
+    bool IsSelect(PropertyMetadata p) => p.IsEnum && !p.IsEnumFlags;
+    bool IsDate(PropertyMetadata p) => p.TypeName.Contains("System.DateTime");
+#>
+
+<script>
+    $(document).ready(function(){
+        //INICIALIZAR LA ESCUCHA DE VALIDACIONES DENTRO DEL FORMULARIO
+        $('form').parsley();
+
+        // INICIALIZAR EL PLUGIN DE SELECT2
+        $(".select2").select2(
+            {
+                dropdownParent: $('#FormCrear'),
+                placeholder: 'Seleccione un empleado',
+                language: {
+                    noResults: function () {
+                        return 'Resultados no encontrados.';
+                    },
+                    searching: function () {
+                        return 'Buscando...';
+                    }
+                }
+            }
+        );
+
+        //INICIALIZAR EL ESTILO DE LOS BOTONES PARA LOS CAMPOS DE TIPO NUMBER
+        $('.demo0').TouchSpin({
+            buttondown_class: 'btn btn-primary',
+            buttonup_class: 'btn btn-primary'
+        });
+
+        //INICIALIZAR EL DATEPICKER
+        jQuery('.datepicker-autoclose').datepicker({
+            autoclose: true,
+            todayHighlight: true
+        });
+    });
+</script>
+
+<#@ include file="ModelMetadataFunctions.cs.include.t4" #>

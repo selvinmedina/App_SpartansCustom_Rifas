@@ -3274,6 +3274,7 @@
     <Content Include="plugins\x-editable\js\bootstrap-editable.min.js" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\app\CategoriaProductos.js" />
+    <Content Include="Scripts\app\DatatableConfiguration.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -3525,6 +3526,10 @@
     <Content Include="CodeTemplates\MVCView\ModelMetadataFunctions.cs.include.t4" />
     <Content Include="CodeTemplates\MVCView\Imports.include.t4" />
     <Content Include="Content\css\bootstrap.min.css.map" />
+    <Content Include="CodeTemplates\MVCView\Create.cs.t4" />
+    <Content Include="CodeTemplates\MVCView\Edit.cs.t4" />
+    <Content Include="CodeTemplates\MVCView\Empty.cs.t4" />
+    <Content Include="CodeTemplates\MVCView\Details.cs.t4" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -4178,6 +4183,15 @@
     <Content Include="Views\CategoriaProductos\Index.cshtml" />
     <Content Include="Views\Renders.cshtml" />
     <Content Include="Views\PruebasT4\Index.cshtml" />
+    <Content Include="Views\PruebasT4\Index01.cshtml" />
+    <Content Include="Views\PruebasT4\Create_View.cshtml" />
+    <Content Include="Views\PruebasT4\_Create.cshtml" />
+    <Content Include="Views\PruebasT4\Edit.cshtml" />
+    <Content Include="Views\PruebasT4\Details.cshtml" />
+    <Content Include="Views\PruebasT4\Details01.cshtml" />
+    <Content Include="Views\PruebasT4\Details03.cshtml" />
+    <Content Include="Views\PruebasT4\Details05.cshtml" />
+    <Content Include="Views\PruebasT4\Details500.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

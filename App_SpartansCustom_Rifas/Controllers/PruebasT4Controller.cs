@@ -13,5 +13,22 @@ namespace App_SpartansCustom_Rifas.Controllers
         {
             return View();
         }
+
+        // POST: PruebasT4
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: PruebasT4
+        public ActionResult Edit()
+        {
+            return View();
+        }
+
+        public ActionResult Details()
+        {
+            return View();
+        }
     }
 }
