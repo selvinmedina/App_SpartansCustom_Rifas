@@ -727,7 +727,7 @@ namespace App_SpartansCustom_Rifas
                     "~/Content/scss/style.css"));
 
             //HABILITAR LA MANIFICACIÓN
-            BundleTable.EnableOptimizations = false;
+            BundleTable.EnableOptimizations = true;
 
             //VALIDAR SI ESTA EN DEBUG PARA NO MANIFICAR
             #if (DEBUG)
