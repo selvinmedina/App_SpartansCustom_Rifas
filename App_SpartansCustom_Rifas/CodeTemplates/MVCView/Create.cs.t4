@@ -32,8 +32,10 @@ if(IsPartialView) {
                 {
 #>
         <div class="form-group" id="FormCrear">
-            @Html.LabelFor(model => model.<#= property.PropertyName #>, "<#= GetAssociationName(property) #>", new { htmlAttributes = new { @class = "control-label" } })
-            @Html.DropDownList("<#= property.PropertyName #>", null, new { htmlAttributes = new { @class = "form-control select2" } })
+            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label" } })
+            <select id="<#= property.PropertyName #>" name="<#= property.PropertyName #>" class="form-control select2">
+                <option>Seleccione una opción...</option>
+            </select>
         </div>
 <#
                 continue;
@@ -76,8 +78,10 @@ if(IsPartialView) {
                 {
 #>
         <div class="form-group" id="FormCrear">
-            @Html.LabelFor(model => model.<#= property.PropertyName #>, "<#= GetAssociationName(property) #>", new { htmlAttributes = new { @class = "control-label" } })
-            @Html.DropDownList("<#= property.PropertyName #>", null, new { htmlAttributes = new { @class = "form-control select2" } })
+            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label" } })
+            <select id="<#= property.PropertyName #>" name="<#= property.PropertyName #>" class="form-control select2">
+                <option>Seleccione una opción...</option>
+            </select>
         </div>
 <#
                 }
@@ -173,8 +177,10 @@ if(!IsPartialView) {
                     {
 #>
                         <div class="form-group" id="FormCrear">
-                            @Html.LabelFor(model => model.<#= property.PropertyName #>, "<#= GetAssociationName(property) #>", new { htmlAttributes = new { @class = "control-label" } })
-                            @Html.DropDownList("<#= property.PropertyName #>", null, new { htmlAttributes = new { @class = "form-control select2" } })
+                            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label" } })
+                            <select id="<#= property.PropertyName #>" name="<#= property.PropertyName #>" class="form-control select2">
+                                <option>Seleccione una opción...</option>
+                            </select>
                         </div>
 <#
                         continue;
@@ -216,8 +222,10 @@ if(!IsPartialView) {
                     {
 #>
                         <div class="form-group" id="FormCrear">
-                            @Html.LabelFor(model => model.<#= property.PropertyName #>, "<#= GetAssociationName(property) #>", new { htmlAttributes = new { @class = "control-label" } })
-                            @Html.DropDownList("<#= property.PropertyName #>", null, new { htmlAttributes = new { @class = "form-control select2" } })
+                            @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label" } })
+                            <select id="<#= property.PropertyName #>" name="<#= property.PropertyName #>" class="form-control select2">
+                                <option>Seleccione una opción...</option>
+                            </select>
                         </div>
 <#
                     }
