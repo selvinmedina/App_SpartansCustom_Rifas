@@ -4182,15 +4182,10 @@
     <Content Include="Views\CategoriaProductos\Edit.cshtml" />
     <Content Include="Views\CategoriaProductos\Index.cshtml" />
     <Content Include="Views\Renders.cshtml" />
-    <Content Include="Views\PruebasT4\Create.cshtml" />
-    <Content Include="Views\CategoriaProductos\_Create.cshtml" />
-    <Content Include="Views\PruebasT4\Create03.cshtml" />
-    <Content Include="Views\PruebasT4\Create05.cshtml" />
-    <Content Include="Views\PruebasT4\Edit.cshtml" />
-    <Content Include="Views\PruebasT4\Edit_Com.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\PruebasT4\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
