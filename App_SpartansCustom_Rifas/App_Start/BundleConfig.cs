@@ -703,7 +703,15 @@ namespace App_SpartansCustom_Rifas
 
 
 
+            // iziToast JS
+            bundles.Add(new ScriptBundle("~/Scripts/plugins/izitoast").Include(
+                        "~/Scripts/plugins/iziToast/iziToast.js",
+                        "~/Scripts/plugins/iziToast/iziToast.min.js"));
 
+            //iziToast CSS
+            bundles.Add(new StyleBundle("~/Content/izitoast/iziToast").Include(
+                      "~/Content/izitoast/iziToast.css",
+                      "~/Content/izitoast/iziToast.min.css"));
 
 
             //BUNDLE LEXA RESPONSIVE
