@@ -170,7 +170,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\CategoriaProductosController.cs" />
-    <Compile Include="Controllers\DepartamentosController.cs" />
     <Compile Include="Controllers\PruebasT4Controller.cs" />
     <Compile Include="Helpers\Menus.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -3531,6 +3530,7 @@
     <Content Include="CodeTemplates\MVCView\Edit.cs.t4" />
     <Content Include="CodeTemplates\MVCView\Empty.cs.t4" />
     <Content Include="CodeTemplates\MVCView\Details.cs.t4" />
+    <Content Include="CodeTemplates\MvcControllerWithContext\Controller.cs.t4" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -4183,11 +4183,6 @@
     <Content Include="Views\CategoriaProductos\Edit.cshtml" />
     <Content Include="Views\CategoriaProductos\Index.cshtml" />
     <Content Include="Views\Renders.cshtml" />
-    <Content Include="Views\Departamentos\Create.cshtml" />
-    <Content Include="Views\Departamentos\Delete.cshtml" />
-    <Content Include="Views\Departamentos\Details.cshtml" />
-    <Content Include="Views\Departamentos\Edit.cshtml" />
-    <Content Include="Views\Departamentos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
