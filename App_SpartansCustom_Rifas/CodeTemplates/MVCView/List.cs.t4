@@ -87,7 +87,7 @@ if (!PropertyThisName.Contains("Crea") && !PropertyThisName.Contains("Modifica")
                     <h5 class="modal-title mt-0">Crear <#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
-                @Html.Partial("Create", new <#= ViewDataTypeName #>())
+                @Html.Partial("_Crear", new <#= ViewDataTypeName #>())
             </div>
         </div>
     </div>
@@ -119,7 +119,7 @@ if (!PropertyThisName.Contains("Crea") && !PropertyThisName.Contains("Modifica")
                     <h5 class="modal-title mt-0">Editar <#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
-                @Html.Partial("Edit", new <#= ViewDataTypeName #>())
+                @Html.Partial("_Editar", new <#= ViewDataTypeName #>())
             </div>
         </div>
     </div>
@@ -152,7 +152,7 @@ if (!PropertyThisName.Contains("Crea") && !PropertyThisName.Contains("Modifica")
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
-                    @Html.Partial("Details", new <#= ViewDataTypeName #>())
+                    @Html.Partial("_Detalle", new <#= ViewDataTypeName #>())
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger waves-effect m-l-5" data-dismiss="modal">Cerrar</button>

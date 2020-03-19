@@ -37,7 +37,7 @@ if(IsPartialView) {
         <div class="form-group" id="FormEditar">
             @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label" } })
             <select id="<#= property.PropertyName #>" name="<#= property.PropertyName #>" class="form-control select2">
-                <option>Seleccione una opción...</option>
+                <option>Seleccione una opcion...</option>
             </select>
         </div>
 <#
@@ -83,7 +83,7 @@ if(IsPartialView) {
         <div class="form-group" id="FormEditar">
             @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label" } })
             <select id="<#= property.PropertyName #>" name="<#= property.PropertyName #>" class="form-control select2">
-                <option>Seleccione una opción...</option>
+                <option>Seleccione una opcion...</option>
             </select>
         </div>
 <#
@@ -185,7 +185,7 @@ if(!IsPartialView) {
                         <div class="form-group" id="FormEditar">
                             @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label" } })
                             <select id="<#= property.PropertyName #>" name="<#= property.PropertyName #>" class="form-control select2">
-                                <option>Seleccione una opción...</option>
+                                <option>Seleccione una opcion...</option>
                             </select>
                         </div>
 <#
@@ -230,7 +230,7 @@ if(!IsPartialView) {
                         <div class="form-group" id="FormEditar">
                             @Html.LabelFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "control-label" } })
                             <select id="<#= property.PropertyName #>" name="<#= property.PropertyName #>" class="form-control select2">
-                                <option>Seleccione una opción...</option>
+                                <option>Seleccione una opcion...</option>
                             </select>
                         </div>
 <#
