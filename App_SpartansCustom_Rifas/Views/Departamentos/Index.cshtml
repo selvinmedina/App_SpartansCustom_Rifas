@@ -1,35 +1,9 @@
-﻿﻿<#@ template language="C#" HostSpecific="True" #>
-<#@ output extension=".cshtml" #>
-<#@ include file="Imports.include.t4" #>
-@model IEnumerable<#= "<" + ViewDataTypeName + ">" #>
+﻿﻿@model IEnumerable<App_SpartansCustom_Rifas.Models.tbDepartamentos>
 @using App_SpartansCustom_Rifas.Models;
-<#
-// The following chained if-statement outputs the file header code and markup for a partial view, a view using a layout page, or a regular view.
-if(IsPartialView) {
-#>
-<#
-  } else if(IsLayoutPageSelected) {
-#>
 @{
-    ViewBag.Title = "<#= ViewName#>";
-<#
-          if (!String.IsNullOrEmpty(LayoutPageFile)) {
-#>
-    Layout = "<#= LayoutPageFile#>";
-<#
-          }
-#>
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<#
-} else {
-#>
-@{
-    Layout = null;
-}
-<#
-    PushIndent("    ");
-}
-#>
 
 <!-- CONTENEDOR PRINCIPAL -->
 <div class="container-fluid">
@@ -39,38 +13,36 @@ if(IsPartialView) {
             <div class="card m-b-20">
                 <div class="card-body">
                     <div class="text-right">
-                        <button type="button" class="btn btn-success m-b-10 waves-effect" id="Crear_<#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #>">Nuevo</button>
+                        <button type="button" class="btn btn-success m-b-10 waves-effect" id="Crear_Departamentos">Nuevo</button>
                     </div>
-                    <table id="tbl<#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #>" class="table table-striped table-bordered dt-responsive nowrap datatable-Initial" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <table id="tblDepartamentos" class="table table-striped table-bordered dt-responsive nowrap datatable-Initial" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>
-<#
-IEnumerable<PropertyMetadata> properties = ModelMetadata.Properties;
-foreach (PropertyMetadata property in properties) {
-    if (property.Scaffold) {
-#>
-<#
-// This is a temporary work around until core scaffolding provides support for independent associations.
-if (property.IsAssociation && GetRelatedModelMetadata(property) == null) {
-    continue;
-}
-string PropertyThisName = (string)GetValueExpression(property);
-if (!PropertyThisName.Contains("Crea") && !PropertyThisName.Contains("Modifica") && !PropertyThisName.Contains("tbUsuarios")) {
-#>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.<#= GetValueExpression(property) #>)
+                                    @Html.DisplayNameFor(model => model.depto_Id)
                                 </th>
-<#
-}
-#>
-<#
-    }
-}
-#>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.depto_Descripcion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.depto_CodigoDepartamento)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.pais_Id)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.depto_EsActivo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbCiudades.ciud_Descripcion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbPais.pais_Descripcion)
+                                </th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
-                        <tbody id="tbody<#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #>">
+                        <tbody id="tbodyDepartamentos">
                         </tbody>
                     </table>
                 </div>
@@ -84,10 +56,10 @@ if (!PropertyThisName.Contains("Crea") && !PropertyThisName.Contains("Modifica")
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mt-0">Crear <#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #></h5>
+                    <h5 class="modal-title mt-0">Crear Departamentos</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
-                @Html.Partial("_Crear", new <#= ViewDataTypeName #>())
+                @Html.Partial("_Crear", new App_SpartansCustom_Rifas.Models.tbDepartamentos())
             </div>
         </div>
     </div>
@@ -96,7 +68,7 @@ if (!PropertyThisName.Contains("Crea") && !PropertyThisName.Contains("Modifica")
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="mySmallModalLabel">Crear <#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #></h5>
+                    <h5 class="modal-title mt-0" id="mySmallModalLabel">Crear Departamentos</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
@@ -116,10 +88,10 @@ if (!PropertyThisName.Contains("Crea") && !PropertyThisName.Contains("Modifica")
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mt-0">Editar <#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #></h5>
+                    <h5 class="modal-title mt-0">Editar Departamentos</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
-                @Html.Partial("_Editar", new <#= ViewDataTypeName #>())
+                @Html.Partial("_Editar", new App_SpartansCustom_Rifas.Models.tbDepartamentos())
             </div>
         </div>
     </div>
@@ -128,7 +100,7 @@ if (!PropertyThisName.Contains("Crea") && !PropertyThisName.Contains("Modifica")
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="mySmallModalLabel">Editar <#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #></h5>
+                    <h5 class="modal-title mt-0" id="mySmallModalLabel">Editar Departamentos</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
@@ -148,11 +120,11 @@ if (!PropertyThisName.Contains("Crea") && !PropertyThisName.Contains("Modifica")
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="mySmallModalLabel">Detalle <#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #></h5>
+                    <h5 class="modal-title mt-0" id="mySmallModalLabel">Detalle Departamentos</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
-                    @Html.Partial("_Detalle", new <#= ViewDataTypeName #>())
+                    @Html.Partial("_Detalle", new App_SpartansCustom_Rifas.Models.tbDepartamentos())
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger waves-effect m-l-5" data-dismiss="modal">Cerrar</button>
@@ -167,7 +139,7 @@ if (!PropertyThisName.Contains("Crea") && !PropertyThisName.Contains("Modifica")
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="mySmallModalLabel">Inactivar <#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #></h5>
+                    <h5 class="modal-title mt-0" id="mySmallModalLabel">Inactivar Departamentos</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
@@ -187,7 +159,7 @@ if (!PropertyThisName.Contains("Crea") && !PropertyThisName.Contains("Modifica")
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="mySmallModalLabel">Activar <#= (ViewDataTypeShortName).Substring(2, (int)(ViewDataTypeShortName.Length) - 2) #></h5>
+                    <h5 class="modal-title mt-0" id="mySmallModalLabel">Activar Departamentos</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
@@ -201,18 +173,6 @@ if (!PropertyThisName.Contains("Crea") && !PropertyThisName.Contains("Modifica")
         </div>
     </div>
 </div>
-<#
-  // The following code closes the tag used in the case of a view using a layout page and the body and html tags in the case of a regular view page
-#>
-<#
-    if(!IsPartialView && !IsLayoutPageSelected) {
-        ClearIndent();
-        #>
-          </body>
-          </html>
-        <#
-    }
-#>
 
 @section Styles {
     <!-- DataTables -->
@@ -340,4 +300,4 @@ if (!PropertyThisName.Contains("Crea") && !PropertyThisName.Contains("Modifica")
 
 }
 
-<#@ include file="ModelMetadataFunctions.cs.include.t4" #>
+

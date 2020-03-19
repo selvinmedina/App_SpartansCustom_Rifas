@@ -16,6 +16,7 @@ namespace App_SpartansCustom_Rifas.Helpers
             { "categoriaproductos", "Categorias" },
             { "email", "Email" },
             { "pages", "Pages" },
+            { "departamentos", "Departamentos" },
             { "pruebast4", "T4" },
             { "home", "Principal" }
         };
@@ -35,7 +36,7 @@ namespace App_SpartansCustom_Rifas.Helpers
             { "carousels", "Carousel" },
             { "dropdowns", "Dropdowns" },
             { "grid", "Grid" },
-            { "images", "Images" },            
+            { "images", "Images" },
             { "lightbox", "Lightbox" },
             { "modals", "Modals" },
             { "pagination", "Pagination" },
@@ -52,7 +53,7 @@ namespace App_SpartansCustom_Rifas.Helpers
             { "editors", "Form Editors" },
             { "uploads", "Form Upload" },
             { "xeditable", "Form Xeditable" },
-                
+
             { "material", "Material Design" },
             { "ion", "Ion Icons" },
             { "fontawesome", "Font Awesome" },
@@ -82,6 +83,7 @@ namespace App_SpartansCustom_Rifas.Helpers
             { "editable", "Editable Tables" },
             { "google", "Google Maps" },
             { "vector", "Vector Maps" },
+            { "create", "Crear" },
 
             { "blank", "Starter"},
 
