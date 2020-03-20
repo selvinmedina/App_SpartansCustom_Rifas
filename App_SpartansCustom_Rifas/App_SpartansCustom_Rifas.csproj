@@ -172,6 +172,7 @@
     <Compile Include="Controllers\CategoriaProductosController.cs" />
     <Compile Include="Controllers\DepartamentosController.cs" />
     <Compile Include="Controllers\PruebasT4Controller.cs" />
+    <Compile Include="Controllers\RangosController.cs" />
     <Compile Include="Helpers\Menus.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ChartController.cs" />
@@ -4189,6 +4190,12 @@
     <Content Include="Views\Departamentos\Details.cshtml" />
     <Content Include="Views\Departamentos\Edit.cshtml" />
     <Content Include="Views\Departamentos\Index.cshtml" />
+    <Content Include="Views\Rangos\Create.cshtml" />
+    <Content Include="Views\Rangos\Delete.cshtml" />
+    <Content Include="Views\Rangos\Details.cshtml" />
+    <Content Include="Views\Rangos\Edit.cshtml" />
+    <Content Include="Views\Rangos\Index.cshtml" />
+    <Content Include="Views\Rangos\_Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

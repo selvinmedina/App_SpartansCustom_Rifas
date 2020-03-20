@@ -18,6 +18,7 @@ namespace App_SpartansCustom_Rifas.Helpers
             { "pages", "Pages" },
             { "departamentos", "Departamentos" },
             { "pruebast4", "T4" },
+            { "rangos", "Rangos" },
             { "home", "Principal" }
         };
 
