@@ -1,0 +1,28 @@
+﻿@model App_SpartansCustom_Rifas.Models.tbRangos
+<!-- VISTA PARCIAL -->
+<div class="modal fade bs-example-modal-center" id="ModalCrear" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0">Crear Rangos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <form id="frmCrearRangos" action="Rangos/Create" method="post">
+                <div class="modal-body">
+                    @Html.AntiForgeryToken()
+                    <label for="rang_Descripcion" class="control-label">Descripcion</label>
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.rang_Descripcion, new { htmlAttributes = new { @class = "form-control", @type = "text", @required = true } })
+                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="btnCrear" class="btn btn-primary waves-effect waves-light">Guardar</button>
+                    <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal">Cerrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

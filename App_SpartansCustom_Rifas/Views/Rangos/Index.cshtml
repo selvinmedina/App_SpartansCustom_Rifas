@@ -15,14 +15,14 @@
                     <div class="text-right">
                         <button type="button" class="btn btn-success m-b-10 waves-effect" id="Crear_Rangos">Nuevo</button>
                     </div>
-                    <table id="tblRangos" class="table table-striped table-bordered dt-responsive nowrap datatable-Initial" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <table id="datatables" class="table table-striped table-bordered dt-responsive nowrap datatable-Initial" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>
                                 <th>
                                     @Html.DisplayNameFor(model => model.rang_Id)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.rang_Descripcion)
+                                    Descripción
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.rang_Estado)
@@ -31,209 +31,79 @@
                             </tr>
                         </thead>
                         <tbody id="tbodyRangos">
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.rang_Id</td>
+                                    <td>@item.rang_Descripcion</td>
+                                    <td>@(item.rang_Estado ? "Activo" : "Inactivo")</td>
+                                    <td>
+                                        <button type="button" id="btnEditar" data-id="@item.rang_Id" class="btn btn-primary waves-effect waves-light">Editar</button>
+                                        <button type="button" id="btnDetalles" data-id="@item.rang_Id" class="btn btn-secondary waves-effect">Detalles</button>
+
+                                        @if (item.rang_Estado)
+                                        {
+                                            <button type="button" id="btnEliminar" data-id="@item.rang_Id" class="btn btn-danger waves-effect waves-light">Eliminar</button>
+                                            <button type="button" id="btnActivar" data-id="@item.rang_Id" class="btn btn-success waves-effect waves-light">Activar</button>
+                                        }
+                                        else
+                                        {
+                                        }
+                                    </td>
+                                </tr>
+                            }
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Número</th>
+                                <th>Descripción</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
         </div>
     </div>
 
+    <!--Modal Crear-->
+    @Html.Partial("Crear", new App_SpartansCustom_Rifas.Models.tbRangos())
 
-    <!-- CONTENEDOR DEL MODAL CREAR -->
-    <div class="modal fade bs-example-modal-center" id="ModalCrear" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title mt-0">Crear Rangos</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                </div>
-                @Html.Partial("_Create", new App_SpartansCustom_Rifas.Models.tbRangos())
-            </div>
-        </div>
-    </div>
-    <!-- CONTENEDOR DEL MODAL CONFIRMAR CREAR -->
-    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" id="ModalConfirmarCrear" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="mySmallModalLabel">Crear Rangos</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                </div>
-                <div class="modal-body">
-                    <p>¿Seguro que deseas crear el registro?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary waves-effect m-l-5" data-dismiss="modal">No</button>
-                    <button type="submit" class="btn btn-primary waves-effect waves-light" id="btnConfirmarModalCrear">Si</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!--Modal Confirmacion Crear-->
+    @Html.Partial("ConfirmacionCrear")
+
+    <!--Modal Editar-->
+    @Html.Partial("Editar", new App_SpartansCustom_Rifas.Models.tbRangos())
+
+    <!--Modal Confirmacion Editar-->
+    @Html.Partial("ConfirmacionEditar")
+
+    <!--Modal Detalles-->
+    @Html.Partial("Detalles")
+
+    <!--Modal Detalles-->
+    @Html.Partial("Inactivar")
+
+    <!--Modal Detalles-->
+    @Html.Partial("Activar")
 
 
-    <!-- CONTENEDOR DEL MODAL EDITAR -->
-    <div class="modal fade bs-example-modal-center" id="ModalEditar" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title mt-0">Editar Rangos</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                </div>
-                @*@Html.Partial("_Editar", new App_SpartansCustom_Rifas.Models.tbRangos())*@
-            </div>
-        </div>
-    </div>
-    <!-- CONTENEDOR DEL MODAL CONFIRMAR EDITAR -->
-    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" id="ModalConfirmarEditar" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="mySmallModalLabel">Editar Rangos</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                </div>
-                <div class="modal-body">
-                    <p>¿Seguro que deseas editar el registro?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger waves-effect m-l-5" data-dismiss="modal">No</button>
-                    <button type="submit" class="btn btn-primary waves-effect waves-light" id="btnConfirmarModalEditar">Si</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- CONTENEDOR DEL MODAL DETALLE -->
-    <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" id="ModalDetalle" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="mySmallModalLabel">Detalle Rangos</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                </div>
-                <div class="modal-body">
-                    @*@Html.Partial("_Detalle", new App_SpartansCustom_Rifas.Models.tbRangos())*@
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger waves-effect m-l-5" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- CONTENEDOR DEL MODAL INACTIVAR -->
-    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" id="ModalInhabilitar" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="mySmallModalLabel">Inactivar Rangos</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                </div>
-                <div class="modal-body">
-                    <p>¿Seguro que desea inhabilitar el resgitro?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger waves-effect m-l-5" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary waves-effect waves-light" id="btnConfirmarModalInhabilitar">Si</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- CONTENEDOR DEL MODAL ACTIVAR -->
-    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" id="Modalhabilitar" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="mySmallModalLabel">Activar Rangos</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                </div>
-                <div class="modal-body">
-                    <p>¿Seguro que desea habilitar el resgitro?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger waves-effect m-l-5" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary waves-effect waves-light" id="btnConfirmarModalHabilitar">Si</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 
 @section Styles {
-    <!-- DataTables -->
-    <link href="~/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-
-    <!-- Select 2-->
-    <link href="~/plugins/select2/css/select2.min.css" rel="stylesheet" />
-
-    <link href="~/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
-
-    <!--Estilos del Datepicker -->
-    <link href="~/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet" />
-
-
-    <!--Estilo de alertas intuitivas-->
-    <link href="~/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
-
-
-    <!-- Responsive datatable examples -->
-    <link href="~/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 }
 
 
 
 @section Scripts {
-	    <!-- Required datatable js -->
-    <script src="~/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="~/plugins/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Buttons examples -->
-    <script src="~/plugins/datatables/dataTables.buttons.min.js"></script>
-    <script src="~/plugins/datatables/buttons.bootstrap4.min.js"></script>
-    <script src="~/plugins/datatables/jszip.min.js"></script>
-    <script src="~/plugins/datatables/pdfmake.min.js"></script>
-    <script src="~/plugins/datatables/vfs_fonts.js"></script>
-    <script src="~/plugins/datatables/buttons.html5.min.js"></script>
-    <script src="~/plugins/datatables/buttons.print.min.js"></script>
-    <script src="~/plugins/datatables/buttons.colVis.min.js"></script>
-
-    <!--Select 2-->
-    <script src="~/plugins/select2/js/select2.min.js"></script>
-
-    <!-- Responsive examples -->
-    <script src="~/plugins/datatables/dataTables.responsive.min.js"></script>
-    <script src="~/plugins/datatables/responsive.bootstrap4.min.js"></script>
-    <script src="~/plugins/bootstrap-filestyle/js/bootstrap-filestyle.min.js"></script>
-
-    <!--Color picker-->
-    <script src="~/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
-
-    <!--Date picker-->
-    <script src="~/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-
-    <!--Max length-->
-    <script src="~/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
-
-    <!--touch-->
-    <script src="~/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js"></script>
-
-    <!--Validaciones automaticas-->
-    <script src="~/plugins/parsleyjs/parsley.min.js"></script>
-
-    <!--Alertas intuitivas-->
-    <script src="~/plugins/sweet-alert2/sweetalert2.min.js"></script>
 
     <!--#region Seccion donde se dibujara el t4 del script-->
     <script type="text/javascript">
         $(document).ready(function () {
             $('form').parsley();
-            $('#datatable').DataTable();
 
-            //Buttons examples
+            //#region Instancias
             var table = $('#datatables').DataTable({
                 lengthChange: false,
                 buttons: ['copy', 'excel', 'pdf', 'colvis'],
@@ -272,23 +142,75 @@
         //Hacer que no recargue la pagina
         $('#btnGuardar').submit(e => e.preventDefault());
 
-        $('#datatables tbody tr td #btnEditar').click(function () {
-            $('#modalEditar').modal();
-        });
+        //#endregion
 
+        //#region Abrir Modales
+        //#region Editar
+        $('#datatables tbody tr td #btnEditar').click(function () {
+            //$('#ModalEditar #rang_Descripcion').val(this.parentElement.pa)
+
+            let ID = $(this).data('id');
+
+            $.get('/Rangos/Edit/' + ID, (data) => {
+                $('#ModalEditar #rang_Descripcion').val(data);
+                $('#ModalEditar #rang_Id').val(ID);
+            })
+
+            console.log($(this).data('id'));
+            $('#ModalEditar').modal();
+        });
+        //#endregion
+
+        //#region Detalles
         $('#datatables tbody tr td #btnDetalles').click(function () {
+
+            let ID = $(this).data('id');
+            $.get('/Rangos/Details/' + ID, (data) => {
+
+                console.log(data);
+                //$('#ModalEditar #rang_Descripcion').val(data);
+                //$('#ModalEditar #rang_Id').val(ID);
+            });
             $('#modalDetalles').modal();
         });
+        //#endregion
 
-        $('#datatables tbody tr td #btnEliminar').click(function () {
-            $('#modalEliminar').modal();
+        //#region Activar
+        $('#datatables tbody tr td #btnActivar').click(function () {
+            $('#Modalhabilitar').modal();
         });
+        //#endregion
 
+        //#region Eliminar
+        $('#datatables tbody tr td #btnEliminar').click(function () {
+            $('#ModalInhabilitar').modal();
+        });
+        //#endregion
+
+        //#region Crear
         $('#Crear_Rangos').click(function () {
-            console.log('click');
             $('#ModalCrear').modal();
         });
-		</script>
+        //#endregion
+        //#endregion
+
+        //#region Click
+        $('#btnCrear').click(function (e) {
+            //console.log(e);
+            //var array = $('#frmCrearRangos').serializeArray();
+
+            ////if (array.find(x => x.name == 'rang_Descripcion').value == "") {
+            ////    console.log('No supero la valiacion')
+            ////    $('#frmCrearRangos #rang_Descripcion').addClass('parsley-error');
+            ////    $('#frmCrearRangos #requerido').show();
+            ////}
+
+
+            //console.log(array);
+
+        })
+                //#endregion
+    </script>
 
 }
 
