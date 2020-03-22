@@ -59,17 +59,18 @@ namespace App_SpartansCustom_Rifas.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(tbRangos tbRangos)
+        public async Task<JsonResult> Create(tbRangos tbRangos)
         {
-            if (ModelState.IsValid)
+            string response = "error";
+
+            if (ModelState.IsValid && tbRangos.rang_Descripcion != null)
             {
                 try
                 {
                     if ( // Si se inserto mal retornar la vista
                         await Task.Run(() =>
-                        {
+                       
                             // Retornar la insersion asincrona
-                            return
 
                             db.UDP_Person_tbRangos_Insert(
                             tbRangos.rang_Descripcion,
@@ -79,25 +80,25 @@ namespace App_SpartansCustom_Rifas.Controllers
                             null,
                             null)
                             .FirstOrDefault()
-                            .StartsWith("-1");
-                        })
+                            .StartsWith("-1")
+                        )
                         )
                     {
-                        return View(tbRangos);
+                        return Json(response, JsonRequestBehavior.AllowGet);
                     }
                     else
                     {
                         //Si se inserto bien redireccionar al index
-                        return RedirectToAction("Index");
+                        response = "bien";
                     }
                 }
                 catch (Exception)
                 {
-                    return View(tbRangos);
+                    return Json(response, JsonRequestBehavior.AllowGet);
                 }
             }
 
-            return View(tbRangos);
+            return Json(response, JsonRequestBehavior.AllowGet);
         }
 
         // GET: /Rangos/Edit/5
