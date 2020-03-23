@@ -14,16 +14,32 @@ namespace App_SpartansCustom_Rifas.Controllers
         private App_SpartansCustom_Entities db = new App_SpartansCustom_Entities();
 
         // GET: /Rangos/
-        public async Task<ActionResult> Index()
+        public ViewResult Index()
         {
-            var tbrangos = db.tbRangos.Include(t => t.tbUsuarios).Include(t => t.tbUsuarios1);
-            return View(await tbrangos.ToListAsync());
+            return View();
         }
 
-        
+
         public JsonResult GetData()
         {
-            return Json( db.tbRangos.Select(x=> new { descripcion = x.rang_Descripcion}).ToList(), JsonRequestBehavior.AllowGet);
+            var json = db.
+                tbRangos.
+                Where(x => x.rang_Estado == true)
+                .OrderByDescending(x=> x.rang_FechaCrea)
+                .Select(
+                x => new
+                {
+                    descripcion = x.rang_Descripcion,
+                    numero = x.rang_Id,
+                    estado = x.rang_Estado
+                })
+                .ToList();
+
+            return Json(
+                new { data = json }
+                ,
+                JsonRequestBehavior.AllowGet
+                );
 
         }
 
@@ -46,8 +62,8 @@ namespace App_SpartansCustom_Rifas.Controllers
                 descripcion = tbRangos.rang_Descripcion,
                 usuarioCrea = tbRangos.tbUsuarios.usu_NombreDeUsuario,
                 fechaCrea = General.FechaRetorno(tbRangos.rang_FechaCrea),
-                usuarioModifica = tbRangos.rang_UsuarioModifica is null ? "No modificado": tbRangos.tbUsuarios1.usu_NombreDeUsuario ,
-                fechaModifica =  tbRangos.rang_FechaModifica is null ? "No modificado":  General.FechaRetorno(tbRangos.rang_FechaModifica.Value)
+                usuarioModifica = tbRangos.rang_UsuarioModifica is null ? "No modificado" : tbRangos.tbUsuarios1.usu_NombreDeUsuario,
+                fechaModifica = tbRangos.rang_FechaModifica is null ? "No modificado" : General.FechaRetorno(tbRangos.rang_FechaModifica.Value)
             };
 
             return Json(result, JsonRequestBehavior.AllowGet);
@@ -76,7 +92,7 @@ namespace App_SpartansCustom_Rifas.Controllers
                 {
                     if ( // Si se inserto mal retornar la vista
                         await Task.Run(() =>
-                       
+
                             // Retornar la insersion asincrona
 
                             db.UDP_Person_tbRangos_Insert(
@@ -129,8 +145,9 @@ namespace App_SpartansCustom_Rifas.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "rang_Id,rang_Descripcion,rang_Estado,rang_UsuarioCrea,rang_FechaCrea,rang_UsuarioModifica,rang_FechaModifica")] tbRangos tbRangos)
+        public async Task<JsonResult> Edit([Bind(Include = "rang_Id,rang_Descripcion,rang_Estado,rang_UsuarioCrea,rang_FechaCrea,rang_UsuarioModifica,rang_FechaModifica")] tbRangos tbRangos)
         {
+            string response = "error";
             if (ModelState.IsValid)
             {
                 try
@@ -151,23 +168,22 @@ namespace App_SpartansCustom_Rifas.Controllers
                         })
                         )
                     {
-                        return View(tbRangos);
+                        return Json(response, JsonRequestBehavior.AllowGet);
                     }
                     else
                     {
                         //Si se inserto bien redireccionar al index
-                        return RedirectToAction("Index");
+                        return Json("bien", JsonRequestBehavior.AllowGet);
                     }
                 }
                 catch (Exception)
                 {
-                    return View(tbRangos);
+                    return Json(response, JsonRequestBehavior.AllowGet);
                 }
 
             }
-            ViewBag.rang_UsuarioCrea = new SelectList(db.tbUsuarios, "usu_Id", "usu_NombreDeUsuario", tbRangos.rang_UsuarioCrea);
-            ViewBag.rang_UsuarioModifica = new SelectList(db.tbUsuarios, "usu_Id", "usu_NombreDeUsuario", tbRangos.rang_UsuarioModifica);
-            return View(tbRangos);
+
+            return Json(response, JsonRequestBehavior.AllowGet);
         }
 
         // GET: /Rangos/Delete/5

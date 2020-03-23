@@ -2,99 +2,127 @@
 var descripcionCreate = $('#ModalCrear #rang_Descripcion');
 var descripcionEdit = $('#ModalEditar #rang_Descripcion');
 var otroCampoEdit = $('#ModalEditar #otroCampo');
-
+var table;
 $(document).ready(function () {
 
     //#region Instancias
-    var table = $('#datatables').DataTable({
-        lengthChange: false,
-        buttons: ['copy', 'excel', 'pdf', 'colvis'],
-        language: {
-            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-        },
-    });
+    listar();
 
     table.buttons().container()
         .appendTo('#datatables_wrapper .col-md-6:eq(0)');
-
-    // Select2
-    $(".select2").select2({
-        dropdownParent: $('#formEditar'),
-        placeholder: 'Seleccione un empleado',
-        language: {
-            noResults: function () {
-                return 'Resultados no encontrados.';
-            },
-            searching: function () {
-                return 'Buscando...';
-            }
-        }
-    });
-    $("input[name='demo0']").TouchSpin({
-        buttondown_class: 'btn btn-primary',
-        buttonup_class: 'btn btn-primary'
-    });
-
-    jQuery('.datepicker-autoclose').datepicker({
-        autoclose: true,
-        todayHighlight: true
-    });
 });
 
-//Hacer que no recargue la pagina
-$('#btnGuardar').submit(e => e.preventDefault());
+var activo = `
+    ${botonEditar}
+    ${botonDetalles}
+    ${botonEliminar}
+    `;
+var inactivo = `
+    ${botonEditar}
+    ${botonDetalles}
+    ${botonActivar}
+`;
+
+
+function listar() {
+    //Almacenar la tabla creada
+    table = $('#datatables').DataTable({
+        //Con este metodo se le dan los estilos y funcionalidades de datatable a la tabla
+        destroy: true,
+        //Es para que pueda volver a inicializar el datatable, aunque ya este creado
+        ajax: objetoAjaxDataTables('/Rangos/GetData'),
+        columns: [
+            {
+                data: 'numero'
+            },
+            {
+                data: 'descripcion'
+            }, //Columna 2: descripción de la planilla, esto viene de la petición que se hizo al servidor
+            {
+                data: 'estado',
+                render: function (data) {
+                    return (data) ? "Activo" : "Inactivo";
+                }
+            },
+            {
+                //Columna 4: los botones que tendrá cada fila, editar y detalles de la planilla
+                orderable: false,
+                data: 'estado',
+                render: function (data) {
+                    return (data) ? activo : inactivo;
+                }
+            }],
+        language: traduccion,
+        pageLength: 10,
+        "order": [[0, "desc"]]
+        //Con esto se hace la traducción al español del datatables
+    });
+    //Cuando le de click en detalles, o editar, le pasare el id
+    obtenerIdDetallesEditar('#datatables tbody', table);
+}
 
 //#endregion
+
+// LLenar la data 
+async function llenarData() {
+    await table.clear();
+    await get('/Rangos/GetData/', async (data) => {
+        await table.rows.add(data.data).draw();
+    });
+}
+
+
+function obtenerIdDetallesEditar(body, table) {
+    $(body).on('click', 'button#btnEditar', function () {
+        let { numero } = table.row($(this).parents('tr')).data();
+
+        get('/Rangos/Edit/' + numero, (data) => {
+            $('#ModalEditar #rang_Descripcion').val(data);
+            $('#ModalEditar #rang_Id').val(numero);
+        });
+
+        $('#ModalEditar').modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+    });
+
+    //Cuando de click en detalles, que obtenga el id del tr, y que redireccione a la pantalla de Details
+    $(body).on('click', 'button#btnDetalles', function () {
+        var data = table.row($(this).parents('tr')).data();
+        location.href = urlSinElIndex + '/Details/' + data.idPlanilla;
+    });
+
+    $(body).on('click', 'button#btnActivar', function () {
+        localStorage.setItem('id', table.row($(this).parents('tr')).data().numero);
+
+        $('#Modalhabilitar').modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+    });
+
+    $(body).on('click', 'button#btnEliminar', function () {
+        localStorage.setItem('id', table.row($(this).parents('tr')).data().numero);
+
+        $('#ModalInhabilitar').modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+    });
+}
+
 
 //#region Abrir Modales
-//#region Editar
-$('#datatables tbody tr td #btnEditar').click(function () {
-    //$('#ModalEditar #rang_Descripcion').val(this.parentElement.pa)
-
-    let ID = $(this).data('id');
-
-    get('/Rangos/Edit/' + ID, (data) => {
-        $('#ModalEditar #rang_Descripcion').val(data);
-        $('#ModalEditar #rang_Id').val(ID);
-    });
-
-    console.log($(this).data('id'));
-    $('#ModalEditar').modal({
-        backdrop: 'static',
-        keyboard: false
-    });
-});
-//#endregion
-
 //#region Detalles
 $('#datatables tbody tr td #btnDetalles').click(function () {
 
     let ID = $(this).data('id');
     $.get('/Rangos/Details/' + ID, (data) => {
-
-        console.log(data);
         //$('#ModalEditar #rang_Descripcion').val(data);
         //$('#ModalEditar #rang_Id').val(ID);
     });
     $('#modalDetalles').modal({
-        backdrop: 'static',
-        keyboard: false
-    });
-});
-//#endregion
-
-//#region Activar
-$('#datatables tbody tr td #btnActivar').click(function () {
-    $('#Modalhabilitar').modal({
-        backdrop: 'static',
-        keyboard: false
-    });
-});
-//#endregion
-
-//#region Eliminar
-$('#datatables tbody tr td #btnEliminar').click(function () {
-    $('#ModalInhabilitar').modal({
         backdrop: 'static',
         keyboard: false
     });
@@ -115,7 +143,7 @@ $('#Crear_Rangos').click(function () {
 // Validaciones
 
 //#region CRUD
-
+//Crear
 $('#btnCrear').click(function (e) {
     let dataFormulario = $('#frmCrearRangos').serializeArray();
 
@@ -123,21 +151,19 @@ $('#btnCrear').click(function (e) {
         post(
             '/Rangos/Create', // url
             dataFormulario, // Data del formulario
-            data => { //Retorno del backend 
+            async data => { //Retorno del backend 
                 if (data === 'bien') {
-                    console.log(data);
-
-                    get('/Rangos/GetData/', (data) => {
-                        console.log(data);
-                    });
+                    await llenarData();
+                    await $('#ModalEditar').modal('hide');
                 }
+                else
+                    alert('Algo paso mal');
             },
             err => {
-                console.log(err);
             });
-    else console.log('fallo');
+});
 
-})
+//Editar
 $('#btnGuardarEdicion').click(function (e) {
     let dataFormulario = $('#frmEditarRangos').serializeArray();
 
@@ -145,17 +171,36 @@ $('#btnGuardarEdicion').click(function (e) {
         post(
             '/Rangos/Edit', // url
             dataFormulario, // Data del formulario
-            data => { //Retorno del backend 
-                console.log(data);
+            async data => { //Retorno del backend 
+                if (data === 'bien') {
+                    await llenarData();
+                    await $('#ModalEditar').modal('hide');
+                }
+                else
+                    alert('Algo paso mal');
             },
             err => {
-                console.log(err);
             });
 
     } else {
-        console.log('no enviado');
-
     }
 })
+
+//Eliminar
+$('#btnConfirmarModalInhabilitar').click(function (e) {
+    post(
+        '/Rangos/Edit', // url
+        dataFormulario, // Data del formulario
+        async data => { //Retorno del backend 
+            if (data === 'bien') {
+                await llenarData();
+                await $('#ModalEditar').modal('hide');
+            }
+            else
+                alert('Algo paso mal');
+        },
+        err => {
+        });
+});
 
 //#endregion
