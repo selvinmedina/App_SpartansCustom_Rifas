@@ -23,7 +23,7 @@ namespace App_SpartansCustom_Rifas.Controllers
         
         public JsonResult GetData()
         {
-            return Json( db.tbRangos.ToList(), JsonRequestBehavior.AllowGet);
+            return Json( db.tbRangos.Select(x=> new { descripcion = x.rang_Descripcion}).ToList(), JsonRequestBehavior.AllowGet);
 
         }
 
