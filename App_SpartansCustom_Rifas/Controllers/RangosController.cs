@@ -20,6 +20,13 @@ namespace App_SpartansCustom_Rifas.Controllers
             return View(await tbrangos.ToListAsync());
         }
 
+        
+        public JsonResult GetData()
+        {
+            return Json( db.tbRangos.ToList(), JsonRequestBehavior.AllowGet);
+
+        }
+
         // GET: /Rangos/Details/5
         public JsonResult Details(int? id)
         {

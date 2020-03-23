@@ -6,17 +6,28 @@
                 <h5 class="modal-title mt-0">Editar Rangos</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
-            <form id="frmCrearRangos" action="/Rangos/Edit" method="post">
+            <form id="frmEditarRangos" action="/Rangos/Edit" method="post">
                 <div class="modal-body">
                     @Html.AntiForgeryToken()
-                    <input id="rang_Id" hidden name="rang_Id"/>
+                    <input id="rang_Id" hidden name="rang_Id" />
                     <label for="rang_Descripcion" class="control-label">Descripcion</label>
                     <div class="form-group">
                         @Html.EditorFor(model => model.rang_Descripcion, new { htmlAttributes = new { @class = "form-control", @type = "text", @required = true } })
+                        <ul class="parsley-errors-list filled" id="validaciones">
+                            <li class="parsley-required" style="display: none" id="requerido">Este campo es requerido</li>
+                        </ul>
+                    </div>
+
+                    <label for="rang_Descripcion" class="control-label">Otro Campo</label>
+                    <div class="form-group">
+                        <input class="form-control text-box single-line" id="otroCampo" name="rang_Descripcion" required type="text" value="">
+                        <ul class="parsley-errors-list filled" id="validaciones">
+                            <li class="parsley-required" style="display: none" id="requerido">Este campo es requerido</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" id="btnGuardar" class="btn btn-primary waves-effect waves-light">Guardar</button>
+                    <button type="button" id="btnGuardarEdicion" class="btn btn-primary waves-effect waves-light">Guardar</button>
                     <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal">Cerrar</button>
                 </div>
             </form>

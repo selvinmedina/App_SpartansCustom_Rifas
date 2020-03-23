@@ -7,13 +7,15 @@
                 <h5 class="modal-title mt-0">Crear Rangos</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
-            <form id="frmCrearRangos" action="Rangos/Create" method="post">
+            <form id="frmCrearRangos" action="/Rangos/Create" method="post">
                 <div class="modal-body">
                     @Html.AntiForgeryToken()
                     <label for="rang_Descripcion" class="control-label">Descripcion</label>
                     <div class="form-group">
                         @Html.EditorFor(model => model.rang_Descripcion, new { htmlAttributes = new { @class = "form-control", @type = "text", @required = true } })
-                        
+                        <ul class="parsley-errors-list filled" id="validaciones">
+                            <li class="parsley-required" style="display: none" id="requerido">Este campo es requerido</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="modal-footer">

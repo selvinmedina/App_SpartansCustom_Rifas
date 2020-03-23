@@ -1,7 +1,7 @@
 
 var descripcionCreate = $('#ModalCrear #rang_Descripcion');
 var descripcionEdit = $('#ModalEditar #rang_Descripcion');
-
+var otroCampoEdit = $('#ModalEditar #otroCampo');
 
 $(document).ready(function () {
 
@@ -59,7 +59,10 @@ $('#datatables tbody tr td #btnEditar').click(function () {
     });
 
     console.log($(this).data('id'));
-    $('#ModalEditar').modal();
+    $('#ModalEditar').modal({
+        backdrop: 'static',
+        keyboard: false
+    });
 });
 //#endregion
 
@@ -73,70 +76,86 @@ $('#datatables tbody tr td #btnDetalles').click(function () {
         //$('#ModalEditar #rang_Descripcion').val(data);
         //$('#ModalEditar #rang_Id').val(ID);
     });
-    $('#modalDetalles').modal();
+    $('#modalDetalles').modal({
+        backdrop: 'static',
+        keyboard: false
+    });
 });
 //#endregion
 
 //#region Activar
 $('#datatables tbody tr td #btnActivar').click(function () {
-    $('#Modalhabilitar').modal();
+    $('#Modalhabilitar').modal({
+        backdrop: 'static',
+        keyboard: false
+    });
 });
 //#endregion
 
 //#region Eliminar
 $('#datatables tbody tr td #btnEliminar').click(function () {
-    $('#ModalInhabilitar').modal();
+    $('#ModalInhabilitar').modal({
+        backdrop: 'static',
+        keyboard: false
+    });
 });
 //#endregion
 
 //#region Crear
 $('#Crear_Rangos').click(function () {
-    $('#ModalCrear').modal();
+    ocultarValidaciones('#ModalCrear');
+    $('#ModalCrear').modal({
+        backdrop: 'static',
+        keyboard: false
+    });
 });
 //#endregion
 //#endregion
 
 // Validaciones
 
-function requerido(input) {
-    console.log(input);
-}
+//#region CRUD
 
-function validacionCrear(input) {
-    console.log(input);
-
-}
-
-
-
-//#region Click
 $('#btnCrear').click(function (e) {
-    e.preventDefault();
-    let form = $('#frmCrearRangos').serializeArray()
+    let dataFormulario = $('#frmCrearRangos').serializeArray();
 
-    validacionCrear(descripcionCreate.val());
+    if (camposRequeridos([descripcionCreate]))
+        post(
+            '/Rangos/Create', // url
+            dataFormulario, // Data del formulario
+            data => { //Retorno del backend 
+                if (data === 'bien') {
+                    console.log(data);
 
-
-    post(
-        '/Rangos/Create', // url
-        form, // Data del formulario
-        data => { //Retorno del backend 
-            console.log(data);
-        },
-        err => {
-            console.log(err);
-        })
-    //console.log(e);
-    //var array = $('#frmCrearRangos').serializeArray();
-
-    ////if (array.find(x => x.name == 'rang_Descripcion').value == "") {
-    ////    console.log('No supero la valiacion')
-    ////    $('#frmCrearRangos #rang_Descripcion').addClass('parsley-error');
-    ////    $('#frmCrearRangos #requerido').show();
-    ////}
-
-
-    //console.log(array);
+                    get('/Rangos/GetData/', (data) => {
+                        console.log(data);
+                    });
+                }
+            },
+            err => {
+                console.log(err);
+            });
+    else console.log('fallo');
 
 })
+$('#btnGuardarEdicion').click(function (e) {
+    let dataFormulario = $('#frmEditarRangos').serializeArray();
+
+    if (camposRequeridos([descripcionEdit, otroCampoEdit])) {
+        post(
+            '/Rangos/Edit', // url
+            dataFormulario, // Data del formulario
+            data => { //Retorno del backend 
+                console.log(data);
+            },
+            err => {
+                console.log(err);
+            });
+
+    } else {
+        console.log('no enviado');
+
+    }
+})
+
 //#endregion
