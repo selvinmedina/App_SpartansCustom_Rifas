@@ -186,21 +186,6 @@ namespace App_SpartansCustom_Rifas.Controllers
             return Json(response, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: /Rangos/Delete/5
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbRangos tbRangos = await db.tbRangos.FindAsync(id);
-            if (tbRangos == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbRangos);
-        }
-
         // POST: /Rangos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
