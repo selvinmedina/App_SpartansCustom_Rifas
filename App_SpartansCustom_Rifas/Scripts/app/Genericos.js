@@ -7,7 +7,10 @@
     }
 
     for (const input of inputs) {
-        $(input).removeClass('parsley-error')
+        if (input.name != '__RequestVerificationToken') {
+            $(input).removeClass('parsley-error');
+            $(input).val('');
+        }
     }
 }
 
@@ -71,7 +74,7 @@ var traduccion = {
     sProcessing: 'Procesado...',
     sLengthMenu: 'Mostrar _MENU_ registros',
     sZeroRecords: 'No se encontraron resultados',
-    sEmptyTable: 'No se cargó la información, contacte al administrador.',
+    sEmptyTable: 'No hay datos para mostrar.',
     sInfo: 'Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros',
     sInfoEmpty: 'Mostrando registros del 0 al 0 de un total de 0 registros',
     sInfoFiltered: '(filtrado de un total de _MAX_ registros)',
@@ -92,9 +95,85 @@ var traduccion = {
     }
 }
 
+async function success(mensaje) {
+    await iziToast.success({
+        title: 'Éxito',
+        message: mensaje
+    });
+}
+
+async function error(mensaje) {
+    await iziToast.error({
+        title: 'Error',
+        message: mensaje
+    });
+}
 
 
 
+var mensaje = {
+    //Insersión
+    insertado: '¡El registro se agregó de forma exitosa!',
+    falloInsersion: 'No se guardó el registro, contacte al administrador',
 
+    //Inactivación
+    inactivado: '¡El registro se inactivó de forma exitosa!',
+    falloInactivacion: 'No se inactivó el registro, contacte al administrador',
 
+    //Permisos
+    permisos: 'No tienes permisos para realizar esta acción',
 
+    //Activación
+    activado: '¡El registro se activó de forma exitosa!',
+    falloActivacion: 'No se activó el registro, contacte al administrador',
+
+    //Edición
+    editado: '¡El registro se editó de forma exitosa!',
+    falloEdicion: 'No se editó el registro, contacte al administrador'
+}
+
+async function submit(form) {
+    $(form).submit(ev => false);
+}
+
+function disabled(boton, estado) {
+    if (estado) {
+        boton.disabled = estado
+    } else {
+        setTimeout(() => boton.disabled = estado, 1000);
+    }
+}
+
+//#region Constantes
+
+const bien = 'bien',
+    activo = `
+    ${botonEditar}
+    ${botonDetalles}
+    ${botonEliminar}
+    `,
+    inactivo = `
+    ${botonEditar}
+    ${botonDetalles}
+    ${botonActivar}
+    `,
+    modalEditar = '#ModalEditar',
+    modalCrear = '#ModalCrear',
+    modalHabilitar = '#Modalhabilitar',
+    modalDetalles = '#modalDetalles',
+    modalInHabilitar = '#ModalInhabilitar'
+    ;
+var table;
+
+async function mostrarModal(modal) {
+    await $(modal).modal({
+        backdrop: 'static',
+        keyboard: false
+    });
+}
+
+async function ocultarModal(modal) {
+    await $(modal).modal('hide');
+}
+
+//#endregion

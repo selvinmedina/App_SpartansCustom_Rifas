@@ -1502,6 +1502,8 @@
     <Content Include="Content\images\users\user-9.jpg" />
     <Content Include="Content\ion-rangeslider\css\ion.rangeSlider.css" />
     <Content Include="Content\ion-rangeslider\css\ion.rangeSlider.min.css" />
+    <Content Include="Content\izitoast\iziToast.css" />
+    <Content Include="Content\izitoast\iziToast.min.css" />
     <Content Include="Content\jquery-ui\jquery-ui.min.css" />
     <Content Include="Content\js\app.js" />
     <Content Include="Content\js\bootstrap.bundle.min.js" />
@@ -3749,6 +3751,8 @@
     <Content Include="Scripts\plugins\gmaps\lib\gmaps.utils.js" />
     <Content Include="Scripts\plugins\ion-rangeslider\js\ion.rangeSlider.js" />
     <Content Include="Scripts\plugins\ion-rangeslider\js\ion.rangeSlider.min.js" />
+    <Content Include="Scripts\plugins\iziToast\iziToast.js" />
+    <Content Include="Scripts\plugins\iziToast\iziToast.min.js" />
     <Content Include="Scripts\plugins\jquery-knob\excanvas.js" />
     <Content Include="Scripts\plugins\jquery-knob\jquery.knob.js" />
     <Content Include="Scripts\plugins\jquery-sparkline\jquery.sparkline.min.js" />
