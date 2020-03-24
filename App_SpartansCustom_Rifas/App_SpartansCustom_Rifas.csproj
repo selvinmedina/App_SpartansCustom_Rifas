@@ -225,9 +225,6 @@
     <Compile Include="Models\tbDepartamentos.cs">
       <DependentUpon>App_SpartansCustom.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbDirecciones.cs">
-      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\tbEmpresa.cs">
       <DependentUpon>App_SpartansCustom.tt</DependentUpon>
     </Compile>

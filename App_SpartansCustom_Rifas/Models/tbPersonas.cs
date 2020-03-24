@@ -35,6 +35,8 @@ namespace App_SpartansCustom_Rifas.Models
         public System.DateTime per_FechaCrea { get; set; }
         public Nullable<int> per_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> per_FechaModifica { get; set; }
+        public string per_Direccion1 { get; set; }
+        public string per_Direccion2 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbClientes> tbClientes { get; set; }

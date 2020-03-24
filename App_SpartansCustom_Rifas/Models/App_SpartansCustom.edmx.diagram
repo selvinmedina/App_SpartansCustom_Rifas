@@ -12,8 +12,6 @@
         <EntityTypeShape EntityType="App_SpartansCustom_Model.tbEmpresa" Width="1.5" PointX="3" PointY="19" IsExpanded="true" />
         <EntityTypeShape EntityType="App_SpartansCustom_Model.tbPais" Width="1.5" PointX="3" PointY="23.625" IsExpanded="true" />
         <EntityTypeShape EntityType="App_SpartansCustom_Model.tbClientes" Width="1.5" PointX="5.25" PointY="35" IsExpanded="true" />
-        <EntityTypeShape EntityType="App_SpartansCustom_Model.tbDirecciones" Width="1.5" PointX="3" PointY="31.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="App_SpartansCustom_Model.tbPersonas" Width="1.5" PointX="3" PointY="36" IsExpanded="true" />
         <EntityTypeShape EntityType="App_SpartansCustom_Model.tbRangos" Width="1.5" PointX="3" PointY="41.25" IsExpanded="true" />
         <EntityTypeShape EntityType="App_SpartansCustom_Model.tbCatalogoProductos" Width="1.5" PointX="3" PointY="44.75" IsExpanded="true" />
         <EntityTypeShape EntityType="App_SpartansCustom_Model.tbCategoriaProductos" Width="1.5" PointX="3" PointY="48.125" IsExpanded="true" />
@@ -38,13 +36,8 @@
         <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbEmpresa_empr_UsuarioModifica" ManuallyRouted="false" />
         <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPais_pais_UsuarioCrea" ManuallyRouted="false" />
         <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPais_pais_UsuarioModifica" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK_RRHH_tbPersonas_tbClientes_per_Id" ManuallyRouted="false" />
         <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbClientes_clte_UsuarioCrea" ManuallyRouted="false" />
         <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbClientes_clte_UsuarioModifica" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbSucursales_dir_UsuarioCrea" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbSucursales_dir_UsuarioModifica" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPersonas_per_UsuarioCrea" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPersonas_per_UsuarioModifica" ManuallyRouted="false" />
         <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRangos_rang_UsuarioCrea" ManuallyRouted="false" />
         <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRangos_rang_UsuarioModifica" ManuallyRouted="false" />
         <AssociationConnector Association="App_SpartansCustom_Model.FK__tbCatalog__cprod__1AD3FDA4" ManuallyRouted="false" />
@@ -78,6 +71,10 @@
         <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbUsuariosRoles_usu_Id" ManuallyRouted="false" />
         <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbUsuariosRoles_usurol_UsuarioCrea" ManuallyRouted="false" />
         <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbUsuariosRoles_usurol_UsuarioModifica" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="App_SpartansCustom_Model.tbPersonas" Width="1.5" PointX="3" PointY="29.125" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK_RRHH_tbPersonas_tbClientes_per_Id" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPersonas_per_UsuarioCrea" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPersonas_per_UsuarioModifica" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -34,8 +34,6 @@ namespace App_SpartansCustom_Rifas.Models
         public virtual DbSet<tbEmpresa> tbEmpresa { get; set; }
         public virtual DbSet<tbPais> tbPais { get; set; }
         public virtual DbSet<tbClientes> tbClientes { get; set; }
-        public virtual DbSet<tbDirecciones> tbDirecciones { get; set; }
-        public virtual DbSet<tbPersonas> tbPersonas { get; set; }
         public virtual DbSet<tbRangos> tbRangos { get; set; }
         public virtual DbSet<tbCatalogoProductos> tbCatalogoProductos { get; set; }
         public virtual DbSet<tbCategoriaProductos> tbCategoriaProductos { get; set; }
@@ -50,6 +48,7 @@ namespace App_SpartansCustom_Rifas.Models
         public virtual DbSet<tbRolesPermisos> tbRolesPermisos { get; set; }
         public virtual DbSet<tbUsuarios> tbUsuarios { get; set; }
         public virtual DbSet<tbUsuariosRoles> tbUsuariosRoles { get; set; }
+        public virtual DbSet<tbPersonas> tbPersonas { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
