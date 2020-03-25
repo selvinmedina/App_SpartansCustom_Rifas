@@ -266,6 +266,7 @@
           <Property Name="usu_Contrasenia" Type="nvarchar(max)" />
           <Property Name="usu_BloqueoActivo" Type="bit" Nullable="false" />
           <Property Name="usu_CorreoElectronico" Type="nvarchar" MaxLength="50" />
+          <Property Name="usu_EsAdministrador" Type="bit" />
         </EntityType>
         <EntityType Name="tbUsuariosRoles">
           <Key>
@@ -1095,7 +1096,9 @@
         </Function>
         <Function Name="UDP_Seg_tbUsuarios_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Seg">
           <Parameter Name="usu_NombreUsuario" Type="varchar" Mode="In" />
+          <Parameter Name="usu_CorreoElectronico" Type="nvarchar" Mode="In" />
           <Parameter Name="usu_Contrasenia" Type="varchar" Mode="In" />
+          <Parameter Name="usu_EsAdministrador" Type="bit" Mode="In" />
         </Function>
         <Function Name="UDP_Seg_tbUsuarios_UpdateClave" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Seg">
           <Parameter Name="usu_Id" Type="int" Mode="In" />
@@ -1391,9 +1394,9 @@
           <Property Name="ciud_UsuarioModifica" Type="Int32" />
           <Property Name="ciud_FechaModifica" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tbDepartamentos" Relationship="Self.FK_Gral_tbDepartamentos_tbCiudades_depto_Id" FromRole="tbCiudades" ToRole="tbDepartamentos" />
-          <NavigationProperty Name="tbUsuarios" Relationship="Self.FK_Seg_tbUsuarios_tbCiudades_ciud_UsuarioCrea" FromRole="tbCiudades" ToRole="tbUsuarios" />
-          <NavigationProperty Name="tbUsuarios1" Relationship="Self.FK_Seg_tbUsuarios_tbCiudades_ciud_UsuarioModifica" FromRole="tbCiudades" ToRole="tbUsuarios" />
-        </EntityType>
+          <NavigationProperty Name="tbUsuarios" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbCiudades_ciud_UsuarioCrea" FromRole="tbCiudades" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios1" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbCiudades_ciud_UsuarioModifica" FromRole="tbCiudades" ToRole="tbUsuarios" />
+          </EntityType>
         <EntityType Name="tbDepartamentos">
           <Key>
             <PropertyRef Name="depto_Id" />
@@ -1409,8 +1412,8 @@
           <Property Name="depto_FechaModifica" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tbCiudades" Relationship="Self.FK_Gral_tbDepartamentos_tbCiudades_depto_Id" FromRole="tbDepartamentos" ToRole="tbCiudades" />
           <NavigationProperty Name="tbPais" Relationship="Self.FK_Gral_tbPais_tbDepartamentos_pais_Id" FromRole="tbDepartamentos" ToRole="tbPais" />
-          <NavigationProperty Name="tbUsuarios" Relationship="Self.FK_Seg_tbUsuarios_tbDepartamentos_depto_UsuarioCrea" FromRole="tbDepartamentos" ToRole="tbUsuarios" />
-          <NavigationProperty Name="tbUsuarios1" Relationship="Self.FK_Seg_tbUsuarios_tbDepartamentos_depto_UsuarioModifica" FromRole="tbDepartamentos" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbDepartamentos_depto_UsuarioCrea" FromRole="tbDepartamentos" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios1" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbDepartamentos_depto_UsuarioModifica" FromRole="tbDepartamentos" ToRole="tbUsuarios" />
         </EntityType>
         <EntityType Name="tbEmpresa">
           <Key>
@@ -1429,8 +1432,8 @@
           <Property Name="empr_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="empr_UsuarioModifica" Type="Int32" />
           <Property Name="empr_FechaModifica" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tbUsuarios" Relationship="Self.FK_Seg_tbUsuarios_tbEmpresa_empr_UsuarioCrea" FromRole="tbEmpresa" ToRole="tbUsuarios" />
-          <NavigationProperty Name="tbUsuarios1" Relationship="Self.FK_Seg_tbUsuarios_tbEmpresa_empr_UsuarioModifica" FromRole="tbEmpresa" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbEmpresa_empr_UsuarioCrea" FromRole="tbEmpresa" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios1" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbEmpresa_empr_UsuarioModifica" FromRole="tbEmpresa" ToRole="tbUsuarios" />
         </EntityType>
         <EntityType Name="tbPais">
           <Key>
@@ -1445,8 +1448,8 @@
           <Property Name="pais_UsuarioModifica" Type="Int32" />
           <Property Name="pais_FechaModifica" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tbDepartamentos" Relationship="Self.FK_Gral_tbPais_tbDepartamentos_pais_Id" FromRole="tbPais" ToRole="tbDepartamentos" />
-          <NavigationProperty Name="tbUsuarios" Relationship="Self.FK_Seg_tbUsuarios_tbPais_pais_UsuarioCrea" FromRole="tbPais" ToRole="tbUsuarios" />
-          <NavigationProperty Name="tbUsuarios1" Relationship="Self.FK_Seg_tbUsuarios_tbPais_pais_UsuarioModifica" FromRole="tbPais" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPais_pais_UsuarioCrea" FromRole="tbPais" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios1" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPais_pais_UsuarioModifica" FromRole="tbPais" ToRole="tbUsuarios" />
         </EntityType>
         <EntityType Name="tbClientes">
           <Key>
@@ -1461,9 +1464,9 @@
           <Property Name="clte_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="clte_UsuarioModifica" Type="Int32" />
           <Property Name="clte_FechaModifica" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tbUsuarios" Relationship="Self.FK_Seg_tbUsuarios_tbClientes_clte_UsuarioCrea" FromRole="tbClientes" ToRole="tbUsuarios" />
-          <NavigationProperty Name="tbUsuarios1" Relationship="Self.FK_Seg_tbUsuarios_tbClientes_clte_UsuarioModifica" FromRole="tbClientes" ToRole="tbUsuarios" />
           <NavigationProperty Name="tbPersonas" Relationship="App_SpartansCustom_Model.FK_RRHH_tbPersonas_tbClientes_per_Id" FromRole="tbClientes" ToRole="tbPersonas" />
+          <NavigationProperty Name="tbUsuarios" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbClientes_clte_UsuarioCrea" FromRole="tbClientes" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios1" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbClientes_clte_UsuarioModifica" FromRole="tbClientes" ToRole="tbUsuarios" />
         </EntityType>
         <EntityType Name="tbRangos">
           <Key>
@@ -1476,8 +1479,8 @@
           <Property Name="rang_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="rang_UsuarioModifica" Type="Int32" />
           <Property Name="rang_FechaModifica" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tbUsuarios" Relationship="Self.FK_Seg_tbUsuarios_tbRangos_rang_UsuarioCrea" FromRole="tbRangos" ToRole="tbUsuarios" />
-          <NavigationProperty Name="tbUsuarios1" Relationship="Self.FK_Seg_tbUsuarios_tbRangos_rang_UsuarioModifica" FromRole="tbRangos" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRangos_rang_UsuarioCrea" FromRole="tbRangos" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios1" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRangos_rang_UsuarioModifica" FromRole="tbRangos" ToRole="tbUsuarios" />
         </EntityType>
         <EntityType Name="tbCatalogoProductos">
           <Key>
@@ -1489,8 +1492,8 @@
           <Property Name="cprod_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="cprod_UsuarioModifica" Type="Int32" />
           <Property Name="cprod_FechaModifica" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tbUsuarios" Relationship="Self.FK__tbCatalog__cprod__1AD3FDA4" FromRole="tbCatalogoProductos" ToRole="tbUsuarios" />
-          <NavigationProperty Name="tbUsuarios1" Relationship="Self.FK__tbCatalog__cprod__1BC821DD" FromRole="tbCatalogoProductos" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios" Relationship="App_SpartansCustom_Model.FK__tbCatalog__cprod__1AD3FDA4" FromRole="tbCatalogoProductos" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios1" Relationship="App_SpartansCustom_Model.FK__tbCatalog__cprod__1BC821DD" FromRole="tbCatalogoProductos" ToRole="tbUsuarios" />
         </EntityType>
         <EntityType Name="tbCategoriaProductos">
           <Key>
@@ -1502,9 +1505,9 @@
           <Property Name="cprod_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="cprod_UsuarioModifica" Type="Int32" />
           <Property Name="cprod_FechaModifica" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tbUsuarios" Relationship="Self.FK__tbCategor__cprod__03F0984C" FromRole="tbCategoriaProductos" ToRole="tbUsuarios" />
-          <NavigationProperty Name="tbUsuarios1" Relationship="Self.FK__tbCategor__cprod__04E4BC85" FromRole="tbCategoriaProductos" ToRole="tbUsuarios" />
           <NavigationProperty Name="tbSubCategoriaProductos" Relationship="Self.FK__tbSubCate__cprod__09A971A2" FromRole="tbCategoriaProductos" ToRole="tbSubCategoriaProductos" />
+          <NavigationProperty Name="tbUsuarios" Relationship="App_SpartansCustom_Model.FK__tbCategor__cprod__03F0984C" FromRole="tbCategoriaProductos" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios1" Relationship="App_SpartansCustom_Model.FK__tbCategor__cprod__04E4BC85" FromRole="tbCategoriaProductos" ToRole="tbUsuarios" />
         </EntityType>
         <EntityType Name="tbImagenProductos">
           <Key>
@@ -1526,8 +1529,8 @@
           <Property Name="mc_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="mc_UsuarioModifica" Type="Int32" />
           <Property Name="mc_FechaModifica" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tbUsuarios" Relationship="Self.FK__tbMarcasC__mc_Us__7E37BEF6" FromRole="tbMarcasComerciales" ToRole="tbUsuarios" />
-          <NavigationProperty Name="tbUsuarios1" Relationship="Self.FK__tbMarcasC__mc_Us__7F2BE32F" FromRole="tbMarcasComerciales" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios" Relationship="App_SpartansCustom_Model.FK__tbMarcasC__mc_Us__7E37BEF6" FromRole="tbMarcasComerciales" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios1" Relationship="App_SpartansCustom_Model.FK__tbMarcasC__mc_Us__7F2BE32F" FromRole="tbMarcasComerciales" ToRole="tbUsuarios" />
         </EntityType>
         <EntityType Name="tbProductos">
           <Key>
@@ -1544,9 +1547,9 @@
           <Property Name="prod_UsuarioModifica" Type="Int32" />
           <Property Name="prod_FechaModifica" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tbImagenProductos" Relationship="Self.FK__tbImagenP__prod___160F4887" FromRole="tbProductos" ToRole="tbImagenProductos" />
-          <NavigationProperty Name="tbUsuarios" Relationship="Self.FK__tbProduct__prod___114A936A" FromRole="tbProductos" ToRole="tbUsuarios" />
-          <NavigationProperty Name="tbUsuarios1" Relationship="Self.FK__tbProduct__prod___123EB7A3" FromRole="tbProductos" ToRole="tbUsuarios" />
           <NavigationProperty Name="tbSubCategoriaProductos" Relationship="Self.FK__tbProduct__scpro__1332DBDC" FromRole="tbProductos" ToRole="tbSubCategoriaProductos" />
+          <NavigationProperty Name="tbUsuarios" Relationship="App_SpartansCustom_Model.FK__tbProduct__prod___114A936A" FromRole="tbProductos" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios1" Relationship="App_SpartansCustom_Model.FK__tbProduct__prod___123EB7A3" FromRole="tbProductos" ToRole="tbUsuarios" />
         </EntityType>
         <EntityType Name="tbSubCategoriaProductos">
           <Key>
@@ -1561,8 +1564,8 @@
           <Property Name="scprod_FechaModifica" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tbCategoriaProductos" Relationship="Self.FK__tbSubCate__cprod__09A971A2" FromRole="tbSubCategoriaProductos" ToRole="tbCategoriaProductos" />
           <NavigationProperty Name="tbProductos" Relationship="Self.FK__tbProduct__scpro__1332DBDC" FromRole="tbSubCategoriaProductos" ToRole="tbProductos" />
-          <NavigationProperty Name="tbUsuarios" Relationship="Self.FK__tbSubCate__scpro__0A9D95DB" FromRole="tbSubCategoriaProductos" ToRole="tbUsuarios" />
-          <NavigationProperty Name="tbUsuarios1" Relationship="Self.FK__tbSubCate__scpro__0B91BA14" FromRole="tbSubCategoriaProductos" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios" Relationship="App_SpartansCustom_Model.FK__tbSubCate__scpro__0A9D95DB" FromRole="tbSubCategoriaProductos" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios1" Relationship="App_SpartansCustom_Model.FK__tbSubCate__scpro__0B91BA14" FromRole="tbSubCategoriaProductos" ToRole="tbUsuarios" />
         </EntityType>
         <EntityType Name="tbPantallas">
           <Key>
@@ -1577,8 +1580,8 @@
           <Property Name="pla_UsuarioModifica" Type="Int32" />
           <Property Name="pla_FechaModifica" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tbPantallasRoles" Relationship="Self.FK_Seg_tbPantallas_tbPantallasRoles_pla_Id" FromRole="tbPantallas" ToRole="tbPantallasRoles" />
-          <NavigationProperty Name="tbUsuarios" Relationship="Self.FK_Seg_tbUsuarios_tbPantallas_pla_UsuarioCrea" FromRole="tbPantallas" ToRole="tbUsuarios" />
-          <NavigationProperty Name="tbUsuarios1" Relationship="Self.FK_Seg_tbUsuarios_tbPantallas_pla_UsuarioModifica" FromRole="tbPantallas" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPantallas_pla_UsuarioCrea" FromRole="tbPantallas" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios1" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPantallas_pla_UsuarioModifica" FromRole="tbPantallas" ToRole="tbUsuarios" />
         </EntityType>
         <EntityType Name="tbPantallasRoles">
           <Key>
@@ -1593,8 +1596,8 @@
           <Property Name="plarol_FechaModifica" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tbPantallas" Relationship="Self.FK_Seg_tbPantallas_tbPantallasRoles_pla_Id" FromRole="tbPantallasRoles" ToRole="tbPantallas" />
           <NavigationProperty Name="tbRoles" Relationship="Self.FK_Seg_tbRoles_tbPantallasRoles_usu_Id" FromRole="tbPantallasRoles" ToRole="tbRoles" />
-          <NavigationProperty Name="tbUsuarios" Relationship="Self.FK_Seg_tbUsuarios_tbPantallasRoles_plarol_UsuarioCrea" FromRole="tbPantallasRoles" ToRole="tbUsuarios" />
-          <NavigationProperty Name="tbUsuarios1" Relationship="Self.FK_Seg_tbUsuarios_tbPantallasRoles_plarol_UsuarioModifica" FromRole="tbPantallasRoles" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPantallasRoles_plarol_UsuarioCrea" FromRole="tbPantallasRoles" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios1" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPantallasRoles_plarol_UsuarioModifica" FromRole="tbPantallasRoles" ToRole="tbUsuarios" />
         </EntityType>
         <EntityType Name="tbPermisos">
           <Key>
@@ -1607,9 +1610,9 @@
           <Property Name="perm_UsuarioModifica" Type="Int32" />
           <Property Name="perm_FechaModifica" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tbRolesPermisos" Relationship="Self.FK_Seg_tbRolesPermisos_tbRolesPermisos_perm_Id" FromRole="tbPermisos" ToRole="tbRolesPermisos" />
-          <NavigationProperty Name="tbUsuarios" Relationship="Self.fk3" FromRole="tbPermisos" ToRole="tbUsuarios" />
-          <NavigationProperty Name="tbUsuarios1" Relationship="Self.fk5" FromRole="tbPermisos" ToRole="tbUsuarios" />
-        </EntityType>
+          <NavigationProperty Name="tbUsuarios" Relationship="App_SpartansCustom_Model.fk3" FromRole="tbPermisos" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios1" Relationship="App_SpartansCustom_Model.fk5" FromRole="tbPermisos" ToRole="tbUsuarios" />
+          </EntityType>
         <EntityType Name="tbRoles">
           <Key>
             <PropertyRef Name="rol_Id" />
@@ -1623,9 +1626,9 @@
           <NavigationProperty Name="tbPantallasRoles" Relationship="Self.FK_Seg_tbRoles_tbPantallasRoles_usu_Id" FromRole="tbRoles" ToRole="tbPantallasRoles" />
           <NavigationProperty Name="tbRolesPermisos" Relationship="Self.FK_Seg_tbRoles_tbRolesPermisos_rol_Id" FromRole="tbRoles" ToRole="tbRolesPermisos" />
           <NavigationProperty Name="tbUsuariosRoles" Relationship="Self.FK_Seg_tbRoles_tbUsuariosRoles_rol_Id" FromRole="tbRoles" ToRole="tbUsuariosRoles" />
-          <NavigationProperty Name="tbUsuarios" Relationship="Self.FK_Seg_tbUsuarios_tbRoles_rol_UsuarioCrea" FromRole="tbRoles" ToRole="tbUsuarios" />
-          <NavigationProperty Name="tbUsuarios1" Relationship="Self.FK_Seg_tbUsuarios_tbRoles_rol_UsuarioModifica" FromRole="tbRoles" ToRole="tbUsuarios" />
-        </EntityType>
+          <NavigationProperty Name="tbUsuarios" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRoles_rol_UsuarioCrea" FromRole="tbRoles" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios1" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRoles_rol_UsuarioModifica" FromRole="tbRoles" ToRole="tbUsuarios" />
+          </EntityType>
         <EntityType Name="tbRolesPermisos">
           <Key>
             <PropertyRef Name="rolpe_Id" />
@@ -1639,55 +1642,8 @@
           <Property Name="rolpe_FechaModifica" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tbPermisos" Relationship="Self.FK_Seg_tbRolesPermisos_tbRolesPermisos_perm_Id" FromRole="tbRolesPermisos" ToRole="tbPermisos" />
           <NavigationProperty Name="tbRoles" Relationship="Self.FK_Seg_tbRoles_tbRolesPermisos_rol_Id" FromRole="tbRolesPermisos" ToRole="tbRoles" />
-          <NavigationProperty Name="tbUsuarios" Relationship="Self.FK_Seg_tbUsuarios_tbRolesPermisos_rolpe_UsuarioCrea" FromRole="tbRolesPermisos" ToRole="tbUsuarios" />
-          <NavigationProperty Name="tbUsuarios1" Relationship="Self.FK_Seg_tbUsuarios_tbRolesPermisos_rolpe_UsuarioModifica" FromRole="tbRolesPermisos" ToRole="tbUsuarios" />
-        </EntityType>
-        <EntityType Name="tbUsuarios">
-          <Key>
-            <PropertyRef Name="usu_Id" />
-          </Key>
-          <Property Name="usu_Id" Type="Int32" Nullable="false" />
-          <Property Name="usu_NombreDeUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="usu_Contrasenia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="usu_BloqueoActivo" Type="Boolean" Nullable="false" />
-          <Property Name="usu_CorreoElectronico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="tbCiudades" Relationship="Self.FK_Seg_tbUsuarios_tbCiudades_ciud_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbCiudades" />
-          <NavigationProperty Name="tbCiudades1" Relationship="Self.FK_Seg_tbUsuarios_tbCiudades_ciud_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbCiudades" />
-          <NavigationProperty Name="tbDepartamentos" Relationship="Self.FK_Seg_tbUsuarios_tbDepartamentos_depto_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbDepartamentos" />
-          <NavigationProperty Name="tbDepartamentos1" Relationship="Self.FK_Seg_tbUsuarios_tbDepartamentos_depto_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbDepartamentos" />
-          <NavigationProperty Name="tbEmpresa" Relationship="Self.FK_Seg_tbUsuarios_tbEmpresa_empr_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbEmpresa" />
-          <NavigationProperty Name="tbEmpresa1" Relationship="Self.FK_Seg_tbUsuarios_tbEmpresa_empr_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbEmpresa" />
-          <NavigationProperty Name="tbPais" Relationship="Self.FK_Seg_tbUsuarios_tbPais_pais_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbPais" />
-          <NavigationProperty Name="tbPais1" Relationship="Self.FK_Seg_tbUsuarios_tbPais_pais_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbPais" />
-          <NavigationProperty Name="tbClientes" Relationship="Self.FK_Seg_tbUsuarios_tbClientes_clte_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbClientes" />
-          <NavigationProperty Name="tbClientes1" Relationship="Self.FK_Seg_tbUsuarios_tbClientes_clte_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbClientes" />
-          <NavigationProperty Name="tbRangos" Relationship="Self.FK_Seg_tbUsuarios_tbRangos_rang_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbRangos" />
-          <NavigationProperty Name="tbRangos1" Relationship="Self.FK_Seg_tbUsuarios_tbRangos_rang_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbRangos" />
-          <NavigationProperty Name="tbCatalogoProductos" Relationship="Self.FK__tbCatalog__cprod__1AD3FDA4" FromRole="tbUsuarios" ToRole="tbCatalogoProductos" />
-          <NavigationProperty Name="tbCatalogoProductos1" Relationship="Self.FK__tbCatalog__cprod__1BC821DD" FromRole="tbUsuarios" ToRole="tbCatalogoProductos" />
-          <NavigationProperty Name="tbCategoriaProductos" Relationship="Self.FK__tbCategor__cprod__03F0984C" FromRole="tbUsuarios" ToRole="tbCategoriaProductos" />
-          <NavigationProperty Name="tbCategoriaProductos1" Relationship="Self.FK__tbCategor__cprod__04E4BC85" FromRole="tbUsuarios" ToRole="tbCategoriaProductos" />
-          <NavigationProperty Name="tbMarcasComerciales" Relationship="Self.FK__tbMarcasC__mc_Us__7E37BEF6" FromRole="tbUsuarios" ToRole="tbMarcasComerciales" />
-          <NavigationProperty Name="tbMarcasComerciales1" Relationship="Self.FK__tbMarcasC__mc_Us__7F2BE32F" FromRole="tbUsuarios" ToRole="tbMarcasComerciales" />
-          <NavigationProperty Name="tbProductos" Relationship="Self.FK__tbProduct__prod___114A936A" FromRole="tbUsuarios" ToRole="tbProductos" />
-          <NavigationProperty Name="tbProductos1" Relationship="Self.FK__tbProduct__prod___123EB7A3" FromRole="tbUsuarios" ToRole="tbProductos" />
-          <NavigationProperty Name="tbSubCategoriaProductos" Relationship="Self.FK__tbSubCate__scpro__0A9D95DB" FromRole="tbUsuarios" ToRole="tbSubCategoriaProductos" />
-          <NavigationProperty Name="tbSubCategoriaProductos1" Relationship="Self.FK__tbSubCate__scpro__0B91BA14" FromRole="tbUsuarios" ToRole="tbSubCategoriaProductos" />
-          <NavigationProperty Name="tbPantallas" Relationship="Self.FK_Seg_tbUsuarios_tbPantallas_pla_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbPantallas" />
-          <NavigationProperty Name="tbPantallas1" Relationship="Self.FK_Seg_tbUsuarios_tbPantallas_pla_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbPantallas" />
-          <NavigationProperty Name="tbPantallasRoles" Relationship="Self.FK_Seg_tbUsuarios_tbPantallasRoles_plarol_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbPantallasRoles" />
-          <NavigationProperty Name="tbPantallasRoles1" Relationship="Self.FK_Seg_tbUsuarios_tbPantallasRoles_plarol_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbPantallasRoles" />
-          <NavigationProperty Name="tbPermisos" Relationship="Self.fk3" FromRole="tbUsuarios" ToRole="tbPermisos" />
-          <NavigationProperty Name="tbPermisos1" Relationship="Self.fk5" FromRole="tbUsuarios" ToRole="tbPermisos" />
-          <NavigationProperty Name="tbRoles" Relationship="Self.FK_Seg_tbUsuarios_tbRoles_rol_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbRoles" />
-          <NavigationProperty Name="tbRoles1" Relationship="Self.FK_Seg_tbUsuarios_tbRoles_rol_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbRoles" />
-          <NavigationProperty Name="tbRolesPermisos" Relationship="Self.FK_Seg_tbUsuarios_tbRolesPermisos_rolpe_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbRolesPermisos" />
-          <NavigationProperty Name="tbRolesPermisos1" Relationship="Self.FK_Seg_tbUsuarios_tbRolesPermisos_rolpe_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbRolesPermisos" />
-          <NavigationProperty Name="tbUsuariosRoles" Relationship="Self.FK_Seg_tbUsuarios_tbUsuariosRoles_usu_Id" FromRole="tbUsuarios" ToRole="tbUsuariosRoles" />
-          <NavigationProperty Name="tbUsuariosRoles1" Relationship="Self.FK_Seg_tbUsuarios_tbUsuariosRoles_usurol_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbUsuariosRoles" />
-          <NavigationProperty Name="tbUsuariosRoles2" Relationship="Self.FK_Seg_tbUsuarios_tbUsuariosRoles_usurol_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbUsuariosRoles" />
-          <NavigationProperty Name="tbPersonas" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPersonas_per_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbPersonas" />
-          <NavigationProperty Name="tbPersonas1" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPersonas_per_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbPersonas" />
+          <NavigationProperty Name="tbUsuarios" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRolesPermisos_rolpe_UsuarioCrea" FromRole="tbRolesPermisos" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios1" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRolesPermisos_rolpe_UsuarioModifica" FromRole="tbRolesPermisos" ToRole="tbUsuarios" />
         </EntityType>
         <EntityType Name="tbUsuariosRoles">
           <Key>
@@ -1701,9 +1657,9 @@
           <Property Name="usurol_UsuarioModifica" Type="Int32" />
           <Property Name="usurol_FechaModifica" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tbRoles" Relationship="Self.FK_Seg_tbRoles_tbUsuariosRoles_rol_Id" FromRole="tbUsuariosRoles" ToRole="tbRoles" />
-          <NavigationProperty Name="tbUsuarios" Relationship="Self.FK_Seg_tbUsuarios_tbUsuariosRoles_usu_Id" FromRole="tbUsuariosRoles" ToRole="tbUsuarios" />
-          <NavigationProperty Name="tbUsuarios1" Relationship="Self.FK_Seg_tbUsuarios_tbUsuariosRoles_usurol_UsuarioCrea" FromRole="tbUsuariosRoles" ToRole="tbUsuarios" />
-          <NavigationProperty Name="tbUsuarios2" Relationship="Self.FK_Seg_tbUsuarios_tbUsuariosRoles_usurol_UsuarioModifica" FromRole="tbUsuariosRoles" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbUsuariosRoles_usu_Id" FromRole="tbUsuariosRoles" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios1" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbUsuariosRoles_usurol_UsuarioCrea" FromRole="tbUsuariosRoles" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios2" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbUsuariosRoles_usurol_UsuarioModifica" FromRole="tbUsuariosRoles" ToRole="tbUsuarios" />
         </EntityType>
         <Association Name="FK_Gral_tbDepartamentos_tbCiudades_depto_Id">
           <End Role="tbDepartamentos" Type="Self.tbDepartamentos" Multiplicity="1" />
@@ -1717,30 +1673,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbCiudades_ciud_UsuarioCrea">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="1" />
-          <End Role="tbCiudades" Type="Self.tbCiudades" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbCiudades">
-              <PropertyRef Name="ciud_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbCiudades_ciud_UsuarioModifica">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="0..1" />
-          <End Role="tbCiudades" Type="Self.tbCiudades" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbCiudades">
-              <PropertyRef Name="ciud_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Gral_tbPais_tbDepartamentos_pais_Id">
           <End Role="tbPais" Type="Self.tbPais" Multiplicity="1" />
           <End Role="tbDepartamentos" Type="Self.tbDepartamentos" Multiplicity="*" />
@@ -1750,174 +1682,6 @@
             </Principal>
             <Dependent Role="tbDepartamentos">
               <PropertyRef Name="pais_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbDepartamentos_depto_UsuarioCrea">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="1" />
-          <End Role="tbDepartamentos" Type="Self.tbDepartamentos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbDepartamentos">
-              <PropertyRef Name="depto_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbDepartamentos_depto_UsuarioModifica">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="0..1" />
-          <End Role="tbDepartamentos" Type="Self.tbDepartamentos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbDepartamentos">
-              <PropertyRef Name="depto_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbEmpresa_empr_UsuarioCrea">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="1" />
-          <End Role="tbEmpresa" Type="Self.tbEmpresa" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbEmpresa">
-              <PropertyRef Name="empr_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbEmpresa_empr_UsuarioModifica">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="0..1" />
-          <End Role="tbEmpresa" Type="Self.tbEmpresa" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbEmpresa">
-              <PropertyRef Name="empr_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbPais_pais_UsuarioCrea">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="1" />
-          <End Role="tbPais" Type="Self.tbPais" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbPais">
-              <PropertyRef Name="pais_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbPais_pais_UsuarioModifica">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="0..1" />
-          <End Role="tbPais" Type="Self.tbPais" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbPais">
-              <PropertyRef Name="pais_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbClientes_clte_UsuarioCrea">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="1" />
-          <End Role="tbClientes" Type="Self.tbClientes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbClientes">
-              <PropertyRef Name="clte_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbClientes_clte_UsuarioModifica">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="0..1" />
-          <End Role="tbClientes" Type="Self.tbClientes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbClientes">
-              <PropertyRef Name="clte_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbRangos_rang_UsuarioCrea">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="1" />
-          <End Role="tbRangos" Type="Self.tbRangos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbRangos">
-              <PropertyRef Name="rang_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbRangos_rang_UsuarioModifica">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="0..1" />
-          <End Role="tbRangos" Type="Self.tbRangos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbRangos">
-              <PropertyRef Name="rang_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__tbCatalog__cprod__1AD3FDA4">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="1" />
-          <End Role="tbCatalogoProductos" Type="Self.tbCatalogoProductos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbCatalogoProductos">
-              <PropertyRef Name="cprod_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__tbCatalog__cprod__1BC821DD">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="0..1" />
-          <End Role="tbCatalogoProductos" Type="Self.tbCatalogoProductos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbCatalogoProductos">
-              <PropertyRef Name="cprod_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__tbCategor__cprod__03F0984C">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="1" />
-          <End Role="tbCategoriaProductos" Type="Self.tbCategoriaProductos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbCategoriaProductos">
-              <PropertyRef Name="cprod_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__tbCategor__cprod__04E4BC85">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="0..1" />
-          <End Role="tbCategoriaProductos" Type="Self.tbCategoriaProductos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbCategoriaProductos">
-              <PropertyRef Name="cprod_UsuarioModifica" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1945,54 +1709,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tbMarcasC__mc_Us__7E37BEF6">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="1" />
-          <End Role="tbMarcasComerciales" Type="Self.tbMarcasComerciales" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbMarcasComerciales">
-              <PropertyRef Name="mc_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__tbMarcasC__mc_Us__7F2BE32F">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="0..1" />
-          <End Role="tbMarcasComerciales" Type="Self.tbMarcasComerciales" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbMarcasComerciales">
-              <PropertyRef Name="mc_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__tbProduct__prod___114A936A">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="1" />
-          <End Role="tbProductos" Type="Self.tbProductos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbProductos">
-              <PropertyRef Name="prod_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__tbProduct__prod___123EB7A3">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="0..1" />
-          <End Role="tbProductos" Type="Self.tbProductos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbProductos">
-              <PropertyRef Name="prod_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__tbProduct__scpro__1332DBDC">
           <End Role="tbSubCategoriaProductos" Type="Self.tbSubCategoriaProductos" Multiplicity="0..1" />
           <End Role="tbProductos" Type="Self.tbProductos" Multiplicity="*" />
@@ -2002,30 +1718,6 @@
             </Principal>
             <Dependent Role="tbProductos">
               <PropertyRef Name="scprod_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__tbSubCate__scpro__0A9D95DB">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="1" />
-          <End Role="tbSubCategoriaProductos" Type="Self.tbSubCategoriaProductos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbSubCategoriaProductos">
-              <PropertyRef Name="scprod_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__tbSubCate__scpro__0B91BA14">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="0..1" />
-          <End Role="tbSubCategoriaProductos" Type="Self.tbSubCategoriaProductos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbSubCategoriaProductos">
-              <PropertyRef Name="scprod_UsuarioModifica" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2043,30 +1735,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbPantallas_pla_UsuarioCrea">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="1" />
-          <End Role="tbPantallas" Type="Self.tbPantallas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbPantallas">
-              <PropertyRef Name="pla_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbPantallas_pla_UsuarioModifica">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="0..1" />
-          <End Role="tbPantallas" Type="Self.tbPantallas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbPantallas">
-              <PropertyRef Name="pla_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Seg_tbRoles_tbPantallasRoles_usu_Id">
           <End Role="tbRoles" Type="Self.tbRoles" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -2081,30 +1749,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbPantallasRoles_plarol_UsuarioCrea">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="1" />
-          <End Role="tbPantallasRoles" Type="Self.tbPantallasRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbPantallasRoles">
-              <PropertyRef Name="plarol_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbPantallasRoles_plarol_UsuarioModifica">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="0..1" />
-          <End Role="tbPantallasRoles" Type="Self.tbPantallasRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbPantallasRoles">
-              <PropertyRef Name="plarol_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Seg_tbRolesPermisos_tbRolesPermisos_perm_Id">
           <End Role="tbPermisos" Type="Self.tbPermisos" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -2116,30 +1760,6 @@
             </Principal>
             <Dependent Role="tbRolesPermisos">
               <PropertyRef Name="perm_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk3">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="1" />
-          <End Role="tbPermisos" Type="Self.tbPermisos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbPermisos">
-              <PropertyRef Name="perm_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk5">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="0..1" />
-          <End Role="tbPermisos" Type="Self.tbPermisos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbPermisos">
-              <PropertyRef Name="perm_UsuarioModifica" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2171,92 +1791,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbRoles_rol_UsuarioCrea">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="1" />
-          <End Role="tbRoles" Type="Self.tbRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbRoles">
-              <PropertyRef Name="rol_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbRoles_rol_UsuarioModifica">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="0..1" />
-          <End Role="tbRoles" Type="Self.tbRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbRoles">
-              <PropertyRef Name="rol_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbRolesPermisos_rolpe_UsuarioCrea">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="0..1" />
-          <End Role="tbRolesPermisos" Type="Self.tbRolesPermisos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbRolesPermisos">
-              <PropertyRef Name="rolpe_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbRolesPermisos_rolpe_UsuarioModifica">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="0..1" />
-          <End Role="tbRolesPermisos" Type="Self.tbRolesPermisos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbRolesPermisos">
-              <PropertyRef Name="rolpe_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbUsuariosRoles_usu_Id">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="tbUsuariosRoles" Type="Self.tbUsuariosRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbUsuariosRoles">
-              <PropertyRef Name="usu_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbUsuariosRoles_usurol_UsuarioCrea">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="1" />
-          <End Role="tbUsuariosRoles" Type="Self.tbUsuariosRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbUsuariosRoles">
-              <PropertyRef Name="usurol_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbUsuariosRoles_usurol_UsuarioModifica">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="0..1" />
-          <End Role="tbUsuariosRoles" Type="Self.tbUsuariosRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbUsuariosRoles">
-              <PropertyRef Name="usurol_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="App_SpartansCustom_Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__EFMigrationsHistory" EntityType="Self.C__EFMigrationsHistory" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
@@ -2277,79 +1811,14 @@
           <EntitySet Name="tbPermisos" EntityType="Self.tbPermisos" />
           <EntitySet Name="tbRoles" EntityType="Self.tbRoles" />
           <EntitySet Name="tbRolesPermisos" EntityType="Self.tbRolesPermisos" />
-          <EntitySet Name="tbUsuarios" EntityType="Self.tbUsuarios" />
           <EntitySet Name="tbUsuariosRoles" EntityType="Self.tbUsuariosRoles" />
           <AssociationSet Name="FK_Gral_tbDepartamentos_tbCiudades_depto_Id" Association="Self.FK_Gral_tbDepartamentos_tbCiudades_depto_Id">
             <End Role="tbDepartamentos" EntitySet="tbDepartamentos" />
             <End Role="tbCiudades" EntitySet="tbCiudades" />
           </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbCiudades_ciud_UsuarioCrea" Association="Self.FK_Seg_tbUsuarios_tbCiudades_ciud_UsuarioCrea">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbCiudades" EntitySet="tbCiudades" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbCiudades_ciud_UsuarioModifica" Association="Self.FK_Seg_tbUsuarios_tbCiudades_ciud_UsuarioModifica">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbCiudades" EntitySet="tbCiudades" />
-          </AssociationSet>
           <AssociationSet Name="FK_Gral_tbPais_tbDepartamentos_pais_Id" Association="Self.FK_Gral_tbPais_tbDepartamentos_pais_Id">
             <End Role="tbPais" EntitySet="tbPais" />
             <End Role="tbDepartamentos" EntitySet="tbDepartamentos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbDepartamentos_depto_UsuarioCrea" Association="Self.FK_Seg_tbUsuarios_tbDepartamentos_depto_UsuarioCrea">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbDepartamentos" EntitySet="tbDepartamentos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbDepartamentos_depto_UsuarioModifica" Association="Self.FK_Seg_tbUsuarios_tbDepartamentos_depto_UsuarioModifica">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbDepartamentos" EntitySet="tbDepartamentos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbEmpresa_empr_UsuarioCrea" Association="Self.FK_Seg_tbUsuarios_tbEmpresa_empr_UsuarioCrea">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbEmpresa" EntitySet="tbEmpresa" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbEmpresa_empr_UsuarioModifica" Association="Self.FK_Seg_tbUsuarios_tbEmpresa_empr_UsuarioModifica">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbEmpresa" EntitySet="tbEmpresa" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbPais_pais_UsuarioCrea" Association="Self.FK_Seg_tbUsuarios_tbPais_pais_UsuarioCrea">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbPais" EntitySet="tbPais" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbPais_pais_UsuarioModifica" Association="Self.FK_Seg_tbUsuarios_tbPais_pais_UsuarioModifica">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbPais" EntitySet="tbPais" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbClientes_clte_UsuarioCrea" Association="Self.FK_Seg_tbUsuarios_tbClientes_clte_UsuarioCrea">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbClientes" EntitySet="tbClientes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbClientes_clte_UsuarioModifica" Association="Self.FK_Seg_tbUsuarios_tbClientes_clte_UsuarioModifica">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbClientes" EntitySet="tbClientes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbRangos_rang_UsuarioCrea" Association="Self.FK_Seg_tbUsuarios_tbRangos_rang_UsuarioCrea">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbRangos" EntitySet="tbRangos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbRangos_rang_UsuarioModifica" Association="Self.FK_Seg_tbUsuarios_tbRangos_rang_UsuarioModifica">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbRangos" EntitySet="tbRangos" />
-          </AssociationSet>
-          <AssociationSet Name="FK__tbCatalog__cprod__1AD3FDA4" Association="Self.FK__tbCatalog__cprod__1AD3FDA4">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbCatalogoProductos" EntitySet="tbCatalogoProductos" />
-          </AssociationSet>
-          <AssociationSet Name="FK__tbCatalog__cprod__1BC821DD" Association="Self.FK__tbCatalog__cprod__1BC821DD">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbCatalogoProductos" EntitySet="tbCatalogoProductos" />
-          </AssociationSet>
-          <AssociationSet Name="FK__tbCategor__cprod__03F0984C" Association="Self.FK__tbCategor__cprod__03F0984C">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbCategoriaProductos" EntitySet="tbCategoriaProductos" />
-          </AssociationSet>
-          <AssociationSet Name="FK__tbCategor__cprod__04E4BC85" Association="Self.FK__tbCategor__cprod__04E4BC85">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbCategoriaProductos" EntitySet="tbCategoriaProductos" />
           </AssociationSet>
           <AssociationSet Name="FK__tbSubCate__cprod__09A971A2" Association="Self.FK__tbSubCate__cprod__09A971A2">
             <End Role="tbCategoriaProductos" EntitySet="tbCategoriaProductos" />
@@ -2359,69 +1828,21 @@
             <End Role="tbProductos" EntitySet="tbProductos" />
             <End Role="tbImagenProductos" EntitySet="tbImagenProductos" />
           </AssociationSet>
-          <AssociationSet Name="FK__tbMarcasC__mc_Us__7E37BEF6" Association="Self.FK__tbMarcasC__mc_Us__7E37BEF6">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbMarcasComerciales" EntitySet="tbMarcasComerciales" />
-          </AssociationSet>
-          <AssociationSet Name="FK__tbMarcasC__mc_Us__7F2BE32F" Association="Self.FK__tbMarcasC__mc_Us__7F2BE32F">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbMarcasComerciales" EntitySet="tbMarcasComerciales" />
-          </AssociationSet>
-          <AssociationSet Name="FK__tbProduct__prod___114A936A" Association="Self.FK__tbProduct__prod___114A936A">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbProductos" EntitySet="tbProductos" />
-          </AssociationSet>
-          <AssociationSet Name="FK__tbProduct__prod___123EB7A3" Association="Self.FK__tbProduct__prod___123EB7A3">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbProductos" EntitySet="tbProductos" />
-          </AssociationSet>
           <AssociationSet Name="FK__tbProduct__scpro__1332DBDC" Association="Self.FK__tbProduct__scpro__1332DBDC">
             <End Role="tbSubCategoriaProductos" EntitySet="tbSubCategoriaProductos" />
             <End Role="tbProductos" EntitySet="tbProductos" />
-          </AssociationSet>
-          <AssociationSet Name="FK__tbSubCate__scpro__0A9D95DB" Association="Self.FK__tbSubCate__scpro__0A9D95DB">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbSubCategoriaProductos" EntitySet="tbSubCategoriaProductos" />
-          </AssociationSet>
-          <AssociationSet Name="FK__tbSubCate__scpro__0B91BA14" Association="Self.FK__tbSubCate__scpro__0B91BA14">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbSubCategoriaProductos" EntitySet="tbSubCategoriaProductos" />
           </AssociationSet>
           <AssociationSet Name="FK_Seg_tbPantallas_tbPantallasRoles_pla_Id" Association="Self.FK_Seg_tbPantallas_tbPantallasRoles_pla_Id">
             <End Role="tbPantallas" EntitySet="tbPantallas" />
             <End Role="tbPantallasRoles" EntitySet="tbPantallasRoles" />
           </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbPantallas_pla_UsuarioCrea" Association="Self.FK_Seg_tbUsuarios_tbPantallas_pla_UsuarioCrea">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbPantallas" EntitySet="tbPantallas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbPantallas_pla_UsuarioModifica" Association="Self.FK_Seg_tbUsuarios_tbPantallas_pla_UsuarioModifica">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbPantallas" EntitySet="tbPantallas" />
-          </AssociationSet>
           <AssociationSet Name="FK_Seg_tbRoles_tbPantallasRoles_usu_Id" Association="Self.FK_Seg_tbRoles_tbPantallasRoles_usu_Id">
             <End Role="tbRoles" EntitySet="tbRoles" />
-            <End Role="tbPantallasRoles" EntitySet="tbPantallasRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbPantallasRoles_plarol_UsuarioCrea" Association="Self.FK_Seg_tbUsuarios_tbPantallasRoles_plarol_UsuarioCrea">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbPantallasRoles" EntitySet="tbPantallasRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbPantallasRoles_plarol_UsuarioModifica" Association="Self.FK_Seg_tbUsuarios_tbPantallasRoles_plarol_UsuarioModifica">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
             <End Role="tbPantallasRoles" EntitySet="tbPantallasRoles" />
           </AssociationSet>
           <AssociationSet Name="FK_Seg_tbRolesPermisos_tbRolesPermisos_perm_Id" Association="Self.FK_Seg_tbRolesPermisos_tbRolesPermisos_perm_Id">
             <End Role="tbPermisos" EntitySet="tbPermisos" />
             <End Role="tbRolesPermisos" EntitySet="tbRolesPermisos" />
-          </AssociationSet>
-          <AssociationSet Name="fk3" Association="Self.fk3">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbPermisos" EntitySet="tbPermisos" />
-          </AssociationSet>
-          <AssociationSet Name="fk5" Association="Self.fk5">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbPermisos" EntitySet="tbPermisos" />
           </AssociationSet>
           <AssociationSet Name="FK_Seg_tbRoles_tbRolesPermisos_rol_Id" Association="Self.FK_Seg_tbRoles_tbRolesPermisos_rol_Id">
             <End Role="tbRoles" EntitySet="tbRoles" />
@@ -2429,34 +1850,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_Seg_tbRoles_tbUsuariosRoles_rol_Id" Association="Self.FK_Seg_tbRoles_tbUsuariosRoles_rol_Id">
             <End Role="tbRoles" EntitySet="tbRoles" />
-            <End Role="tbUsuariosRoles" EntitySet="tbUsuariosRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbRoles_rol_UsuarioCrea" Association="Self.FK_Seg_tbUsuarios_tbRoles_rol_UsuarioCrea">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbRoles" EntitySet="tbRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbRoles_rol_UsuarioModifica" Association="Self.FK_Seg_tbUsuarios_tbRoles_rol_UsuarioModifica">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbRoles" EntitySet="tbRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbRolesPermisos_rolpe_UsuarioCrea" Association="Self.FK_Seg_tbUsuarios_tbRolesPermisos_rolpe_UsuarioCrea">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbRolesPermisos" EntitySet="tbRolesPermisos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbRolesPermisos_rolpe_UsuarioModifica" Association="Self.FK_Seg_tbUsuarios_tbRolesPermisos_rolpe_UsuarioModifica">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbRolesPermisos" EntitySet="tbRolesPermisos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbUsuariosRoles_usu_Id" Association="Self.FK_Seg_tbUsuarios_tbUsuariosRoles_usu_Id">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbUsuariosRoles" EntitySet="tbUsuariosRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbUsuariosRoles_usurol_UsuarioCrea" Association="Self.FK_Seg_tbUsuarios_tbUsuariosRoles_usurol_UsuarioCrea">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbUsuariosRoles" EntitySet="tbUsuariosRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbUsuariosRoles_usurol_UsuarioModifica" Association="Self.FK_Seg_tbUsuarios_tbUsuariosRoles_usurol_UsuarioModifica">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
             <End Role="tbUsuariosRoles" EntitySet="tbUsuariosRoles" />
           </AssociationSet>
           <FunctionImport Name="sp_alterdiagram">
@@ -2684,10 +2077,6 @@
           <FunctionImport Name="UDP_Seg_tbUsuarios_BloquearUsuario" ReturnType="Collection(String)">
           <Parameter Name="usu_Id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Seg_tbUsuarios_Insert" ReturnType="Collection(String)">
-            <Parameter Name="usu_NombreUsuario" Mode="In" Type="String" />
-            <Parameter Name="usu_Contrasenia" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="UDP_Seg_tbUsuarios_UpdateClave" ReturnType="Collection(String)">
             <Parameter Name="usu_Id" Mode="In" Type="Int32" />
             <Parameter Name="usu_Contrasenia" Mode="In" Type="String" />
@@ -2736,6 +2125,47 @@
             <End Role="tbPersonas" EntitySet="tbPersonas" />
             <End Role="tbClientes" EntitySet="tbClientes" />
           </AssociationSet>
+          <EntitySet Name="tbUsuarios" EntityType="App_SpartansCustom_Model.tbUsuarios" />
+          <AssociationSet Name="FK_Seg_tbUsuarios_tbCiudades_ciud_UsuarioCrea" Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbCiudades_ciud_UsuarioCrea">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbCiudades" EntitySet="tbCiudades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seg_tbUsuarios_tbCiudades_ciud_UsuarioModifica" Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbCiudades_ciud_UsuarioModifica">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbCiudades" EntitySet="tbCiudades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seg_tbUsuarios_tbDepartamentos_depto_UsuarioCrea" Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbDepartamentos_depto_UsuarioCrea">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbDepartamentos" EntitySet="tbDepartamentos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seg_tbUsuarios_tbDepartamentos_depto_UsuarioModifica" Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbDepartamentos_depto_UsuarioModifica">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbDepartamentos" EntitySet="tbDepartamentos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seg_tbUsuarios_tbEmpresa_empr_UsuarioCrea" Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbEmpresa_empr_UsuarioCrea">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbEmpresa" EntitySet="tbEmpresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seg_tbUsuarios_tbEmpresa_empr_UsuarioModifica" Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbEmpresa_empr_UsuarioModifica">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbEmpresa" EntitySet="tbEmpresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seg_tbUsuarios_tbPais_pais_UsuarioCrea" Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPais_pais_UsuarioCrea">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbPais" EntitySet="tbPais" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seg_tbUsuarios_tbPais_pais_UsuarioModifica" Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPais_pais_UsuarioModifica">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbPais" EntitySet="tbPais" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seg_tbUsuarios_tbClientes_clte_UsuarioCrea" Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbClientes_clte_UsuarioCrea">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbClientes" EntitySet="tbClientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seg_tbUsuarios_tbClientes_clte_UsuarioModifica" Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbClientes_clte_UsuarioModifica">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbClientes" EntitySet="tbClientes" />
+          </AssociationSet>
           <AssociationSet Name="FK_Seg_tbUsuarios_tbPersonas_per_UsuarioCrea" Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPersonas_per_UsuarioCrea">
             <End Role="tbUsuarios" EntitySet="tbUsuarios" />
             <End Role="tbPersonas" EntitySet="tbPersonas" />
@@ -2744,6 +2174,112 @@
             <End Role="tbUsuarios" EntitySet="tbUsuarios" />
             <End Role="tbPersonas" EntitySet="tbPersonas" />
           </AssociationSet>
+          <AssociationSet Name="FK_Seg_tbUsuarios_tbRangos_rang_UsuarioCrea" Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRangos_rang_UsuarioCrea">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbRangos" EntitySet="tbRangos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seg_tbUsuarios_tbRangos_rang_UsuarioModifica" Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRangos_rang_UsuarioModifica">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbRangos" EntitySet="tbRangos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbCatalog__cprod__1AD3FDA4" Association="App_SpartansCustom_Model.FK__tbCatalog__cprod__1AD3FDA4">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbCatalogoProductos" EntitySet="tbCatalogoProductos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbCatalog__cprod__1BC821DD" Association="App_SpartansCustom_Model.FK__tbCatalog__cprod__1BC821DD">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbCatalogoProductos" EntitySet="tbCatalogoProductos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbCategor__cprod__03F0984C" Association="App_SpartansCustom_Model.FK__tbCategor__cprod__03F0984C">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbCategoriaProductos" EntitySet="tbCategoriaProductos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbCategor__cprod__04E4BC85" Association="App_SpartansCustom_Model.FK__tbCategor__cprod__04E4BC85">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbCategoriaProductos" EntitySet="tbCategoriaProductos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbMarcasC__mc_Us__7E37BEF6" Association="App_SpartansCustom_Model.FK__tbMarcasC__mc_Us__7E37BEF6">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbMarcasComerciales" EntitySet="tbMarcasComerciales" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbMarcasC__mc_Us__7F2BE32F" Association="App_SpartansCustom_Model.FK__tbMarcasC__mc_Us__7F2BE32F">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbMarcasComerciales" EntitySet="tbMarcasComerciales" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbProduct__prod___114A936A" Association="App_SpartansCustom_Model.FK__tbProduct__prod___114A936A">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbProductos" EntitySet="tbProductos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbProduct__prod___123EB7A3" Association="App_SpartansCustom_Model.FK__tbProduct__prod___123EB7A3">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbProductos" EntitySet="tbProductos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbSubCate__scpro__0A9D95DB" Association="App_SpartansCustom_Model.FK__tbSubCate__scpro__0A9D95DB">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbSubCategoriaProductos" EntitySet="tbSubCategoriaProductos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbSubCate__scpro__0B91BA14" Association="App_SpartansCustom_Model.FK__tbSubCate__scpro__0B91BA14">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbSubCategoriaProductos" EntitySet="tbSubCategoriaProductos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seg_tbUsuarios_tbPantallas_pla_UsuarioCrea" Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPantallas_pla_UsuarioCrea">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbPantallas" EntitySet="tbPantallas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seg_tbUsuarios_tbPantallas_pla_UsuarioModifica" Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPantallas_pla_UsuarioModifica">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbPantallas" EntitySet="tbPantallas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seg_tbUsuarios_tbPantallasRoles_plarol_UsuarioCrea" Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPantallasRoles_plarol_UsuarioCrea">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbPantallasRoles" EntitySet="tbPantallasRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seg_tbUsuarios_tbPantallasRoles_plarol_UsuarioModifica" Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPantallasRoles_plarol_UsuarioModifica">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbPantallasRoles" EntitySet="tbPantallasRoles" />
+          </AssociationSet>
+          <AssociationSet Name="fk3" Association="App_SpartansCustom_Model.fk3">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbPermisos" EntitySet="tbPermisos" />
+          </AssociationSet>
+          <AssociationSet Name="fk5" Association="App_SpartansCustom_Model.fk5">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbPermisos" EntitySet="tbPermisos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seg_tbUsuarios_tbRoles_rol_UsuarioCrea" Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRoles_rol_UsuarioCrea">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbRoles" EntitySet="tbRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seg_tbUsuarios_tbRoles_rol_UsuarioModifica" Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRoles_rol_UsuarioModifica">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbRoles" EntitySet="tbRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seg_tbUsuarios_tbRolesPermisos_rolpe_UsuarioCrea" Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRolesPermisos_rolpe_UsuarioCrea">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbRolesPermisos" EntitySet="tbRolesPermisos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seg_tbUsuarios_tbRolesPermisos_rolpe_UsuarioModifica" Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRolesPermisos_rolpe_UsuarioModifica">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbRolesPermisos" EntitySet="tbRolesPermisos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seg_tbUsuarios_tbUsuariosRoles_usu_Id" Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbUsuariosRoles_usu_Id">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbUsuariosRoles" EntitySet="tbUsuariosRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seg_tbUsuarios_tbUsuariosRoles_usurol_UsuarioCrea" Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbUsuariosRoles_usurol_UsuarioCrea">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbUsuariosRoles" EntitySet="tbUsuariosRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seg_tbUsuarios_tbUsuariosRoles_usurol_UsuarioModifica" Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbUsuariosRoles_usurol_UsuarioModifica">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbUsuariosRoles" EntitySet="tbUsuariosRoles" />
+          </AssociationSet>
+          <FunctionImport Name="UDP_Seg_tbUsuarios_Insert" ReturnType="Collection(String)">
+            <Parameter Name="usu_NombreUsuario" Mode="In" Type="String" />
+            <Parameter Name="usu_CorreoElectronico" Mode="In" Type="String" />
+            <Parameter Name="usu_Contrasenia" Mode="In" Type="String" />
+            <Parameter Name="usu_EsAdministrador" Mode="In" Type="Boolean" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -2793,6 +2329,174 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="tbUsuarios">
+          <Key>
+            <PropertyRef Name="usu_Id" />
+          </Key>
+          <Property Name="usu_Id" Type="Int32" Nullable="false" />
+          <Property Name="usu_NombreDeUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="usu_Contrasenia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="usu_BloqueoActivo" Type="Boolean" Nullable="false" />
+          <Property Name="usu_CorreoElectronico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="usu_EsAdministrador" Type="Boolean" />
+          <NavigationProperty Name="tbCiudades" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbCiudades_ciud_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbCiudades" />
+          <NavigationProperty Name="tbCiudades1" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbCiudades_ciud_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbCiudades" />
+          <NavigationProperty Name="tbDepartamentos" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbDepartamentos_depto_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbDepartamentos" />
+          <NavigationProperty Name="tbDepartamentos1" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbDepartamentos_depto_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbDepartamentos" />
+          <NavigationProperty Name="tbEmpresa" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbEmpresa_empr_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbEmpresa" />
+          <NavigationProperty Name="tbEmpresa1" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbEmpresa_empr_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbEmpresa" />
+          <NavigationProperty Name="tbPais" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPais_pais_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbPais" />
+          <NavigationProperty Name="tbPais1" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPais_pais_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbPais" />
+          <NavigationProperty Name="tbClientes" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbClientes_clte_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbClientes" />
+          <NavigationProperty Name="tbClientes1" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbClientes_clte_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbClientes" />
+          <NavigationProperty Name="tbPersonas" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPersonas_per_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbPersonas" />
+          <NavigationProperty Name="tbPersonas1" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPersonas_per_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbPersonas" />
+          <NavigationProperty Name="tbRangos" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRangos_rang_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbRangos" />
+          <NavigationProperty Name="tbRangos1" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRangos_rang_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbRangos" />
+          <NavigationProperty Name="tbCatalogoProductos" Relationship="App_SpartansCustom_Model.FK__tbCatalog__cprod__1AD3FDA4" FromRole="tbUsuarios" ToRole="tbCatalogoProductos" />
+          <NavigationProperty Name="tbCatalogoProductos1" Relationship="App_SpartansCustom_Model.FK__tbCatalog__cprod__1BC821DD" FromRole="tbUsuarios" ToRole="tbCatalogoProductos" />
+          <NavigationProperty Name="tbCategoriaProductos" Relationship="App_SpartansCustom_Model.FK__tbCategor__cprod__03F0984C" FromRole="tbUsuarios" ToRole="tbCategoriaProductos" />
+          <NavigationProperty Name="tbCategoriaProductos1" Relationship="App_SpartansCustom_Model.FK__tbCategor__cprod__04E4BC85" FromRole="tbUsuarios" ToRole="tbCategoriaProductos" />
+          <NavigationProperty Name="tbMarcasComerciales" Relationship="App_SpartansCustom_Model.FK__tbMarcasC__mc_Us__7E37BEF6" FromRole="tbUsuarios" ToRole="tbMarcasComerciales" />
+          <NavigationProperty Name="tbMarcasComerciales1" Relationship="App_SpartansCustom_Model.FK__tbMarcasC__mc_Us__7F2BE32F" FromRole="tbUsuarios" ToRole="tbMarcasComerciales" />
+          <NavigationProperty Name="tbProductos" Relationship="App_SpartansCustom_Model.FK__tbProduct__prod___114A936A" FromRole="tbUsuarios" ToRole="tbProductos" />
+          <NavigationProperty Name="tbProductos1" Relationship="App_SpartansCustom_Model.FK__tbProduct__prod___123EB7A3" FromRole="tbUsuarios" ToRole="tbProductos" />
+          <NavigationProperty Name="tbSubCategoriaProductos" Relationship="App_SpartansCustom_Model.FK__tbSubCate__scpro__0A9D95DB" FromRole="tbUsuarios" ToRole="tbSubCategoriaProductos" />
+          <NavigationProperty Name="tbSubCategoriaProductos1" Relationship="App_SpartansCustom_Model.FK__tbSubCate__scpro__0B91BA14" FromRole="tbUsuarios" ToRole="tbSubCategoriaProductos" />
+          <NavigationProperty Name="tbPantallas" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPantallas_pla_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbPantallas" />
+          <NavigationProperty Name="tbPantallas1" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPantallas_pla_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbPantallas" />
+          <NavigationProperty Name="tbPantallasRoles" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPantallasRoles_plarol_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbPantallasRoles" />
+          <NavigationProperty Name="tbPantallasRoles1" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPantallasRoles_plarol_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbPantallasRoles" />
+          <NavigationProperty Name="tbPermisos" Relationship="App_SpartansCustom_Model.fk3" FromRole="tbUsuarios" ToRole="tbPermisos" />
+          <NavigationProperty Name="tbPermisos1" Relationship="App_SpartansCustom_Model.fk5" FromRole="tbUsuarios" ToRole="tbPermisos" />
+          <NavigationProperty Name="tbRoles" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRoles_rol_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbRoles" />
+          <NavigationProperty Name="tbRoles1" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRoles_rol_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbRoles" />
+          <NavigationProperty Name="tbRolesPermisos" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRolesPermisos_rolpe_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbRolesPermisos" />
+          <NavigationProperty Name="tbRolesPermisos1" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRolesPermisos_rolpe_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbRolesPermisos" />
+          <NavigationProperty Name="tbUsuariosRoles" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbUsuariosRoles_usu_Id" FromRole="tbUsuarios" ToRole="tbUsuariosRoles" />
+          <NavigationProperty Name="tbUsuariosRoles1" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbUsuariosRoles_usurol_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbUsuariosRoles" />
+          <NavigationProperty Name="tbUsuariosRoles2" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbUsuariosRoles_usurol_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbUsuariosRoles" />
+        </EntityType>
+        <Association Name="FK_Seg_tbUsuarios_tbCiudades_ciud_UsuarioCrea">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+          <End Type="App_SpartansCustom_Model.tbCiudades" Role="tbCiudades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbCiudades">
+              <PropertyRef Name="ciud_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seg_tbUsuarios_tbCiudades_ciud_UsuarioModifica">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+          <End Type="App_SpartansCustom_Model.tbCiudades" Role="tbCiudades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbCiudades">
+              <PropertyRef Name="ciud_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seg_tbUsuarios_tbDepartamentos_depto_UsuarioCrea">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+          <End Type="App_SpartansCustom_Model.tbDepartamentos" Role="tbDepartamentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbDepartamentos">
+              <PropertyRef Name="depto_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seg_tbUsuarios_tbDepartamentos_depto_UsuarioModifica">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+          <End Type="App_SpartansCustom_Model.tbDepartamentos" Role="tbDepartamentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbDepartamentos">
+              <PropertyRef Name="depto_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seg_tbUsuarios_tbEmpresa_empr_UsuarioCrea">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+          <End Type="App_SpartansCustom_Model.tbEmpresa" Role="tbEmpresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbEmpresa">
+              <PropertyRef Name="empr_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seg_tbUsuarios_tbEmpresa_empr_UsuarioModifica">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+          <End Type="App_SpartansCustom_Model.tbEmpresa" Role="tbEmpresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbEmpresa">
+              <PropertyRef Name="empr_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seg_tbUsuarios_tbPais_pais_UsuarioCrea">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+          <End Type="App_SpartansCustom_Model.tbPais" Role="tbPais" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbPais">
+              <PropertyRef Name="pais_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seg_tbUsuarios_tbPais_pais_UsuarioModifica">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+          <End Type="App_SpartansCustom_Model.tbPais" Role="tbPais" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbPais">
+              <PropertyRef Name="pais_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seg_tbUsuarios_tbClientes_clte_UsuarioCrea">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+          <End Type="App_SpartansCustom_Model.tbClientes" Role="tbClientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbClientes">
+              <PropertyRef Name="clte_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seg_tbUsuarios_tbClientes_clte_UsuarioModifica">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+          <End Type="App_SpartansCustom_Model.tbClientes" Role="tbClientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbClientes">
+              <PropertyRef Name="clte_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Seg_tbUsuarios_tbPersonas_per_UsuarioCrea">
           <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
           <End Type="App_SpartansCustom_Model.tbPersonas" Role="tbPersonas" Multiplicity="*" />
@@ -2814,6 +2518,308 @@
             </Principal>
             <Dependent Role="tbPersonas">
               <PropertyRef Name="per_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seg_tbUsuarios_tbRangos_rang_UsuarioCrea">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+          <End Type="App_SpartansCustom_Model.tbRangos" Role="tbRangos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbRangos">
+              <PropertyRef Name="rang_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seg_tbUsuarios_tbRangos_rang_UsuarioModifica">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+          <End Type="App_SpartansCustom_Model.tbRangos" Role="tbRangos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbRangos">
+              <PropertyRef Name="rang_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbCatalog__cprod__1AD3FDA4">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+          <End Type="App_SpartansCustom_Model.tbCatalogoProductos" Role="tbCatalogoProductos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbCatalogoProductos">
+              <PropertyRef Name="cprod_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbCatalog__cprod__1BC821DD">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+          <End Type="App_SpartansCustom_Model.tbCatalogoProductos" Role="tbCatalogoProductos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbCatalogoProductos">
+              <PropertyRef Name="cprod_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbCategor__cprod__03F0984C">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+          <End Type="App_SpartansCustom_Model.tbCategoriaProductos" Role="tbCategoriaProductos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbCategoriaProductos">
+              <PropertyRef Name="cprod_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbCategor__cprod__04E4BC85">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+          <End Type="App_SpartansCustom_Model.tbCategoriaProductos" Role="tbCategoriaProductos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbCategoriaProductos">
+              <PropertyRef Name="cprod_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbMarcasC__mc_Us__7E37BEF6">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+          <End Type="App_SpartansCustom_Model.tbMarcasComerciales" Role="tbMarcasComerciales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbMarcasComerciales">
+              <PropertyRef Name="mc_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbMarcasC__mc_Us__7F2BE32F">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+          <End Type="App_SpartansCustom_Model.tbMarcasComerciales" Role="tbMarcasComerciales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbMarcasComerciales">
+              <PropertyRef Name="mc_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbProduct__prod___114A936A">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+          <End Type="App_SpartansCustom_Model.tbProductos" Role="tbProductos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbProductos">
+              <PropertyRef Name="prod_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbProduct__prod___123EB7A3">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+          <End Type="App_SpartansCustom_Model.tbProductos" Role="tbProductos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbProductos">
+              <PropertyRef Name="prod_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbSubCate__scpro__0A9D95DB">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+          <End Type="App_SpartansCustom_Model.tbSubCategoriaProductos" Role="tbSubCategoriaProductos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbSubCategoriaProductos">
+              <PropertyRef Name="scprod_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbSubCate__scpro__0B91BA14">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+          <End Type="App_SpartansCustom_Model.tbSubCategoriaProductos" Role="tbSubCategoriaProductos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbSubCategoriaProductos">
+              <PropertyRef Name="scprod_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seg_tbUsuarios_tbPantallas_pla_UsuarioCrea">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+          <End Type="App_SpartansCustom_Model.tbPantallas" Role="tbPantallas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbPantallas">
+              <PropertyRef Name="pla_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seg_tbUsuarios_tbPantallas_pla_UsuarioModifica">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+          <End Type="App_SpartansCustom_Model.tbPantallas" Role="tbPantallas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbPantallas">
+              <PropertyRef Name="pla_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seg_tbUsuarios_tbPantallasRoles_plarol_UsuarioCrea">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+          <End Type="App_SpartansCustom_Model.tbPantallasRoles" Role="tbPantallasRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbPantallasRoles">
+              <PropertyRef Name="plarol_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seg_tbUsuarios_tbPantallasRoles_plarol_UsuarioModifica">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+          <End Type="App_SpartansCustom_Model.tbPantallasRoles" Role="tbPantallasRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbPantallasRoles">
+              <PropertyRef Name="plarol_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk3">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+          <End Type="App_SpartansCustom_Model.tbPermisos" Role="tbPermisos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbPermisos">
+              <PropertyRef Name="perm_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk5">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+          <End Type="App_SpartansCustom_Model.tbPermisos" Role="tbPermisos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbPermisos">
+              <PropertyRef Name="perm_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seg_tbUsuarios_tbRoles_rol_UsuarioCrea">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+          <End Type="App_SpartansCustom_Model.tbRoles" Role="tbRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbRoles">
+              <PropertyRef Name="rol_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seg_tbUsuarios_tbRoles_rol_UsuarioModifica">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+          <End Type="App_SpartansCustom_Model.tbRoles" Role="tbRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbRoles">
+              <PropertyRef Name="rol_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seg_tbUsuarios_tbRolesPermisos_rolpe_UsuarioCrea">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+          <End Type="App_SpartansCustom_Model.tbRolesPermisos" Role="tbRolesPermisos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbRolesPermisos">
+              <PropertyRef Name="rolpe_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seg_tbUsuarios_tbRolesPermisos_rolpe_UsuarioModifica">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+          <End Type="App_SpartansCustom_Model.tbRolesPermisos" Role="tbRolesPermisos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbRolesPermisos">
+              <PropertyRef Name="rolpe_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seg_tbUsuarios_tbUsuariosRoles_usu_Id">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="App_SpartansCustom_Model.tbUsuariosRoles" Role="tbUsuariosRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbUsuariosRoles">
+              <PropertyRef Name="usu_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seg_tbUsuarios_tbUsuariosRoles_usurol_UsuarioCrea">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+          <End Type="App_SpartansCustom_Model.tbUsuariosRoles" Role="tbUsuariosRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbUsuariosRoles">
+              <PropertyRef Name="usurol_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seg_tbUsuarios_tbUsuariosRoles_usurol_UsuarioModifica">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+          <End Type="App_SpartansCustom_Model.tbUsuariosRoles" Role="tbUsuariosRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbUsuariosRoles">
+              <PropertyRef Name="usurol_UsuarioModifica" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3072,17 +3078,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbUsuarios">
-            <EntityTypeMapping TypeName="App_SpartansCustom_Model.tbUsuarios">
-              <MappingFragment StoreEntitySet="tbUsuarios">
-                <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
-                <ScalarProperty Name="usu_NombreDeUsuario" ColumnName="usu_NombreDeUsuario" />
-                <ScalarProperty Name="usu_Contrasenia" ColumnName="usu_Contrasenia" />
-                <ScalarProperty Name="usu_BloqueoActivo" ColumnName="usu_BloqueoActivo" />
-                <ScalarProperty Name="usu_CorreoElectronico" ColumnName="usu_CorreoElectronico" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tbUsuariosRoles">
             <EntityTypeMapping TypeName="App_SpartansCustom_Model.tbUsuariosRoles">
               <MappingFragment StoreEntitySet="tbUsuariosRoles">
@@ -3149,7 +3144,6 @@
           <FunctionImportMapping FunctionImportName="UDP_Seg_tbRolesPermisos_Insert" FunctionName="App_SpartansCustom_Model.Store.UDP_Seg_tbRolesPermisos_Insert" />
           <FunctionImportMapping FunctionImportName="UDP_Seg_tbRolesPermisos_Update" FunctionName="App_SpartansCustom_Model.Store.UDP_Seg_tbRolesPermisos_Update" />
           <FunctionImportMapping FunctionImportName="UDP_Seg_tbUsuarios_BloquearUsuario" FunctionName="App_SpartansCustom_Model.Store.UDP_Seg_tbUsuarios_BloquearUsuario" />
-          <FunctionImportMapping FunctionImportName="UDP_Seg_tbUsuarios_Insert" FunctionName="App_SpartansCustom_Model.Store.UDP_Seg_tbUsuarios_Insert" />
           <FunctionImportMapping FunctionImportName="UDP_Seg_tbUsuarios_UpdateClave" FunctionName="App_SpartansCustom_Model.Store.UDP_Seg_tbUsuarios_UpdateClave" />
           <FunctionImportMapping FunctionImportName="UDP_Seg_tbUsuariosRoles_Insert" FunctionName="App_SpartansCustom_Model.Store.UDP_Seg_tbUsuariosRoles_Insert" />
           <FunctionImportMapping FunctionImportName="UDP_SEG_tbUsuariosRoles_Update" FunctionName="App_SpartansCustom_Model.Store.UDP_SEG_tbUsuariosRoles_Update" />
@@ -3181,6 +3175,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tbUsuarios">
+            <EntityTypeMapping TypeName="App_SpartansCustom_Model.tbUsuarios">
+              <MappingFragment StoreEntitySet="tbUsuarios">
+                <ScalarProperty Name="usu_EsAdministrador" ColumnName="usu_EsAdministrador" />
+                <ScalarProperty Name="usu_CorreoElectronico" ColumnName="usu_CorreoElectronico" />
+                <ScalarProperty Name="usu_BloqueoActivo" ColumnName="usu_BloqueoActivo" />
+                <ScalarProperty Name="usu_Contrasenia" ColumnName="usu_Contrasenia" />
+                <ScalarProperty Name="usu_NombreDeUsuario" ColumnName="usu_NombreDeUsuario" />
+                <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Seg_tbUsuarios_Insert" FunctionName="App_SpartansCustom_Model.Store.UDP_Seg_tbUsuarios_Insert" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

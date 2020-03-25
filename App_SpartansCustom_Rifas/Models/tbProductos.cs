@@ -33,8 +33,8 @@ namespace App_SpartansCustom_Rifas.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbImagenProductos> tbImagenProductos { get; set; }
+        public virtual tbSubCategoriaProductos tbSubCategoriaProductos { get; set; }
         public virtual tbUsuarios tbUsuarios { get; set; }
         public virtual tbUsuarios tbUsuarios1 { get; set; }
-        public virtual tbSubCategoriaProductos tbSubCategoriaProductos { get; set; }
     }
 }

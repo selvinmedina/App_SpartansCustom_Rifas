@@ -46,9 +46,9 @@ namespace App_SpartansCustom_Rifas.Models
         public virtual DbSet<tbPermisos> tbPermisos { get; set; }
         public virtual DbSet<tbRoles> tbRoles { get; set; }
         public virtual DbSet<tbRolesPermisos> tbRolesPermisos { get; set; }
-        public virtual DbSet<tbUsuarios> tbUsuarios { get; set; }
         public virtual DbSet<tbUsuariosRoles> tbUsuariosRoles { get; set; }
         public virtual DbSet<tbPersonas> tbPersonas { get; set; }
+        public virtual DbSet<tbUsuarios> tbUsuarios { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
@@ -846,19 +846,6 @@ namespace App_SpartansCustom_Rifas.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Seg_tbUsuarios_BloquearUsuario", usu_IdParameter);
         }
     
-        public virtual ObjectResult<string> UDP_Seg_tbUsuarios_Insert(string usu_NombreUsuario, string usu_Contrasenia)
-        {
-            var usu_NombreUsuarioParameter = usu_NombreUsuario != null ?
-                new ObjectParameter("usu_NombreUsuario", usu_NombreUsuario) :
-                new ObjectParameter("usu_NombreUsuario", typeof(string));
-    
-            var usu_ContraseniaParameter = usu_Contrasenia != null ?
-                new ObjectParameter("usu_Contrasenia", usu_Contrasenia) :
-                new ObjectParameter("usu_Contrasenia", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Seg_tbUsuarios_Insert", usu_NombreUsuarioParameter, usu_ContraseniaParameter);
-        }
-    
         public virtual ObjectResult<string> UDP_Seg_tbUsuarios_UpdateClave(Nullable<int> usu_Id, string usu_Contrasenia)
         {
             var usu_IdParameter = usu_Id.HasValue ?
@@ -1005,6 +992,27 @@ namespace App_SpartansCustom_Rifas.Models
                 new ObjectParameter("rol_UsuarioModifica", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UPD_Seg_tbRoles_Update", rol_IdParameter, rol_DescripcionParameter, rol_UsuarioModificaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Seg_tbUsuarios_Insert(string usu_NombreUsuario, string usu_CorreoElectronico, string usu_Contrasenia, Nullable<bool> usu_EsAdministrador)
+        {
+            var usu_NombreUsuarioParameter = usu_NombreUsuario != null ?
+                new ObjectParameter("usu_NombreUsuario", usu_NombreUsuario) :
+                new ObjectParameter("usu_NombreUsuario", typeof(string));
+    
+            var usu_CorreoElectronicoParameter = usu_CorreoElectronico != null ?
+                new ObjectParameter("usu_CorreoElectronico", usu_CorreoElectronico) :
+                new ObjectParameter("usu_CorreoElectronico", typeof(string));
+    
+            var usu_ContraseniaParameter = usu_Contrasenia != null ?
+                new ObjectParameter("usu_Contrasenia", usu_Contrasenia) :
+                new ObjectParameter("usu_Contrasenia", typeof(string));
+    
+            var usu_EsAdministradorParameter = usu_EsAdministrador.HasValue ?
+                new ObjectParameter("usu_EsAdministrador", usu_EsAdministrador) :
+                new ObjectParameter("usu_EsAdministrador", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Seg_tbUsuarios_Insert", usu_NombreUsuarioParameter, usu_CorreoElectronicoParameter, usu_ContraseniaParameter, usu_EsAdministradorParameter);
         }
     }
 }

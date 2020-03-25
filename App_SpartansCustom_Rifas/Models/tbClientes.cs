@@ -24,8 +24,8 @@ namespace App_SpartansCustom_Rifas.Models
         public Nullable<int> clte_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> clte_FechaModifica { get; set; }
     
+        public virtual tbPersonas tbPersonas { get; set; }
         public virtual tbUsuarios tbUsuarios { get; set; }
         public virtual tbUsuarios tbUsuarios1 { get; set; }
-        public virtual tbPersonas tbPersonas { get; set; }
     }
 }

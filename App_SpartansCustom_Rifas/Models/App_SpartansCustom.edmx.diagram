@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="74202201714742c299d0eb8ebbd550bd" Name="Diagram1" ZoomLevel="114">
+      <Diagram DiagramId="74202201714742c299d0eb8ebbd550bd" Name="Diagram1" ZoomLevel="64">
         <EntityTypeShape EntityType="App_SpartansCustom_Model.C__EFMigrationsHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="App_SpartansCustom_Model.sysdiagrams" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="App_SpartansCustom_Model.tbCiudades" Width="1.5" PointX="6" PointY="30.125" IsExpanded="true" />
@@ -24,57 +24,57 @@
         <EntityTypeShape EntityType="App_SpartansCustom_Model.tbPermisos" Width="1.5" PointX="3" PointY="59" IsExpanded="true" />
         <EntityTypeShape EntityType="App_SpartansCustom_Model.tbRoles" Width="1.5" PointX="3" PointY="62.5" IsExpanded="true" />
         <EntityTypeShape EntityType="App_SpartansCustom_Model.tbRolesPermisos" Width="1.5" PointX="8.25" PointY="47.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="App_SpartansCustom_Model.tbUsuarios" Width="1.5" PointX="0.75" PointY="27" IsExpanded="true" />
         <EntityTypeShape EntityType="App_SpartansCustom_Model.tbUsuariosRoles" Width="1.5" PointX="8.25" PointY="43.75" IsExpanded="true" />
         <AssociationConnector Association="App_SpartansCustom_Model.FK_Gral_tbDepartamentos_tbCiudades_depto_Id" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbCiudades_ciud_UsuarioCrea" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbCiudades_ciud_UsuarioModifica" ManuallyRouted="false" />
         <AssociationConnector Association="App_SpartansCustom_Model.FK_Gral_tbPais_tbDepartamentos_pais_Id" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbDepartamentos_depto_UsuarioCrea" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbDepartamentos_depto_UsuarioModifica" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbEmpresa_empr_UsuarioCrea" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbEmpresa_empr_UsuarioModifica" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPais_pais_UsuarioCrea" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPais_pais_UsuarioModifica" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbClientes_clte_UsuarioCrea" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbClientes_clte_UsuarioModifica" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRangos_rang_UsuarioCrea" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRangos_rang_UsuarioModifica" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK__tbCatalog__cprod__1AD3FDA4" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK__tbCatalog__cprod__1BC821DD" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK__tbCategor__cprod__03F0984C" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK__tbCategor__cprod__04E4BC85" ManuallyRouted="false" />
         <AssociationConnector Association="App_SpartansCustom_Model.FK__tbSubCate__cprod__09A971A2" ManuallyRouted="false" />
         <AssociationConnector Association="App_SpartansCustom_Model.FK__tbImagenP__prod___160F4887" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK__tbMarcasC__mc_Us__7E37BEF6" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK__tbMarcasC__mc_Us__7F2BE32F" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK__tbProduct__prod___114A936A" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK__tbProduct__prod___123EB7A3" ManuallyRouted="false" />
         <AssociationConnector Association="App_SpartansCustom_Model.FK__tbProduct__scpro__1332DBDC" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK__tbSubCate__scpro__0A9D95DB" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK__tbSubCate__scpro__0B91BA14" ManuallyRouted="false" />
         <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbPantallas_tbPantallasRoles_pla_Id" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPantallas_pla_UsuarioCrea" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPantallas_pla_UsuarioModifica" ManuallyRouted="false" />
         <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbRoles_tbPantallasRoles_usu_Id" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPantallasRoles_plarol_UsuarioCrea" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPantallasRoles_plarol_UsuarioModifica" ManuallyRouted="false" />
         <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbRolesPermisos_tbRolesPermisos_perm_Id" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.fk3" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.fk5" ManuallyRouted="false" />
         <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbRoles_tbRolesPermisos_rol_Id" ManuallyRouted="false" />
         <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbRoles_tbUsuariosRoles_rol_Id" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRoles_rol_UsuarioCrea" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRoles_rol_UsuarioModifica" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRolesPermisos_rolpe_UsuarioCrea" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRolesPermisos_rolpe_UsuarioModifica" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbUsuariosRoles_usu_Id" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbUsuariosRoles_usurol_UsuarioCrea" ManuallyRouted="false" />
-        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbUsuariosRoles_usurol_UsuarioModifica" ManuallyRouted="false" />
         <EntityTypeShape EntityType="App_SpartansCustom_Model.tbPersonas" Width="1.5" PointX="3" PointY="29.125" />
         <AssociationConnector Association="App_SpartansCustom_Model.FK_RRHH_tbPersonas_tbClientes_per_Id" />
+        <EntityTypeShape EntityType="App_SpartansCustom_Model.tbUsuarios" Width="1.5" PointX="0.75" PointY="37.625" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbCiudades_ciud_UsuarioCrea" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbCiudades_ciud_UsuarioModifica" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbDepartamentos_depto_UsuarioCrea" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbDepartamentos_depto_UsuarioModifica" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbEmpresa_empr_UsuarioCrea" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbEmpresa_empr_UsuarioModifica" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPais_pais_UsuarioCrea" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPais_pais_UsuarioModifica" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbClientes_clte_UsuarioCrea" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbClientes_clte_UsuarioModifica" />
         <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPersonas_per_UsuarioCrea" />
         <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPersonas_per_UsuarioModifica" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRangos_rang_UsuarioCrea" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRangos_rang_UsuarioModifica" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK__tbCatalog__cprod__1AD3FDA4" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK__tbCatalog__cprod__1BC821DD" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK__tbCategor__cprod__03F0984C" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK__tbCategor__cprod__04E4BC85" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK__tbMarcasC__mc_Us__7E37BEF6" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK__tbMarcasC__mc_Us__7F2BE32F" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK__tbProduct__prod___114A936A" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK__tbProduct__prod___123EB7A3" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK__tbSubCate__scpro__0A9D95DB" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK__tbSubCate__scpro__0B91BA14" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPantallas_pla_UsuarioCrea" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPantallas_pla_UsuarioModifica" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPantallasRoles_plarol_UsuarioCrea" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPantallasRoles_plarol_UsuarioModifica" />
+        <AssociationConnector Association="App_SpartansCustom_Model.fk3" />
+        <AssociationConnector Association="App_SpartansCustom_Model.fk5" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRoles_rol_UsuarioCrea" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRoles_rol_UsuarioModifica" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRolesPermisos_rolpe_UsuarioCrea" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbRolesPermisos_rolpe_UsuarioModifica" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbUsuariosRoles_usu_Id" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbUsuariosRoles_usurol_UsuarioCrea" />
+        <AssociationConnector Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbUsuariosRoles_usurol_UsuarioModifica" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

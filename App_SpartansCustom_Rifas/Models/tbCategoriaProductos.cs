@@ -27,9 +27,9 @@ namespace App_SpartansCustom_Rifas.Models
         public Nullable<int> cprod_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> cprod_FechaModifica { get; set; }
     
-        public virtual tbUsuarios tbUsuarios { get; set; }
-        public virtual tbUsuarios tbUsuarios1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSubCategoriaProductos> tbSubCategoriaProductos { get; set; }
+        public virtual tbUsuarios tbUsuarios { get; set; }
+        public virtual tbUsuarios tbUsuarios1 { get; set; }
     }
 }

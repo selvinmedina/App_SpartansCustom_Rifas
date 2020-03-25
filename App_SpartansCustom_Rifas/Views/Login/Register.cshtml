@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <title>Lexa - Responsive Bootstrap 4 Admin Dashboard</title>
+    <title>Registro de Usuarios</title>
     <meta content="Admin Dashboard" name="description" />
     <meta content="Themesbrand" name="author" />
     <link rel="shortcut icon" href="~/images/favicon.ico">
@@ -29,31 +29,46 @@
                     <h4 class="text-muted font-18 m-b-5 text-center">Registro Gratis</h4>
                     <p class="text-muted text-center">Obtenga su cuenta gratis ahora</p>
 
-                    <form class="form-horizontal m-t-30" action="/dashboard">
+                    <form class="form-horizontal m-t-30" >
 
                         <div class="form-group">
                             <label for="useremail">Email</label>
                             <input type="email" class="form-control" id="useremail" placeholder="Ingrese su Email">
+                            <ul class="parsley-errors-list filled" id="validaciones">
+                                <li class="parsley-required" style="display: none" id="emailRequerido">Este campo es requerido</li>
+                                <li class="parsley-required" style="display: none" id="emailInvalido">El correo electrónico es inválido</li>
+                            </ul>
                         </div>
 
                         <div class="form-group">
                             <label for="username">Nombre de usuario</label>
                             <input type="text" class="form-control" id="username" placeholder="Enter username">
+                            <ul class="parsley-errors-list filled" id="validaciones">
+                                <li class="parsley-required" style="display: none" id="usuarioRequerido">Este campo es requerido</li>
+                            </ul>
                         </div>
 
                         <div class="form-group">
                             <label for="userpassword">Contraseña</label>
                             <input type="password" class="form-control" id="userpassword" placeholder="Ingrese su contraseña">
+                            <ul class="parsley-errors-list filled" id="validaciones">
+                                <li class="parsley-required" style="display: none" id="passRequerida">Este campo es requerido</li>
+                                <li class="parsley-required" style="display: none" id="pass">Las contraseñas no coinciden</li>
+                            </ul>
                         </div>
 
                         <div class="form-group">
                             <label for="userpassword">Repita su contraseña</label>
-                            <input type="password" class="form-control" id="userpassword" placeholder="Ingrese su contraseña">
+                            <input type="password" class="form-control" id="userpasswordRepetir" placeholder="Ingrese su contraseña">
+                            <ul class="parsley-errors-list filled" id="validaciones">
+                                <li class="parsley-required" style="display: none" id="passRepeatRequerida">Este campo es requerido</li>
+                                <li class="parsley-required" style="display: none" id="confirmPass">Las contraseñas no coinciden</li>
+                            </ul>
                         </div>
 
                         <div class="form-group row m-t-20">
                             <div class="col-12 text-right">
-                                <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Registrar</button>
+                                <button class="btn btn-primary w-md waves-effect waves-light" id="btnRegistrar" type="button">Registrar</button>
                             </div>
                         </div>
 
