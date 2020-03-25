@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="74202201714742c299d0eb8ebbd550bd" Name="Diagram1">
+      <Diagram DiagramId="74202201714742c299d0eb8ebbd550bd" Name="Diagram1" ZoomLevel="114">
         <EntityTypeShape EntityType="App_SpartansCustom_Model.C__EFMigrationsHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="App_SpartansCustom_Model.sysdiagrams" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="App_SpartansCustom_Model.tbCiudades" Width="1.5" PointX="6" PointY="30.125" IsExpanded="true" />

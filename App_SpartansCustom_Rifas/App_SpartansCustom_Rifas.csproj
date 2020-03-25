@@ -170,6 +170,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RangosController.cs" />
     <Compile Include="Helpers\General.cs" />
     <Compile Include="Helpers\Menus.cs" />
@@ -3269,6 +3270,7 @@
     <Content Include="Scripts\app\DatatableConfiguration.js" />
     <Content Include="Scripts\app\Genericos.js" />
     <Content Include="Scripts\app\personas\rangos.js" />
+    <Content Include="Scripts\app\seguridad\login.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -4128,6 +4130,8 @@
     <Content Include="Views\Rangos\Detalles.cshtml" />
     <Content Include="Views\Rangos\Inactivar.cshtml" />
     <Content Include="Views\Rangos\Activar.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Login\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
