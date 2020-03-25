@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using App_SpartansCustom_Rifas.Helpers;
+using App_SpartansCustom_Rifas.Models;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using App_SpartansCustom_Rifas.Models;
 
 namespace App_SpartansCustom_Rifas.Controllers
 {
@@ -16,113 +12,186 @@ namespace App_SpartansCustom_Rifas.Controllers
         private App_SpartansCustom_Entities db = new App_SpartansCustom_Entities();
 
         // GET: /Rangos/
-        public async Task<ActionResult> Index()
+        public ViewResult Index()
         {
-            var tbrangos = db.tbRangos.Include(t => t.tbUsuarios).Include(t => t.tbUsuarios1);
-            return View(await tbrangos.ToListAsync());
-        }
-
-        // GET: /Rangos/Details/5
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbRangos tbRangos = await db.tbRangos.FindAsync(id);
-            if (tbRangos == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbRangos);
-        }
-
-        // GET: /Rangos/Create
-        public ActionResult Create()
-        {
-            ViewBag.rang_UsuarioCrea = new SelectList(db.tbUsuarios, "usu_Id", "usu_NombreDeUsuario");
-            ViewBag.rang_UsuarioModifica = new SelectList(db.tbUsuarios, "usu_Id", "usu_NombreDeUsuario");
             return View();
         }
 
+        //GET: /Rangos/GetData
+        //Obtener la data para actualizar la tabla
+        public async Task<JsonResult> GetData() =>
+
+          Json(
+                new
+                {
+                    data = await Task.Run(() => db.
+                      tbRangos.
+                      Where(x => x.rang_Estado == true)
+                      .OrderByDescending(x => x.rang_FechaCrea)
+                      .Select(
+                      x => new
+                      {
+                          descripcion = x.rang_Descripcion,
+                          numero = x.rang_Id,
+                          estado = x.rang_Estado
+                      }))
+                },
+                JsonRequestBehavior.AllowGet
+                );
+
+
+
+        // GET: /Rangos/Details/5
+        public async Task<JsonResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return Json("error", JsonRequestBehavior.AllowGet);
+            }
+            tbRangos tbRangos = await db.tbRangos.FindAsync(id);
+
+            if (tbRangos == null)
+            {
+                return Json("error", JsonRequestBehavior.AllowGet);
+            }
+
+            object result = new
+            {
+                id = tbRangos.rang_Id,
+                descripcion = tbRangos.rang_Descripcion,
+                usuarioCrea = tbRangos.tbUsuarios.usu_NombreDeUsuario,
+                fechaCrea = General.FechaRetorno(tbRangos.rang_FechaCrea),
+                usuarioModifica = tbRangos.rang_UsuarioModifica is null ? "No modificado" : tbRangos.tbUsuarios1.usu_NombreDeUsuario,
+                fechaModifica = tbRangos.rang_FechaModifica is null ? "No modificado" : General.FechaRetorno(tbRangos.rang_FechaModifica.Value)
+            };
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
         // POST: /Rangos/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create( tbRangos tbRangos)
+        public async Task<JsonResult> Create(tbRangos tbRangos)
         {
-            if (ModelState.IsValid)
+            string response = "error";
+
+            if (ModelState.IsValid && tbRangos.rang_Descripcion != null)
             {
-                db.tbRangos.Add(tbRangos);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                try
+                {
+                    if ( // Si se inserto mal retornar la vista
+                        await Task.Run(() =>
+
+                            // Retornar la insersion asincrona
+
+                            db.UDP_Person_tbRangos_Insert(
+                            tbRangos.rang_Descripcion,
+                            true,
+                            1,
+                            DateTime.Now,
+                            null,
+                            null)
+                            .FirstOrDefault()
+                            .StartsWith("-1")
+                        )
+                        )
+                    {
+                        return Json(response, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        //Si se inserto bien redireccionar al index
+                        response = "bien";
+                    }
+                }
+                catch (Exception)
+                {
+                    return Json(response, JsonRequestBehavior.AllowGet);
+                }
             }
 
-            ViewBag.rang_UsuarioCrea = new SelectList(db.tbUsuarios, "usu_Id", "usu_NombreDeUsuario", tbRangos.rang_UsuarioCrea);
-            ViewBag.rang_UsuarioModifica = new SelectList(db.tbUsuarios, "usu_Id", "usu_NombreDeUsuario", tbRangos.rang_UsuarioModifica);
-            return View(tbRangos);
+            return Json(response, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: /Rangos/Edit/5
-        public async Task<ActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbRangos tbRangos = await db.tbRangos.FindAsync(id);
-            if (tbRangos == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.rang_UsuarioCrea = new SelectList(db.tbUsuarios, "usu_Id", "usu_NombreDeUsuario", tbRangos.rang_UsuarioCrea);
-            ViewBag.rang_UsuarioModifica = new SelectList(db.tbUsuarios, "usu_Id", "usu_NombreDeUsuario", tbRangos.rang_UsuarioModifica);
-            return View(tbRangos);
-        }
-
-        // POST: /Rangos/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        //Post edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include="rang_Id,rang_Descripcion,rang_Estado,rang_UsuarioCrea,rang_FechaCrea,rang_UsuarioModifica,rang_FechaModifica")] tbRangos tbRangos)
+        public async Task<JsonResult> Edit([Bind(Include = "rang_Id,rang_Descripcion")] tbRangos tbRangos)
         {
+            string response = "error";
             if (ModelState.IsValid)
             {
-                db.Entry(tbRangos).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            ViewBag.rang_UsuarioCrea = new SelectList(db.tbUsuarios, "usu_Id", "usu_NombreDeUsuario", tbRangos.rang_UsuarioCrea);
-            ViewBag.rang_UsuarioModifica = new SelectList(db.tbUsuarios, "usu_Id", "usu_NombreDeUsuario", tbRangos.rang_UsuarioModifica);
-            return View(tbRangos);
-        }
+                try
+                {
+                    if ( // Si se inserto mal retornar la vista
+                        await Task.Run(() =>
+                        {
+                            // Retornar la insersion asincrona
+                            return
 
-        // GET: /Rangos/Delete/5
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                            db.UDP_Person_tbRangos_Update(
+                                tbRangos.rang_Id,
+                                tbRangos.rang_Descripcion,
+                            1
+                            )
+                            .FirstOrDefault()
+                            .StartsWith("-1");
+                        })
+                        )
+                    {
+                        return Json(response, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        //Si se inserto bien redireccionar al index
+                        return Json("bien", JsonRequestBehavior.AllowGet);
+                    }
+                }
+                catch (Exception)
+                {
+                    return Json(response, JsonRequestBehavior.AllowGet);
+                }
+
             }
-            tbRangos tbRangos = await db.tbRangos.FindAsync(id);
-            if (tbRangos == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbRangos);
+
+            return Json(response, JsonRequestBehavior.AllowGet);
         }
 
         // POST: /Rangos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public async Task<JsonResult> DeleteConfirmed(int id)
         {
-            tbRangos tbRangos = await db.tbRangos.FindAsync(id);
-            db.tbRangos.Remove(tbRangos);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            string response = "error";
+            try
+            {
+                if ( // Si se inserto mal retornar la vista
+                        await Task.Run(() =>
+                        {
+                            // Retornar la insersion asincrona
+                            return
+
+                            db.UDP_Person_tbRangos_Delete(
+                                id,
+                                1
+                            )
+                            .FirstOrDefault()
+                            .StartsWith("-1");
+                        })
+                        )
+                {
+                    return Json(response, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    //Si se inserto bien redireccionar al index
+                    return Json("bien", JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception)
+            {
+                return Json(response, JsonRequestBehavior.AllowGet);
+            }
         }
 
         protected override void Dispose(bool disposing)

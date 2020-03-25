@@ -171,6 +171,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\RangosController.cs" />
+    <Compile Include="Helpers\General.cs" />
     <Compile Include="Helpers\Menus.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -199,6 +200,7 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Partial\Rangos.cs" />
     <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>App_SpartansCustom.tt</DependentUpon>
     </Compile>
@@ -221,9 +223,6 @@
       <DependentUpon>App_SpartansCustom.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbDepartamentos.cs">
-      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbDirecciones.cs">
       <DependentUpon>App_SpartansCustom.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbEmpresa.cs">
@@ -1500,6 +1499,8 @@
     <Content Include="Content\images\users\user-9.jpg" />
     <Content Include="Content\ion-rangeslider\css\ion.rangeSlider.css" />
     <Content Include="Content\ion-rangeslider\css\ion.rangeSlider.min.css" />
+    <Content Include="Content\izitoast\iziToast.css" />
+    <Content Include="Content\izitoast\iziToast.min.css" />
     <Content Include="Content\jquery-ui\jquery-ui.min.css" />
     <Content Include="Content\js\app.js" />
     <Content Include="Content\js\bootstrap.bundle.min.js" />
@@ -3266,6 +3267,8 @@
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\app\CategoriaProductos.js" />
     <Content Include="Scripts\app\DatatableConfiguration.js" />
+    <Content Include="Scripts\app\Genericos.js" />
+    <Content Include="Scripts\app\personas\rangos.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -3745,6 +3748,8 @@
     <Content Include="Scripts\plugins\gmaps\lib\gmaps.utils.js" />
     <Content Include="Scripts\plugins\ion-rangeslider\js\ion.rangeSlider.js" />
     <Content Include="Scripts\plugins\ion-rangeslider\js\ion.rangeSlider.min.js" />
+    <Content Include="Scripts\plugins\iziToast\iziToast.js" />
+    <Content Include="Scripts\plugins\iziToast\iziToast.min.js" />
     <Content Include="Scripts\plugins\jquery-knob\excanvas.js" />
     <Content Include="Scripts\plugins\jquery-knob\jquery.knob.js" />
     <Content Include="Scripts\plugins\jquery-sparkline\jquery.sparkline.min.js" />
@@ -4111,16 +4116,18 @@
     <Content Include="Scripts\plugins\tinymce\skins\lightgray\fonts\tinymce.woff" />
     <Content Include="Scripts\plugins\tinymce\themes\inlite\src\test\.eslintrc" />
     <Content Include="Views\Renders.cshtml" />
-    <Content Include="Views\Rangos\Create.cshtml" />
-    <Content Include="Views\Rangos\Delete.cshtml" />
-    <Content Include="Views\Rangos\Details.cshtml" />
-    <Content Include="Views\Rangos\Edit.cshtml" />
     <Content Include="Views\Rangos\Index.cshtml" />
-    <Content Include="Views\Rangos\_Create.cshtml" />
+    <Content Include="Views\Rangos\Crear.cshtml" />
     <Content Include="Views\Dashboard\Calendar.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Dashboard\RangeSlider.cshtml" />
     <Content Include="Views\Dashboard\SessionTimeout.cshtml" />
+    <Content Include="Views\Rangos\ConfirmacionCrear.cshtml" />
+    <Content Include="Views\Rangos\Editar.cshtml" />
+    <Content Include="Views\Rangos\ConfirmacionEditar.cshtml" />
+    <Content Include="Views\Rangos\Detalles.cshtml" />
+    <Content Include="Views\Rangos\Inactivar.cshtml" />
+    <Content Include="Views\Rangos\Activar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

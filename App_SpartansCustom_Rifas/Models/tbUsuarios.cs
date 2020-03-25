@@ -27,10 +27,6 @@ namespace App_SpartansCustom_Rifas.Models
             this.tbPais1 = new HashSet<tbPais>();
             this.tbClientes = new HashSet<tbClientes>();
             this.tbClientes1 = new HashSet<tbClientes>();
-            this.tbDirecciones = new HashSet<tbDirecciones>();
-            this.tbDirecciones1 = new HashSet<tbDirecciones>();
-            this.tbPersonas = new HashSet<tbPersonas>();
-            this.tbPersonas1 = new HashSet<tbPersonas>();
             this.tbRangos = new HashSet<tbRangos>();
             this.tbRangos1 = new HashSet<tbRangos>();
             this.tbCatalogoProductos = new HashSet<tbCatalogoProductos>();
@@ -56,6 +52,8 @@ namespace App_SpartansCustom_Rifas.Models
             this.tbUsuariosRoles = new HashSet<tbUsuariosRoles>();
             this.tbUsuariosRoles1 = new HashSet<tbUsuariosRoles>();
             this.tbUsuariosRoles2 = new HashSet<tbUsuariosRoles>();
+            this.tbPersonas = new HashSet<tbPersonas>();
+            this.tbPersonas1 = new HashSet<tbPersonas>();
         }
     
         public int usu_Id { get; set; }
@@ -84,14 +82,6 @@ namespace App_SpartansCustom_Rifas.Models
         public virtual ICollection<tbClientes> tbClientes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbClientes> tbClientes1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbDirecciones> tbDirecciones { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbDirecciones> tbDirecciones1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbPersonas> tbPersonas { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbPersonas> tbPersonas1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbRangos> tbRangos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -142,5 +132,9 @@ namespace App_SpartansCustom_Rifas.Models
         public virtual ICollection<tbUsuariosRoles> tbUsuariosRoles1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbUsuariosRoles> tbUsuariosRoles2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbPersonas> tbPersonas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbPersonas> tbPersonas1 { get; set; }
     }
 }

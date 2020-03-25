@@ -15,7 +15,6 @@ namespace App_SpartansCustom_Rifas.Models
     public partial class tbClientes
     {
         public int clte_Id { get; set; }
-        public int clte_Cargo { get; set; }
         public int rang_Id { get; set; }
         public bool clte_EsActivo { get; set; }
         public int per_Id { get; set; }
@@ -25,8 +24,8 @@ namespace App_SpartansCustom_Rifas.Models
         public Nullable<int> clte_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> clte_FechaModifica { get; set; }
     
-        public virtual tbPersonas tbPersonas { get; set; }
         public virtual tbUsuarios tbUsuarios { get; set; }
         public virtual tbUsuarios tbUsuarios1 { get; set; }
+        public virtual tbPersonas tbPersonas { get; set; }
     }
 }

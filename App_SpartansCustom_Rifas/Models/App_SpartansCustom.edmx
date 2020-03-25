@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="App_SpartansCustom_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="App_SpartansCustom_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__EFMigrationsHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -86,7 +86,6 @@
             <PropertyRef Name="clte_Id" />
           </Key>
           <Property Name="clte_Id" Type="int" Nullable="false" />
-          <Property Name="clte_Cargo" Type="int" Nullable="false" />
           <Property Name="rang_Id" Type="int" Nullable="false" />
           <Property Name="clte_EsActivo" Type="bit" Nullable="false" />
           <Property Name="per_Id" Type="int" Nullable="false" />
@@ -95,22 +94,6 @@
           <Property Name="clte_FechaCrea" Type="datetime" Nullable="false" />
           <Property Name="clte_UsuarioModifica" Type="int" />
           <Property Name="clte_FechaModifica" Type="datetime" />
-        </EntityType>
-        <EntityType Name="tbDirecciones">
-          <Key>
-            <PropertyRef Name="dir_Id" />
-          </Key>
-          <Property Name="dir_Id" Type="int" Nullable="false" />
-          <Property Name="dir_Descripcion1" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="dir_Descripcion2" Type="nvarchar" MaxLength="100" />
-          <Property Name="ciud_Id" Type="int" Nullable="false" />
-          <Property Name="dir_Estado" Type="bit" Nullable="false" />
-          <Property Name="dir_TipoEntidad" Type="char" MaxLength="3" />
-          <Property Name="dir_FechaFinUsoDireccion" Type="datetime" />
-          <Property Name="dir_UsuarioCrea" Type="int" Nullable="false" />
-          <Property Name="dir_FechaCrea" Type="datetime" Nullable="false" />
-          <Property Name="dir_UsuarioModifica" Type="int" />
-          <Property Name="dir_FechaModifica" Type="datetime" />
         </EntityType>
         <EntityType Name="tbPersonas">
           <Key>
@@ -131,6 +114,8 @@
           <Property Name="per_FechaCrea" Type="datetime" Nullable="false" />
           <Property Name="per_UsuarioModifica" Type="int" />
           <Property Name="per_FechaModifica" Type="datetime" />
+          <Property Name="per_Direccion1" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="per_Direccion2" Type="nvarchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="tbRangos">
           <Key>
@@ -820,30 +805,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbSucursales_dir_UsuarioCrea">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="1" />
-          <End Role="tbDirecciones" Type="Self.tbDirecciones" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbDirecciones">
-              <PropertyRef Name="dir_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbSucursales_dir_UsuarioModifica">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="0..1" />
-          <End Role="tbDirecciones" Type="Self.tbDirecciones" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbDirecciones">
-              <PropertyRef Name="dir_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Seg_tbUsuarios_tbUsuariosRoles_usu_Id">
           <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -1187,7 +1148,6 @@
           <EntitySet Name="tbEmpresa" EntityType="Self.tbEmpresa" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="tbPais" EntityType="Self.tbPais" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="tbClientes" EntityType="Self.tbClientes" Schema="Person" store:Type="Tables" />
-          <EntitySet Name="tbDirecciones" EntityType="Self.tbDirecciones" Schema="Person" store:Type="Tables" />
           <EntitySet Name="tbPersonas" EntityType="Self.tbPersonas" Schema="Person" store:Type="Tables" />
           <EntitySet Name="tbRangos" EntityType="Self.tbRangos" Schema="Person" store:Type="Tables" />
           <EntitySet Name="tbCatalogoProductos" EntityType="Self.tbCatalogoProductos" Schema="Producto" store:Type="Tables" />
@@ -1375,14 +1335,6 @@
             <End Role="tbUsuarios" EntitySet="tbUsuarios" />
             <End Role="tbRolesPermisos" EntitySet="tbRolesPermisos" />
           </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbSucursales_dir_UsuarioCrea" Association="Self.FK_Seg_tbUsuarios_tbSucursales_dir_UsuarioCrea">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbDirecciones" EntitySet="tbDirecciones" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbSucursales_dir_UsuarioModifica" Association="Self.FK_Seg_tbUsuarios_tbSucursales_dir_UsuarioModifica">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbDirecciones" EntitySet="tbDirecciones" />
-          </AssociationSet>
           <AssociationSet Name="FK_Seg_tbUsuarios_tbUsuariosRoles_usu_Id" Association="Self.FK_Seg_tbUsuarios_tbUsuariosRoles_usu_Id">
             <End Role="tbUsuarios" EntitySet="tbUsuarios" />
             <End Role="tbUsuariosRoles" EntitySet="tbUsuariosRoles" />
@@ -1404,8 +1356,7 @@
             <End Role="tbPermisos" EntitySet="tbPermisos" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="App_SpartansCustom_Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1502,7 +1453,6 @@
             <PropertyRef Name="clte_Id" />
           </Key>
           <Property Name="clte_Id" Type="Int32" Nullable="false" />
-          <Property Name="clte_Cargo" Type="Int32" Nullable="false" />
           <Property Name="rang_Id" Type="Int32" Nullable="false" />
           <Property Name="clte_EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="per_Id" Type="Int32" Nullable="false" />
@@ -1511,50 +1461,9 @@
           <Property Name="clte_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="clte_UsuarioModifica" Type="Int32" />
           <Property Name="clte_FechaModifica" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tbPersonas" Relationship="Self.FK_RRHH_tbPersonas_tbClientes_per_Id" FromRole="tbClientes" ToRole="tbPersonas" />
           <NavigationProperty Name="tbUsuarios" Relationship="Self.FK_Seg_tbUsuarios_tbClientes_clte_UsuarioCrea" FromRole="tbClientes" ToRole="tbUsuarios" />
           <NavigationProperty Name="tbUsuarios1" Relationship="Self.FK_Seg_tbUsuarios_tbClientes_clte_UsuarioModifica" FromRole="tbClientes" ToRole="tbUsuarios" />
-        </EntityType>
-        <EntityType Name="tbDirecciones">
-          <Key>
-            <PropertyRef Name="dir_Id" />
-          </Key>
-          <Property Name="dir_Id" Type="Int32" Nullable="false" />
-          <Property Name="dir_Descripcion1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="dir_Descripcion2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ciud_Id" Type="Int32" Nullable="false" />
-          <Property Name="dir_Estado" Type="Boolean" Nullable="false" />
-          <Property Name="dir_TipoEntidad" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
-          <Property Name="dir_FechaFinUsoDireccion" Type="DateTime" Precision="3" />
-          <Property Name="dir_UsuarioCrea" Type="Int32" Nullable="false" />
-          <Property Name="dir_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="dir_UsuarioModifica" Type="Int32" />
-          <Property Name="dir_FechaModifica" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tbUsuarios" Relationship="Self.FK_Seg_tbUsuarios_tbSucursales_dir_UsuarioCrea" FromRole="tbDirecciones" ToRole="tbUsuarios" />
-          <NavigationProperty Name="tbUsuarios1" Relationship="Self.FK_Seg_tbUsuarios_tbSucursales_dir_UsuarioModifica" FromRole="tbDirecciones" ToRole="tbUsuarios" />
-        </EntityType>
-        <EntityType Name="tbPersonas">
-          <Key>
-            <PropertyRef Name="per_Id" />
-          </Key>
-          <Property Name="per_Id" Type="Int32" Nullable="false" />
-          <Property Name="per_NumeroIdentidad" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="per_Nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="per_Apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="per_FechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="per_sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="per_Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="per_CorreoElectronico" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="per_Fotografia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="per_Estado" Type="Boolean" Nullable="false" />
-          <Property Name="per_EsPersonaNatural" Type="Boolean" Nullable="false" />
-          <Property Name="per_UsuarioCrea" Type="Int32" Nullable="false" />
-          <Property Name="per_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="per_UsuarioModifica" Type="Int32" />
-          <Property Name="per_FechaModifica" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tbClientes" Relationship="Self.FK_RRHH_tbPersonas_tbClientes_per_Id" FromRole="tbPersonas" ToRole="tbClientes" />
-          <NavigationProperty Name="tbUsuarios" Relationship="Self.FK_Seg_tbUsuarios_tbPersonas_per_UsuarioCrea" FromRole="tbPersonas" ToRole="tbUsuarios" />
-          <NavigationProperty Name="tbUsuarios1" Relationship="Self.FK_Seg_tbUsuarios_tbPersonas_per_UsuarioModifica" FromRole="tbPersonas" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbPersonas" Relationship="App_SpartansCustom_Model.FK_RRHH_tbPersonas_tbClientes_per_Id" FromRole="tbClientes" ToRole="tbPersonas" />
         </EntityType>
         <EntityType Name="tbRangos">
           <Key>
@@ -1752,10 +1661,6 @@
           <NavigationProperty Name="tbPais1" Relationship="Self.FK_Seg_tbUsuarios_tbPais_pais_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbPais" />
           <NavigationProperty Name="tbClientes" Relationship="Self.FK_Seg_tbUsuarios_tbClientes_clte_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbClientes" />
           <NavigationProperty Name="tbClientes1" Relationship="Self.FK_Seg_tbUsuarios_tbClientes_clte_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbClientes" />
-          <NavigationProperty Name="tbDirecciones" Relationship="Self.FK_Seg_tbUsuarios_tbSucursales_dir_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbDirecciones" />
-          <NavigationProperty Name="tbDirecciones1" Relationship="Self.FK_Seg_tbUsuarios_tbSucursales_dir_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbDirecciones" />
-          <NavigationProperty Name="tbPersonas" Relationship="Self.FK_Seg_tbUsuarios_tbPersonas_per_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbPersonas" />
-          <NavigationProperty Name="tbPersonas1" Relationship="Self.FK_Seg_tbUsuarios_tbPersonas_per_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbPersonas" />
           <NavigationProperty Name="tbRangos" Relationship="Self.FK_Seg_tbUsuarios_tbRangos_rang_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbRangos" />
           <NavigationProperty Name="tbRangos1" Relationship="Self.FK_Seg_tbUsuarios_tbRangos_rang_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbRangos" />
           <NavigationProperty Name="tbCatalogoProductos" Relationship="Self.FK__tbCatalog__cprod__1AD3FDA4" FromRole="tbUsuarios" ToRole="tbCatalogoProductos" />
@@ -1781,6 +1686,8 @@
           <NavigationProperty Name="tbUsuariosRoles" Relationship="Self.FK_Seg_tbUsuarios_tbUsuariosRoles_usu_Id" FromRole="tbUsuarios" ToRole="tbUsuariosRoles" />
           <NavigationProperty Name="tbUsuariosRoles1" Relationship="Self.FK_Seg_tbUsuarios_tbUsuariosRoles_usurol_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbUsuariosRoles" />
           <NavigationProperty Name="tbUsuariosRoles2" Relationship="Self.FK_Seg_tbUsuarios_tbUsuariosRoles_usurol_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbUsuariosRoles" />
+          <NavigationProperty Name="tbPersonas" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPersonas_per_UsuarioCrea" FromRole="tbUsuarios" ToRole="tbPersonas" />
+          <NavigationProperty Name="tbPersonas1" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPersonas_per_UsuarioModifica" FromRole="tbUsuarios" ToRole="tbPersonas" />
         </EntityType>
         <EntityType Name="tbUsuariosRoles">
           <Key>
@@ -1918,18 +1825,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RRHH_tbPersonas_tbClientes_per_Id">
-          <End Role="tbPersonas" Type="Self.tbPersonas" Multiplicity="1" />
-          <End Role="tbClientes" Type="Self.tbClientes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbPersonas">
-              <PropertyRef Name="per_Id" />
-            </Principal>
-            <Dependent Role="tbClientes">
-              <PropertyRef Name="per_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Seg_tbUsuarios_tbClientes_clte_UsuarioCrea">
           <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="1" />
           <End Role="tbClientes" Type="Self.tbClientes" Multiplicity="*" />
@@ -1951,54 +1846,6 @@
             </Principal>
             <Dependent Role="tbClientes">
               <PropertyRef Name="clte_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbSucursales_dir_UsuarioCrea">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="1" />
-          <End Role="tbDirecciones" Type="Self.tbDirecciones" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbDirecciones">
-              <PropertyRef Name="dir_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbSucursales_dir_UsuarioModifica">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="0..1" />
-          <End Role="tbDirecciones" Type="Self.tbDirecciones" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbDirecciones">
-              <PropertyRef Name="dir_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbPersonas_per_UsuarioCrea">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="1" />
-          <End Role="tbPersonas" Type="Self.tbPersonas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbPersonas">
-              <PropertyRef Name="per_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Seg_tbUsuarios_tbPersonas_per_UsuarioModifica">
-          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="0..1" />
-          <End Role="tbPersonas" Type="Self.tbPersonas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuarios">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbPersonas">
-              <PropertyRef Name="per_UsuarioModifica" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2418,8 +2265,6 @@
           <EntitySet Name="tbEmpresa" EntityType="Self.tbEmpresa" />
           <EntitySet Name="tbPais" EntityType="Self.tbPais" />
           <EntitySet Name="tbClientes" EntityType="Self.tbClientes" />
-          <EntitySet Name="tbDirecciones" EntityType="Self.tbDirecciones" />
-          <EntitySet Name="tbPersonas" EntityType="Self.tbPersonas" />
           <EntitySet Name="tbRangos" EntityType="Self.tbRangos" />
           <EntitySet Name="tbCatalogoProductos" EntityType="Self.tbCatalogoProductos" />
           <EntitySet Name="tbCategoriaProductos" EntityType="Self.tbCategoriaProductos" />
@@ -2474,10 +2319,6 @@
             <End Role="tbUsuarios" EntitySet="tbUsuarios" />
             <End Role="tbPais" EntitySet="tbPais" />
           </AssociationSet>
-          <AssociationSet Name="FK_RRHH_tbPersonas_tbClientes_per_Id" Association="Self.FK_RRHH_tbPersonas_tbClientes_per_Id">
-            <End Role="tbPersonas" EntitySet="tbPersonas" />
-            <End Role="tbClientes" EntitySet="tbClientes" />
-          </AssociationSet>
           <AssociationSet Name="FK_Seg_tbUsuarios_tbClientes_clte_UsuarioCrea" Association="Self.FK_Seg_tbUsuarios_tbClientes_clte_UsuarioCrea">
             <End Role="tbUsuarios" EntitySet="tbUsuarios" />
             <End Role="tbClientes" EntitySet="tbClientes" />
@@ -2485,22 +2326,6 @@
           <AssociationSet Name="FK_Seg_tbUsuarios_tbClientes_clte_UsuarioModifica" Association="Self.FK_Seg_tbUsuarios_tbClientes_clte_UsuarioModifica">
             <End Role="tbUsuarios" EntitySet="tbUsuarios" />
             <End Role="tbClientes" EntitySet="tbClientes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbSucursales_dir_UsuarioCrea" Association="Self.FK_Seg_tbUsuarios_tbSucursales_dir_UsuarioCrea">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbDirecciones" EntitySet="tbDirecciones" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbSucursales_dir_UsuarioModifica" Association="Self.FK_Seg_tbUsuarios_tbSucursales_dir_UsuarioModifica">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbDirecciones" EntitySet="tbDirecciones" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbPersonas_per_UsuarioCrea" Association="Self.FK_Seg_tbUsuarios_tbPersonas_per_UsuarioCrea">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbPersonas" EntitySet="tbPersonas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Seg_tbUsuarios_tbPersonas_per_UsuarioModifica" Association="Self.FK_Seg_tbUsuarios_tbPersonas_per_UsuarioModifica">
-            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-            <End Role="tbPersonas" EntitySet="tbPersonas" />
           </AssociationSet>
           <AssociationSet Name="FK_Seg_tbUsuarios_tbRangos_rang_UsuarioCrea" Association="Self.FK_Seg_tbUsuarios_tbRangos_rang_UsuarioCrea">
             <End Role="tbUsuarios" EntitySet="tbUsuarios" />
@@ -2857,7 +2682,7 @@
             <Parameter Name="rolpe_UsuarioModifica" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UDP_Seg_tbUsuarios_BloquearUsuario" ReturnType="Collection(String)">
-            <Parameter Name="usu_Id" Mode="In" Type="Int32" />
+          <Parameter Name="usu_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UDP_Seg_tbUsuarios_Insert" ReturnType="Collection(String)">
             <Parameter Name="usu_NombreUsuario" Mode="In" Type="String" />
@@ -2906,6 +2731,19 @@
             <Parameter Name="rol_Descripcion" Mode="In" Type="String" />
             <Parameter Name="rol_UsuarioModifica" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="tbPersonas" EntityType="App_SpartansCustom_Model.tbPersonas" />
+          <AssociationSet Name="FK_RRHH_tbPersonas_tbClientes_per_Id" Association="App_SpartansCustom_Model.FK_RRHH_tbPersonas_tbClientes_per_Id">
+            <End Role="tbPersonas" EntitySet="tbPersonas" />
+            <End Role="tbClientes" EntitySet="tbClientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seg_tbUsuarios_tbPersonas_per_UsuarioCrea" Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPersonas_per_UsuarioCrea">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbPersonas" EntitySet="tbPersonas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seg_tbUsuarios_tbPersonas_per_UsuarioModifica" Association="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPersonas_per_UsuarioModifica">
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+            <End Role="tbPersonas" EntitySet="tbPersonas" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -2918,6 +2756,67 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="tbPersonas">
+          <Key>
+            <PropertyRef Name="per_Id" />
+          </Key>
+          <Property Name="per_Id" Type="Int32" Nullable="false" />
+          <Property Name="per_NumeroIdentidad" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="per_Nombres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="per_Apellidos" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="per_FechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="per_sexo" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="per_Telefono" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="per_CorreoElectronico" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="per_Fotografia" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="per_Estado" Type="Boolean" Nullable="false" />
+          <Property Name="per_EsPersonaNatural" Type="Boolean" Nullable="false" />
+          <Property Name="per_UsuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="per_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="per_UsuarioModifica" Type="Int32" />
+          <Property Name="per_FechaModifica" Type="DateTime" Precision="3" />
+          <Property Name="per_Direccion1" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="per_Direccion2" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbClientes" Relationship="App_SpartansCustom_Model.FK_RRHH_tbPersonas_tbClientes_per_Id" FromRole="tbPersonas" ToRole="tbClientes" />
+          <NavigationProperty Name="tbUsuarios" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPersonas_per_UsuarioCrea" FromRole="tbPersonas" ToRole="tbUsuarios" />
+          <NavigationProperty Name="tbUsuarios1" Relationship="App_SpartansCustom_Model.FK_Seg_tbUsuarios_tbPersonas_per_UsuarioModifica" FromRole="tbPersonas" ToRole="tbUsuarios" />
+        </EntityType>
+        <Association Name="FK_RRHH_tbPersonas_tbClientes_per_Id">
+          <End Type="App_SpartansCustom_Model.tbPersonas" Role="tbPersonas" Multiplicity="1" />
+          <End Type="App_SpartansCustom_Model.tbClientes" Role="tbClientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbPersonas">
+              <PropertyRef Name="per_Id" />
+            </Principal>
+            <Dependent Role="tbClientes">
+              <PropertyRef Name="per_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seg_tbUsuarios_tbPersonas_per_UsuarioCrea">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+          <End Type="App_SpartansCustom_Model.tbPersonas" Role="tbPersonas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbPersonas">
+              <PropertyRef Name="per_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seg_tbUsuarios_tbPersonas_per_UsuarioModifica">
+          <End Type="App_SpartansCustom_Model.tbUsuarios" Role="tbUsuarios" Multiplicity="0..1" />
+          <End Type="App_SpartansCustom_Model.tbPersonas" Role="tbPersonas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuarios">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbPersonas">
+              <PropertyRef Name="per_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3010,7 +2909,6 @@
             <EntityTypeMapping TypeName="App_SpartansCustom_Model.tbClientes">
               <MappingFragment StoreEntitySet="tbClientes">
                 <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
-                <ScalarProperty Name="clte_Cargo" ColumnName="clte_Cargo" />
                 <ScalarProperty Name="rang_Id" ColumnName="rang_Id" />
                 <ScalarProperty Name="clte_EsActivo" ColumnName="clte_EsActivo" />
                 <ScalarProperty Name="per_Id" ColumnName="per_Id" />
@@ -3019,44 +2917,6 @@
                 <ScalarProperty Name="clte_FechaCrea" ColumnName="clte_FechaCrea" />
                 <ScalarProperty Name="clte_UsuarioModifica" ColumnName="clte_UsuarioModifica" />
                 <ScalarProperty Name="clte_FechaModifica" ColumnName="clte_FechaModifica" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbDirecciones">
-            <EntityTypeMapping TypeName="App_SpartansCustom_Model.tbDirecciones">
-              <MappingFragment StoreEntitySet="tbDirecciones">
-                <ScalarProperty Name="dir_Id" ColumnName="dir_Id" />
-                <ScalarProperty Name="dir_Descripcion1" ColumnName="dir_Descripcion1" />
-                <ScalarProperty Name="dir_Descripcion2" ColumnName="dir_Descripcion2" />
-                <ScalarProperty Name="ciud_Id" ColumnName="ciud_Id" />
-                <ScalarProperty Name="dir_Estado" ColumnName="dir_Estado" />
-                <ScalarProperty Name="dir_TipoEntidad" ColumnName="dir_TipoEntidad" />
-                <ScalarProperty Name="dir_FechaFinUsoDireccion" ColumnName="dir_FechaFinUsoDireccion" />
-                <ScalarProperty Name="dir_UsuarioCrea" ColumnName="dir_UsuarioCrea" />
-                <ScalarProperty Name="dir_FechaCrea" ColumnName="dir_FechaCrea" />
-                <ScalarProperty Name="dir_UsuarioModifica" ColumnName="dir_UsuarioModifica" />
-                <ScalarProperty Name="dir_FechaModifica" ColumnName="dir_FechaModifica" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbPersonas">
-            <EntityTypeMapping TypeName="App_SpartansCustom_Model.tbPersonas">
-              <MappingFragment StoreEntitySet="tbPersonas">
-                <ScalarProperty Name="per_Id" ColumnName="per_Id" />
-                <ScalarProperty Name="per_NumeroIdentidad" ColumnName="per_NumeroIdentidad" />
-                <ScalarProperty Name="per_Nombres" ColumnName="per_Nombres" />
-                <ScalarProperty Name="per_Apellidos" ColumnName="per_Apellidos" />
-                <ScalarProperty Name="per_FechaNacimiento" ColumnName="per_FechaNacimiento" />
-                <ScalarProperty Name="per_sexo" ColumnName="per_sexo" />
-                <ScalarProperty Name="per_Telefono" ColumnName="per_Telefono" />
-                <ScalarProperty Name="per_CorreoElectronico" ColumnName="per_CorreoElectronico" />
-                <ScalarProperty Name="per_Fotografia" ColumnName="per_Fotografia" />
-                <ScalarProperty Name="per_Estado" ColumnName="per_Estado" />
-                <ScalarProperty Name="per_EsPersonaNatural" ColumnName="per_EsPersonaNatural" />
-                <ScalarProperty Name="per_UsuarioCrea" ColumnName="per_UsuarioCrea" />
-                <ScalarProperty Name="per_FechaCrea" ColumnName="per_FechaCrea" />
-                <ScalarProperty Name="per_UsuarioModifica" ColumnName="per_UsuarioModifica" />
-                <ScalarProperty Name="per_FechaModifica" ColumnName="per_FechaModifica" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3298,6 +3158,29 @@
           <FunctionImportMapping FunctionImportName="UPD_Seg_tbPermisos_Update" FunctionName="App_SpartansCustom_Model.Store.UPD_Seg_tbPermisos_Update" />
           <FunctionImportMapping FunctionImportName="UPD_Seg_tbRoles_Insert" FunctionName="App_SpartansCustom_Model.Store.UPD_Seg_tbRoles_Insert" />
           <FunctionImportMapping FunctionImportName="UPD_Seg_tbRoles_Update" FunctionName="App_SpartansCustom_Model.Store.UPD_Seg_tbRoles_Update" />
+          <EntitySetMapping Name="tbPersonas">
+            <EntityTypeMapping TypeName="App_SpartansCustom_Model.tbPersonas">
+              <MappingFragment StoreEntitySet="tbPersonas">
+                <ScalarProperty Name="per_Direccion2" ColumnName="per_Direccion2" />
+                <ScalarProperty Name="per_Direccion1" ColumnName="per_Direccion1" />
+                <ScalarProperty Name="per_FechaModifica" ColumnName="per_FechaModifica" />
+                <ScalarProperty Name="per_UsuarioModifica" ColumnName="per_UsuarioModifica" />
+                <ScalarProperty Name="per_FechaCrea" ColumnName="per_FechaCrea" />
+                <ScalarProperty Name="per_UsuarioCrea" ColumnName="per_UsuarioCrea" />
+                <ScalarProperty Name="per_EsPersonaNatural" ColumnName="per_EsPersonaNatural" />
+                <ScalarProperty Name="per_Estado" ColumnName="per_Estado" />
+                <ScalarProperty Name="per_Fotografia" ColumnName="per_Fotografia" />
+                <ScalarProperty Name="per_CorreoElectronico" ColumnName="per_CorreoElectronico" />
+                <ScalarProperty Name="per_Telefono" ColumnName="per_Telefono" />
+                <ScalarProperty Name="per_sexo" ColumnName="per_sexo" />
+                <ScalarProperty Name="per_FechaNacimiento" ColumnName="per_FechaNacimiento" />
+                <ScalarProperty Name="per_Apellidos" ColumnName="per_Apellidos" />
+                <ScalarProperty Name="per_Nombres" ColumnName="per_Nombres" />
+                <ScalarProperty Name="per_NumeroIdentidad" ColumnName="per_NumeroIdentidad" />
+                <ScalarProperty Name="per_Id" ColumnName="per_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
