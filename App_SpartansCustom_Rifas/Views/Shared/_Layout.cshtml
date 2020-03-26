@@ -81,22 +81,6 @@
 
         <!--Alertas intuitivas-->
         <script src="~/plugins/sweet-alert2/sweetalert2.min.js"></script>
-        <script>
-            async function get(url, datos, err) {
-                await $.get(url, (data) => {
-                    datos(data);
-                })
-                    .catch(error => err(error));
-            }
-
-            async function post(url, datos, retorno, error) {
-                await $.post(url, datos, (data) => {
-                    retorno(data);
-                }).catch(err => {
-                    error(err);
-                });
-            }
-        </script>
         @RenderSection("scripts", required: false)
         @*<script src="~/Scripts/app.js"></script>*@
     </body>

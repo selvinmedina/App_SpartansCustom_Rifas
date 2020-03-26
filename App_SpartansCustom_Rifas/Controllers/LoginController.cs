@@ -19,6 +19,7 @@ namespace App_SpartansCustom_Rifas.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public JsonResult Register(string nombreUsuario, string contrasenia, string correo, bool esAdmin = false)
         {
             string response = "error";

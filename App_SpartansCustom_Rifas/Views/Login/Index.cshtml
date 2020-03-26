@@ -28,36 +28,33 @@
                 </h3>
 
                 <div class="p-3">
-                    <h4 class="text-muted font-18 m-b-5 text-center">Welcome Back !</h4>
-                    <p class="text-muted text-center">Sign in to continue to Fonik.</p>
+                    <h4 class="text-muted font-18 m-b-5 text-center">Bienvenido!</h4>
+                    <p class="text-muted text-center">Inicia sesión para continuar.</p>
 
                     <form class="form-horizontal m-t-30" action="/dashboard">
 
                         <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="text" class="form-control" id="username" placeholder="Enter username">
+                            <label for="username">Nombre de usuario</label>
+                            <input type="text" class="form-control" id="username" placeholder="Ingrese su nombre de usuario">
                         </div>
 
                         <div class="form-group">
-                            <label for="userpassword">Password</label>
-                            <input type="password" class="form-control" id="userpassword" placeholder="Enter password">
+                            <label for="userpassword">Contraseña</label>
+                            <input type="password" class="form-control" id="userpassword" placeholder="Ingrese su contraseña">
                         </div>
 
                         <div class="form-group row m-t-20">
                             <div class="col-6">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customControlInline">
-                                    <label class="custom-control-label" for="customControlInline">Remember me</label>
-                                </div>
+                        
                             </div>
                             <div class="col-6 text-right">
-                                <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Log In</button>
+                                <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Inicia Sesión</button>
                             </div>
                         </div>
 
                         <div class="form-group m-t-10 mb-0 row">
                             <div class="col-12 m-t-20">
-                                <a href="@Url.Action("RecoverPassword", "pages")" class="text-muted"><i class="mdi mdi-lock"></i> Forgot your password?</a>
+                                <a href="@Url.Action("RecoverPassword", "pages")" class="text-muted"><i class="mdi mdi-lock"></i> ¿Olvidaste tu contraeña?</a>
                             </div>
                         </div>
                     </form>
@@ -67,7 +64,7 @@
         </div>
 
         <div class="m-t-40 text-center">
-            <p>Don't have an account ? <a href="@Url.Action("register","pages")" class=" text-primary"> Signup Now </a> </p>
+            <p>¿No tienes una cuenta? <a href="@Url.Action("register","pages")" class=" text-primary"> Regístrese ahora </a> </p>
             <p>© 2018 Lexa. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
         </div>
 

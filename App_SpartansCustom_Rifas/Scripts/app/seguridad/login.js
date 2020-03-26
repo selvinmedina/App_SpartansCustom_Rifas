@@ -1,3 +1,4 @@
+// Module Login
 const login = (() => {
     //#region Variables
     const email = $('#useremail'),
@@ -16,6 +17,7 @@ const login = (() => {
     //#endregion    
 
     function validarRegistro() {
+        let pasa = true;
 
         //#region Enable real-time validations
 
@@ -53,35 +55,35 @@ const login = (() => {
         //#region Required
 
         // Validate email
-        required(valEmail, emailRequerido, () => validarEmail(valEmail));
+        pasa = required(valEmail, emailRequerido, () => validarEmail(valEmail));
 
         // Validate user
-        required(valUserName, usuarioRequerido, () => { });
+        pasa = required(valUserName, usuarioRequerido, () => { });
 
         // Validate password
-        required(valPassword, passRequerida, () => { });
+        pasa = required(valPassword, passRequerida, () => { });
 
         // Validate repeated password
-        required(valRepeatPassword, passRepeatRequerida, () => { });
+        pasa = required(valRepeatPassword, passRepeatRequerida, () => { });
 
         //#endregion
 
-        if (valPassword !== '' && valRepeatPassword !== '') {
-            if (valPassword !== valRepeatPassword) {
-                console.log('La repeticion de contra no es igual');
-            }
+        if (valPassword !== '' && valRepeatPassword !== '' && valPassword !== valRepeatPassword) {
+            pasa = false;
         }
+        return pasa;
     }
 
     function required(val, validation, func) {
+        let pasa = true;
         if (val === '') {
+            pasa = false;
             validation.show();
         } else {
-            console.log('entra');
-
             validation.hide();
             func();
         }
+        return pasa;
     }
 
     userRepeatPassword.blur(function (e) {
@@ -109,7 +111,29 @@ const login = (() => {
     $('#btnRegistrar').click(function () {
         this.disabled = true;
 
-        validarRegistro();
+        const __RequestVerificationToken = $('form input[name="__RequestVerificationToken"]').val();
+
+        if (validarRegistro())
+            post(
+                '/Login/Register/',
+                {
+                    correo: email.val().trim(),
+                    nombreUsuario: userName.val().trim(),
+                    contrasenia: password.val().trim(),
+                    __RequestVerificationToken
+                },
+                async data => {
+                    if (data == bien) {
+                        await success('El usuario ha sido creado exitosamente.');
+                        await ocultarValidaciones('form');
+                    } else {
+                        await await error('Hubo un error al registrar el usuario');
+                    }
+                },
+                async err => {
+                    await await error('Hubo un error al enviar la información');
+                }
+            )
 
         this.disabled = false;
     });

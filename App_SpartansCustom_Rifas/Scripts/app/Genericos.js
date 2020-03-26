@@ -109,7 +109,20 @@ async function error(mensaje) {
     });
 }
 
+async function get(url, datos, err) {
+    await $.get(url, (data) => {
+        datos(data);
+    })
+        .catch(error => err(error));
+}
 
+async function post(url, datos, retorno, error) {
+    await $.post(url, datos, (data) => {
+        retorno(data);
+    }).catch(err => {
+        error(err);
+    });
+}
 
 var mensaje = {
     //Insersión
