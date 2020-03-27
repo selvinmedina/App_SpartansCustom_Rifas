@@ -1063,6 +1063,10 @@
           <Parameter Name="rang_Descripcion" Type="nvarchar" Mode="In" />
           <Parameter Name="rang_UsuarioModifica" Type="int" Mode="In" />
         </Function>
+        <Function Name="UDP_Seg_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Seg">
+          <Parameter Name="UsuarioId" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="UDP_Seg_tbPantallasRoles_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Seg">
           <Parameter Name="plarol_Id" Type="int" Mode="In" />
           <Parameter Name="rol_Id" Type="int" Mode="In" />
@@ -2280,6 +2284,10 @@
             <Parameter Name="usu_Contrasenia" Mode="In" Type="String" />
             <Parameter Name="usu_EsAdministrador" Mode="In" Type="Boolean" />
           </FunctionImport>
+          <FunctionImport Name="UDP_Seg_Login" ReturnType="Collection(App_SpartansCustom_Model.UDP_Seg_Login_Result)">
+            <Parameter Name="UsuarioId" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -2823,6 +2831,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="UDP_Seg_Login_Result">
+          <Property Type="String" Name="usu_NombreDeUsuario" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="usu_BloqueoActivo" Nullable="false" />
+          <Property Type="String" Name="usu_CorreoElectronico" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="usu_EsAdministrador" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3188,6 +3202,16 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="UDP_Seg_tbUsuarios_Insert" FunctionName="App_SpartansCustom_Model.Store.UDP_Seg_tbUsuarios_Insert" />
+          <FunctionImportMapping FunctionImportName="UDP_Seg_Login" FunctionName="App_SpartansCustom_Model.Store.UDP_Seg_Login">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="App_SpartansCustom_Model.UDP_Seg_Login_Result">
+                <ScalarProperty Name="usu_NombreDeUsuario" ColumnName="usu_NombreDeUsuario" />
+                <ScalarProperty Name="usu_BloqueoActivo" ColumnName="usu_BloqueoActivo" />
+                <ScalarProperty Name="usu_CorreoElectronico" ColumnName="usu_CorreoElectronico" />
+                <ScalarProperty Name="usu_EsAdministrador" ColumnName="usu_EsAdministrador" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

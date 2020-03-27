@@ -272,6 +272,9 @@
     <Compile Include="Models\tbUsuariosRoles.cs">
       <DependentUpon>App_SpartansCustom.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Seg_Login_Result.cs">
+      <DependentUpon>App_SpartansCustom.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

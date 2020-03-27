@@ -1014,5 +1014,18 @@ namespace App_SpartansCustom_Rifas.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Seg_tbUsuarios_Insert", usu_NombreUsuarioParameter, usu_CorreoElectronicoParameter, usu_ContraseniaParameter, usu_EsAdministradorParameter);
         }
+    
+        public virtual ObjectResult<UDP_Seg_Login_Result> UDP_Seg_Login(string usuarioId, string password)
+        {
+            var usuarioIdParameter = usuarioId != null ?
+                new ObjectParameter("UsuarioId", usuarioId) :
+                new ObjectParameter("UsuarioId", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Seg_Login_Result>("UDP_Seg_Login", usuarioIdParameter, passwordParameter);
+        }
     }
 }

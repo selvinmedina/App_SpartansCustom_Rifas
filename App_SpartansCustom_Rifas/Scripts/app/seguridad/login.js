@@ -12,7 +12,8 @@ const login = (() => {
         emailRequerido = $('#emailRequerido'),
         usuarioRequerido = $('#usuarioRequerido'),
         passRequerida = $('#passRequerida'),
-        passRepeatRequerida = $('#passRepeatRequerida');
+        passRepeatRequerida = $('#passRepeatRequerida'),
+        __RequestVerificationToken = $('form input[name="__RequestVerificationToken"]').val();;
 
     //#endregion    
 
@@ -74,6 +75,29 @@ const login = (() => {
         return pasa;
     }
 
+    function validarLogin() {
+        let pasa = true;
+
+        // Real-time userName
+        userName.change(function (e) {
+            required(this.value, usuarioRequerido, () => { });
+        });
+
+        // Real-time password
+        password.change(function (e) {
+            required(this.value, pass, () => { });
+        });
+
+        const valUserName = userName.val().trim();
+        const valPassword = password.val().trim();
+
+        pasa = required(valUserName, usuarioRequerido, () => { });
+
+        // Validate password
+        pasa = required(valPassword, pass, () => { });
+        return pasa;
+    }
+
     function required(val, validation, func) {
         let pasa = true;
         if (val === '') {
@@ -97,21 +121,22 @@ const login = (() => {
         }
     });
 
-    password.blur(function (e) {
-        const valPassword = userRepeatPassword.val().trim();
-        if (this.value !== '' && valPassword !== '' && this.value !== valPassword) {
-            pass.show();
-            confirmPass.show();
-        } else {
-            pass.hide();
-            confirmPass.hide();
-        }
-    });
+    if (userRepeatPassword.val()) {
+        password.blur(function (e) {
+            const valPassword = userRepeatPassword.val().trim();
+            if (this.value !== '' && valPassword !== '' && this.value !== valPassword) {
+                pass.show();
+                confirmPass.show();
+            } else {
+                pass.hide();
+                confirmPass.hide();
+            }
+        });
+    }
+
 
     $('#btnRegistrar').click(function () {
         this.disabled = true;
-
-        const __RequestVerificationToken = $('form input[name="__RequestVerificationToken"]').val();
 
         if (validarRegistro())
             post(
@@ -133,7 +158,7 @@ const login = (() => {
                 async err => {
                     await await error('Hubo un error al enviar la información');
                 }
-            )
+            );
 
         this.disabled = false;
     });
@@ -144,5 +169,34 @@ const login = (() => {
         else
             emailInvalido.show();
     }
+
+    $('#login').click(function () {
+        this.disabled = true;
+
+        if (validarLogin())
+            post(
+                '/Login/Index/',
+                {
+                    nombreUsuario: userName.val().trim(),
+                    contrasenia: password.val().trim(),
+                    __RequestVerificationToken
+                },
+                async data => {
+                    console.log(data);
+                    // if (data == bien) {
+                    //     await success('El usuario ha sido logueado');
+                    //     await ocultarValidaciones('form');
+                    // } else {
+                    //     await await error('Hubo un error al loguearse');
+                    // }
+                },
+                async err => {
+                    await await error('Hubo un error al enviar la información');
+                }
+            );
+
+        this.disabled = false;
+
+    })
 
 })();

@@ -65,5 +65,44 @@ namespace App_SpartansCustom_Rifas.Controllers
             }
             return Json(response, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult Index(string nombreUsuario, string contrasenia)
+        {
+            string response = "error";
+            using (App_SpartansCustom_Entities db = new App_SpartansCustom_Entities())
+            {
+
+                if (nombreUsuario != null && contrasenia != null)
+                {
+                    try
+                    {
+                        var consultaUsuario = db.UDP_Seg_Login(
+                                nombreUsuario,
+                                contrasenia
+                                ).FirstOrDefault();
+
+                        // Saber si existe el usuario
+                        if (consultaUsuario != null)
+                        {
+                            // Retornar el usuario
+                            return Json(consultaUsuario, JsonRequestBehavior.AllowGet);
+                        }
+                        else
+                        {
+                            // Usuario o contraseña incorrecta
+                            return Json(response, JsonRequestBehavior.AllowGet);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        return Json(response, JsonRequestBehavior.AllowGet);
+                    }
+                }
+
+            }
+            return Json(response, JsonRequestBehavior.AllowGet);
+        }
     }
 }
